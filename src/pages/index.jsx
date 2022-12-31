@@ -1,23 +1,22 @@
-import Image from 'next/image'
 import Head from 'next/head'
 import Link from 'next/link'
 import clsx from 'clsx'
-
+import Image from 'next/image'
 import { Button } from '@/components/Button'
-import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
 import {
   ItchIcon,
   GitHubIcon,
   LinkedInIcon,
 } from '@/components/SocialIcons'
-import logoAirbnb from '@/images/logos/airbnb.svg'
-import logoFacebook from '@/images/logos/facebook.svg'
 import logoPlanetaria from '@/images/logos/planetaria.svg'
-import logoStarbucks from '@/images/logos/starbucks.svg'
-import { generateRssFeed } from '@/lib/generateRssFeed'
-import { getAllArticles } from '@/lib/getAllArticles'
-import { formatDate } from '@/lib/formatDate'
+import image1 from '@/images/connexit.jpg'
+import image2 from '@/images/rebook.jpg'
+import image3 from '@/images/pywinmodal.jpg'
+import image4 from '@/images/overbooked.jpg'
+import image5 from '@/images/portrait.jpg'
+
+const border = 'p-6 border rounded-md border-zinc-100 dark:border-zinc-700/40'
 
 function LinkIcon(props) {
   return (
@@ -32,19 +31,59 @@ function LinkIcon(props) {
 
 function MailIcon(props) {
   return (
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-</svg>
-
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+      <polyline points="22,6 12,13 2,6"></polyline>
+    </svg>
   )
 }
 
-function BriefcaseIcon(props) {
+function ChartIcon(props) {
   return (
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
-</svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="12" y1="20" x2="12" y2="10"></line>
+      <line x1="18" y1="20" x2="18" y2="4"></line>
+      <line x1="6" y1="20" x2="6" y2="16"></line>
+    </svg>
+  )
+}
 
+function ProjectsIcon(props) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+    </svg>
   )
 }
 
@@ -61,25 +100,104 @@ function ArrowDownIcon(props) {
   )
 }
 
-function Article({ article }) {
+function Photos() {
+  let rotations = ['rotate-2', '-rotate-2', 'rotate-2', '-rotate-2', 'rotate-2']
+
   return (
-    <Card as="article">
-      <Card.Title href={`/articles/${article.slug}`}>
-        {article.title}
-      </Card.Title>
-      {/* <Card.Eyebrow as="time" dateTime={article.date} decorate>
-        {formatDate(article.date)}
-      </Card.Eyebrow> */}
-      <Card.Description>{article.description}</Card.Description>
-      <Card.Cta>See more</Card.Cta>
-    </Card>
+    <div className="mt-16 sm:mt-20">
+      <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
+        {[image1, image2, image3, image4, image5].map((image, imageIndex) => (
+          <div
+            key={image.src}
+            className={clsx(
+              'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-md shadow-md',
+              rotations[imageIndex % rotations.length]
+            )}
+          >
+            <Image
+              src={image}
+              alt=""
+              sizes="(min-width: 640px) 18rem, 11rem"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+const projects = [
+  {
+    name: 'Rebook',
+    description:
+      'Rebook is a user-friendly e-book reader application using React, featuring functionality for bookmarking, highlighting, and annotating EPUB files. The application also allows users to export their highlights and annotations as markdown files. It supports user accounts for storing progress in the cloud, but also functions without an account.',
+    cta: 'Visit site',
+    image: '/connexit.png',
+    url: 'https://rebook.jawfish.dev'
+  },
+  {
+    name: 'Connexit',
+    description:
+      'Connexit is a puzzle game that was developed under tight time constraints as part of a game jam competition. In Connexit, players go through a series of levels in which shapes with various behaviors must be navigated to their respective goals for the player to progress.',
+    cta: 'Play on Itch.io',
+    image: '/connexit.png',
+    url: 'https://jawfish.itch.io/connexit'
+  },
+  {
+    name: 'PyWinModal',
+    description:
+      "PyWinModal is a productivity tool for Windows that allows users to easily execute user-defined commands through a customizable modal popup. The modal's simple API facilitates easy customization and extensibility, making it a versatile tool for enhancing productivity.",
+    cta: 'View on GitHub',
+    image: '/connexit.png',
+    url: 'https://github.com/Jawfish/PyWinModal'
+  },
+]
+
+function ChevronRightIcon(props) {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M6.75 5.75 9.25 8l-2.5 2.25"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+function Project({ project }) {
+  return (
+    <div>
+      <div>
+        <div className="flex-none w-full font-medium text-zinc-700 dark:text-zinc-100 pb-3">
+          {project.name}
+        </div>
+        <div className="text-sm text-zinc-500 dark:text-zinc-400">
+          {project.description}
+        </div>
+        <span
+          aria-hidden="true"
+          className="relative z-10 flex items-end mt-4 text-sm font-medium text-emerald-500"
+        >
+          <Link
+            href={project.url}
+            className="transition-all hover:text-emerald-400 hover:underline"
+          >
+            {project.cta}
+          </Link>
+          <ChevronRightIcon className="inline w-5 h-5 stroke-current" />
+        </span>
+      </div>
+    </div>
   )
 }
 
 function SocialLink({ icon: Icon, ...props }) {
   return (
-    <Link className="group -m-1 p-1" {...props}>
-      <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
+    <Link className="p-1 -m-1 group" {...props}>
+      <Icon className="w-6 h-6 transition fill-zinc-500 group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
     </Link>
   )
 }
@@ -88,24 +206,32 @@ function Contact() {
   return (
     <form
       action="/thank-you"
-      className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40 grid gap-4 grid-cols-4"
+      className={`grid grid-cols-4 gap-6 ${border}`}
     >
-      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100 col-span-4">
-        <MailIcon className="h-6 w-6 flex-none" />
+      <h2 className="flex col-span-4 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+        <MailIcon className="flex-none w-6 h-6" />
         <span className="ml-3">Contact me</span>
       </h2>
-      <p className="text-sm text-zinc-600 dark:text-zinc-400 col-span-4">
-        {"Shoot me a message. I'll get back to you as soon as I can."}
-      </p>
-      <textarea name="message" placeholder='Message' aria-label='Message' cols="30" rows="4" className="col-span-4 appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-emerald-400 dark:focus:ring-emerald-400/10 sm:text-sm"></textarea>
-      <div className="flex gap-2 col-span-4">
+      {/* <p className="col-span-4 text-sm text-zinc-600 dark:text-zinc-400"> */}
+      {/* {"Shoot me a message. I'll get back to you as soon as I can."} */}
+      {/* </p> */}
+      <textarea
+        name="message"
+        placeholder="Message"
+        aria-label="Message"
+        cols="30"
+        rows="4"
+        className="col-span-4 appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-emerald-400 dark:focus:ring-emerald-400/10 sm:text-sm"
+      ></textarea>
+      <div className="flex col-span-4 gap-6">
         <input
           type="name"
           placeholder="Name"
           aria-label="Name"
           required
           className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-emerald-400 dark:focus:ring-emerald-400/10 sm:text-sm"
-        />        <input
+        />{' '}
+        <input
           type="email"
           placeholder="Email address"
           aria-label="Email address"
@@ -113,10 +239,27 @@ function Contact() {
           className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-emerald-400 dark:focus:ring-emerald-400/10 sm:text-sm"
         />
       </div>
-      <Button type="submit" variant='primary' className="col-span-4">
+      <Button type="submit" variant="primary" className="col-span-1">
         Send
       </Button>
     </form>
+  )
+}
+
+function ProjectsSection() {
+  return (
+    <div className='pt-6'>
+      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+        <ProjectsIcon className="flex-none w-6 h-6" />
+        <span className="ml-3">Featured Projects
+        </span>
+      </h2>
+      <div className="flex flex-col gap-6 mt-6">
+        {projects.map((project) => (
+          <Project key={project.name} project={project} />
+        ))}
+      </div>
+    </div>
   )
 }
 
@@ -125,106 +268,81 @@ function Resume() {
     {
       title: 'Languages',
       logo: logoPlanetaria,
-      stack: [
-        'JavaScript',
-        'TypeScript',
-        'HTML',
-        'CSS',
-        'Python',
-      ]
+      stack: ['JavaScript', 'TypeScript', 'HTML', 'CSS', 'Python'],
     },
     {
       title: 'Frontend',
       logo: logoPlanetaria,
-      stack: [
-        'React',
-        'Svelte',
-        'Next.js',
-        'Tailwind',
-        'TypeScript',
-      ]
+      stack: ['React', 'Svelte', 'SolidJS', 'Next.js', 'Tailwind'],
     },
     {
       title: 'Backend',
       logo: logoPlanetaria,
-      stack: [
-        'FastAPI',
-        'PostgreSQL',
-        'SQLAlchemy',
-      ]
+      stack: ['Node.js', 'FastAPI', 'MongoDB', 'PostgreSQL'],
     },
     {
       title: 'Other',
       logo: logoPlanetaria,
-      stack: [
-        'Docker',
-        'Git',
-      ]
+      stack: ['Docker', 'Git', 'Linux', 'NGINX'],
     },
   ]
 
   return (
-    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
+    <div className={border}>
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        <BriefcaseIcon className="h-6 w-6 flex-none" />
+        <ChartIcon className="flex-none w-6 h-6" />
         <span className="ml-3">Skills</span>
       </h2>
       <ol className="mt-6 space-y-4">
         {resume.map((role, roleIndex) => (
           <li key={roleIndex} className="flex gap-4">
-            {/* <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-              <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
-            </div> */}
-            <dl className="flex flex-auto flex-wrap gap-x-2">
+            <dl className="flex flex-wrap flex-auto gap-x-2">
               <dt className="sr-only">Company</dt>
-              <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
+              <dd className="flex-none w-full text-sm font-medium text-zinc-900 dark:text-zinc-100">
                 {role.title}
               </dd>
-              <dt className="sr-only">Role</dt>
-              <dd className="text-xs text-zinc-500 dark:text-zinc-400">
+              <dt className="sr-only">Stack</dt>
+              <dd className="text-sm text-zinc-500 dark:text-zinc-400">
                 {role.stack.join(', ')}
               </dd>
-              {/* <dd
-                className="ml-auto text-xs text-zinc-400 dark:text-zinc-500 flex"
-                
-              >
-                <LinkIcon className="h-6 w-6 flex-none" /> {role.url}
-              </dd> */}
             </dl>
           </li>
         ))}
       </ol>
-      <Button href="#" variant="primary" className="group mt-6 w-full">
+      <Button href="#" variant="secondary" className="w-full mt-6 group">
         Download CV
-        <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
+        <ArrowDownIcon className="w-4 h-4 transition stroke-zinc-400 group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
       </Button>
     </div>
   )
 }
 
-
-
-export default function Home({ articles }) {
+export default function Home() {
   return (
     <>
       <Head>
-        <title>
-          James Fitzgerald - Web developer
-        </title>
-        <meta
-          name="description"
-          content="Full-stack web developer."
-        />
+        <title>James Fitzgerald - Web developer</title>
+        <meta name="description" content="Full-stack web developer." />
       </Head>
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Full-stack web developer and hobbyist game designer.
+            Full-stack developer and hobbyist game designer.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            {"I'm James, a self-taught developer driven by the unique blend of creativity and logic that programming requires. I'm always looking for ways to tap into my creative side and make something new"}, from <a href="">games</a> to <a href="">websites</a>.
+            {"I'm"} James, a self-taught developer with a passion for bringing
+            ideas to life, be it through building websites or designing games.
+            Check out my{' '}
+            <Link
+              className="text-emerald-500 hover:text-emerald-400 hover:underline"
+              href="/projects"
+            >
+              past projects
+            </Link>
+            , and {"don't"} hesitate to get in touch if you think we could work
+            on something awesome together. Thanks for visiting!
           </p>
-          <div className="mt-6 flex gap-6">
+          <div className="flex gap-6 mt-6">
             <SocialLink
               href="https://github.com"
               aria-label="Follow on GitHub"
@@ -243,13 +361,10 @@ export default function Home({ articles }) {
           </div>
         </div>
       </Container>
-      <Container className="mt-24 md:mt-28">
-        <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
-          <div className="flex flex-col gap-16">
-            {articles.map((article) => (
-              <Article key={article.slug} article={article} />
-            ))}
-          </div>
+      {/* <Photos /> */}
+      <Container className="p-6 mt-6 ">
+        <div className="grid max-w-xl grid-cols-1 mx-auto gap-y-20 lg:max-w-none lg:grid-cols-2">
+          <ProjectsSection />
           <div className="space-y-10 lg:pl-16 xl:pl-24">
             <Resume />
             <Contact />
@@ -260,16 +375,4 @@ export default function Home({ articles }) {
   )
 }
 
-export async function getStaticProps() {
-  if (process.env.NODE_ENV === 'production') {
-    await generateRssFeed()
-  }
 
-  return {
-    props: {
-      articles: (await getAllArticles())
-        .slice(0, 4)
-        .map(({ component, ...meta }) => meta),
-    },
-  }
-}

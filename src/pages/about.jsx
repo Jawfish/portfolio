@@ -16,9 +16,9 @@ function SocialLink({ className, href, children, icon: Icon }) {
     <li className={clsx(className, 'flex')}>
       <Link
         href={href}
-        className="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
+        className="flex text-sm font-medium transition group text-zinc-800 hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
       >
-        <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
+        <Icon className="flex-none w-6 h-6 transition fill-zinc-500 group-hover:fill-teal-500" />
         <span className="ml-4">{children}</span>
       </Link>
     </li>
@@ -40,10 +40,10 @@ export default function About() {
   return (
     <>
       <Head>
-        <title>About - Spencer Sharp</title>
+        <title>About - James Fitzgerald</title>
         <meta
           name="description"
-          content="I’m Spencer Sharp. I live in New York City, where I design the future."
+          content="About me."
         />
       </Head>
       <Container className="mt-16 sm:mt-32">
@@ -54,41 +54,23 @@ export default function About() {
                 src={portraitImage}
                 alt=""
                 sizes="(min-width: 1024px) 32rem, 20rem"
-                className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
+                className="object-cover aspect-square rotate-3 rounded-md bg-zinc-100 dark:bg-zinc-800"
               />
             </div>
           </div>
           <div className="lg:order-first lg:row-span-2">
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-              I’m Spencer Sharp. I live in New York City, where I design the
-              future.
+              {"I'm"} James Fitzgerald, a self-taught developer from Georgia.
             </h1>
-            <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
+            <div className="mt-6 text-base space-y-7 text-zinc-600 dark:text-zinc-400">
               <p>
-                I’ve loved making things for as long as I can remember, and
-                wrote my first program when I was 6 years old, just two weeks
-                after my mom brought home the brand new Macintosh LC 550 that I
-                taught myself to type on.
+                My passion for software development began by creating games in C# with MonoGame. {"I've"} worked with various engines and languages to create games since then, and some of my work has been released on <Link href="https://jawfish.itch.io/" className="text-emerald-500 hover:text-emerald-400 transition-all">Itch.io</Link> - mostly game jam entries built with <Link href="https://godotengine.org/en" className="text-emerald-500 hover:text-emerald-400 transition-all">Godot</Link>.
               </p>
               <p>
-                The only thing I loved more than computers as a kid was space.
-                When I was 8, I climbed the 40-foot oak tree at the back of our
-                yard while wearing my older sister’s motorcycle helmet, counted
-                down from three, and jumped — hoping the tree was tall enough
-                that with just a bit of momentum I’d be able to get to orbit.
+                From there, I began building Bash/PowerShell/Python scripts and JavaScript bookmarklets to automate things in my life or streamline my workflow. The skills I picked up from these projects quickly grew into an interest in web development to create useful apps that I could use remotely. As I learned more, coding became more of a creative outlet and a means of enhancing my own life and the lives of those around me.
               </p>
               <p>
-                I spent the next few summers indoors working on a rocket design,
-                while I recovered from the multiple surgeries it took to fix my
-                badly broken legs. It took nine iterations, but when I was 15 I
-                sent my dad’s Blackberry into orbit and was able to transmit a
-                photo back down to our family computer from space.
-              </p>
-              <p>
-                Today, I’m the founder of Planetaria, where we’re working on
-                civilian space suits and manned shuttle kits you can assemble at
-                home so that the next generation of kids really <em>can</em>{' '}
-                make it to orbit — from the comfort of their own backyards.
+                My interest in technology {"doesn't"} stop at software development. {"I've"} planned and built my own personal home server that provides various containerized services, including a PostgreSQL database, a <Link href="https://gitea.io/en-us/" className="text-emerald-500 hover:text-emerald-400 transition-all">Gitea</Link> instance, and <Link href="https://www.portainer.io/" className='text-emerald-500 hover:text-emerald-400 transition-all'>Portainer</Link>, a Docker management frontend. It also acts as a media server, VPN, NAS, NGINX server, and a remote development server using <Link href="https://code.visualstudio.com/docs/remote/vscode-server" className="text-emerald-500 hover:text-emerald-400 transition-all">Visual Studio Code Server</Link>. This project has taught me a lot about Linux, networking technologies like DNS and HTTP/HTTPS, and other useful industry skills.
               </p>
             </div>
           </div>
@@ -104,11 +86,11 @@ export default function About() {
                 Check out my Itch.io
               </SocialLink>
               <SocialLink
-                href="mailto:james@jawfish.llc"
+                href="mailto:james@jawfish.dev"
                 icon={MailIcon}
-                className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
+                className="pt-8 mt-8 border-t border-zinc-100 dark:border-zinc-700/40"
               >
-                james@jawfish.llc
+                james@jawfish.dev
               </SocialLink>
             </ul>
           </div>
