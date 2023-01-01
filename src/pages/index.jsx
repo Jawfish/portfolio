@@ -205,7 +205,10 @@ function SocialLink({ icon: Icon, ...props }) {
 function Contact() {
   return (
     <form
-      action="/thank-you"
+      action="https://formkeep.com/f/555a16ecb7fc"
+      acceptCharset="UTF-8"
+      encType="multipart/form-data"
+      method="POST"
       className={`grid grid-cols-4 gap-6 ${border}`}
     >
       <h2 className="flex col-span-4 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
@@ -216,6 +219,7 @@ function Contact() {
       {/* {"Shoot me a message. I'll get back to you as soon as I can."} */}
       {/* </p> */}
       <textarea
+        required
         name="message"
         placeholder="Message"
         aria-label="Message"
@@ -226,6 +230,7 @@ function Contact() {
       <div className="flex col-span-4 gap-6">
         <input
           type="name"
+          name="name"
           placeholder="Name"
           aria-label="Name"
           required
@@ -233,9 +238,10 @@ function Contact() {
         />{' '}
         <input
           type="email"
+          name="email"
+          required
           placeholder="Email address"
           aria-label="Email address"
-          required
           className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-emerald-400 dark:focus:ring-emerald-400/10 sm:text-sm"
         />
       </div>
