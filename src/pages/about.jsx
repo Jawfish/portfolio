@@ -79,7 +79,7 @@ export default function About() {
                 My interest in tech {"doesn't"} stop at software development. I built a home server that provides various containerized services, including a PostgreSQL database, a <Link href="https://gitea.io/en-us/" className="text-emerald-500 hover:text-emerald-400 transition-all">Gitea</Link> instance, and <Link href="https://www.portainer.io/" className='text-emerald-500 hover:text-emerald-400 transition-all'>Portainer</Link>, a Docker management frontend. It also acts as a VPN, NGINX server, and remote development environment using <Link href="https://code.visualstudio.com/docs/remote/vscode-server" className="text-emerald-500 hover:text-emerald-400 transition-all">Visual Studio Code Server</Link>. This has taught me a lot about Linux, networking technologies like DNS and HTTP/HTTPS, and other useful industry skills.
               </p>
               <p>
-                Outside of tech, I have a number of interests and hobbies that help me relax and unwind. Some of my favorites are cooking and baking for the creativity and experimentation involved. I also enjoy watching movies and I have a diverse taste in music.
+                Outside of tech, I enjoy cooking and baking as another way to express my creativity and try new things. I also have a passion for music and enjoy going to concerts to see my favorite artists perform live, with some of my favorites being Steven Wilson, Riverside, Opeth, and Leprous.
               </p>
             </div>
           </div>
