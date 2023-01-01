@@ -76,7 +76,7 @@ const games = [
     description:
       'I developed Healsim in one week as my entry for the Godot Wild Jam #33 competition. The game is inspired by the healing mechanics in popular MMOs such as World of Warcraft and Final Fantasy XIV. In Healsim, players assume the role of a healer and must use their spells to keep their party alive and defeat the boss before they run out of mana.',
     link: 'https://jawfish.itch.io/healsim',
-    github: 'https://github.com/Jawfish/healsim',
+    github: '',
     stack: ['Godot'],
     image: healsimImage,
   },
