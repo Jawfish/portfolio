@@ -4,11 +4,7 @@ import clsx from 'clsx'
 import Image from 'next/image'
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
-import {
-  ItchIcon,
-  GitHubIcon,
-  LinkedInIcon,
-} from '@/components/SocialIcons'
+import { ItchIcon, GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
 import logoPlanetaria from '@/images/logos/planetaria.svg'
 import image1 from '@/images/connexit.jpg'
 import image2 from '@/images/rebook.jpg'
@@ -110,7 +106,7 @@ function Photos() {
           <div
             key={image.src}
             className={clsx(
-              'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-md shadow-md',
+              'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 shadow-md dark:bg-zinc-800 sm:w-72 sm:rounded-md',
               rotations[imageIndex % rotations.length]
             )}
           >
@@ -134,7 +130,7 @@ const projects = [
       'Rebook is a user-friendly e-book reader application using React, featuring functionality for bookmarking, highlighting, and annotating EPUB files. The application also allows users to export their highlights and annotations as markdown files. It supports user accounts for storing progress in the cloud, but also functions without an account.',
     cta: 'Visit site',
     image: '/connexit.png',
-    url: 'https://rebook.jawfish.dev'
+    url: 'https://rebook.jawfish.dev',
   },
   {
     name: 'Connexit',
@@ -142,7 +138,7 @@ const projects = [
       'Connexit is a puzzle game that was developed under tight time constraints as part of a game jam competition. In Connexit, players go through a series of levels in which shapes with various behaviors must be navigated to their respective goals for the player to progress.',
     cta: 'Play on Itch.io',
     image: '/connexit.png',
-    url: 'https://jawfish.itch.io/connexit'
+    url: 'https://jawfish.itch.io/connexit',
   },
   {
     name: 'PyWinModal',
@@ -150,7 +146,7 @@ const projects = [
       "PyWinModal is a productivity tool for Windows that allows users to easily execute user-defined commands through a customizable modal popup. The modal's simple API facilitates easy customization and extensibility, making it a versatile tool for enhancing productivity.",
     cta: 'View on GitHub',
     image: '/connexit.png',
-    url: 'https://github.com/Jawfish/PyWinModal'
+    url: 'https://github.com/Jawfish/PyWinModal',
   },
 ]
 
@@ -171,7 +167,7 @@ function Project({ project }) {
   return (
     <div>
       <div>
-        <div className="flex-none w-full font-medium text-zinc-700 dark:text-zinc-100 pb-3">
+        <div className="w-full flex-none pb-3 font-medium text-zinc-700 dark:text-zinc-100">
           {project.name}
         </div>
         <div className="text-sm text-zinc-500 dark:text-zinc-400">
@@ -179,7 +175,7 @@ function Project({ project }) {
         </div>
         <span
           aria-hidden="true"
-          className="relative z-10 flex items-end mt-4 text-sm font-medium text-emerald-500"
+          className="relative z-10 mt-4 flex items-end text-sm font-medium text-emerald-500"
         >
           <Link
             href={project.url}
@@ -187,7 +183,7 @@ function Project({ project }) {
           >
             {project.cta}
           </Link>
-          <ChevronRightIcon className="inline w-5 h-5 stroke-current" />
+          <ChevronRightIcon className="inline h-5 w-5 stroke-current" />
         </span>
       </div>
     </div>
@@ -196,8 +192,8 @@ function Project({ project }) {
 
 function SocialLink({ icon: Icon, ...props }) {
   return (
-    <Link className="p-1 -m-1 group" {...props}>
-      <Icon className="w-6 h-6 transition fill-zinc-500 group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
+    <Link className="group -m-1 p-1" {...props}>
+      <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
     </Link>
   )
 }
@@ -211,8 +207,8 @@ function Contact() {
       method="POST"
       className={`grid grid-cols-4 gap-6 ${border}`}
     >
-      <h2 className="flex col-span-4 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        <MailIcon className="flex-none w-6 h-6" />
+      <h2 className="col-span-4 flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+        <MailIcon className="h-6 w-6 flex-none" />
         <span className="ml-3">Contact me</span>
       </h2>
       {/* <p className="col-span-4 text-sm text-zinc-600 dark:text-zinc-400"> */}
@@ -227,7 +223,7 @@ function Contact() {
         rows="4"
         className="col-span-4 appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-emerald-400 dark:focus:ring-emerald-400/10 sm:text-sm"
       ></textarea>
-      <div className="flex col-span-4 gap-6">
+      <div className="col-span-4 flex gap-6">
         <input
           type="name"
           name="name"
@@ -254,13 +250,12 @@ function Contact() {
 
 function ProjectsSection() {
   return (
-    <div className='pt-6'>
+    <div className="pt-6">
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        <ProjectsIcon className="flex-none w-6 h-6" />
-        <span className="ml-3">Featured Projects
-        </span>
+        <ProjectsIcon className="h-6 w-6 flex-none" />
+        <span className="ml-3">Featured Projects</span>
       </h2>
-      <div className="flex flex-col gap-6 mt-6">
+      <div className="mt-6 flex flex-col gap-6">
         {projects.map((project) => (
           <Project key={project.name} project={project} />
         ))}
@@ -296,15 +291,15 @@ function Resume() {
   return (
     <div className={border}>
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        <ChartIcon className="flex-none w-6 h-6" />
+        <ChartIcon className="h-6 w-6 flex-none" />
         <span className="ml-3">Skills</span>
       </h2>
       <ol className="mt-6 space-y-4">
         {resume.map((role, roleIndex) => (
           <li key={roleIndex} className="flex gap-4">
-            <dl className="flex flex-wrap flex-auto gap-x-2">
+            <dl className="flex flex-auto flex-wrap gap-x-2">
               <dt className="sr-only">Company</dt>
-              <dd className="flex-none w-full text-sm font-medium text-zinc-900 dark:text-zinc-100">
+              <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
                 {role.title}
               </dd>
               <dt className="sr-only">Stack</dt>
@@ -315,9 +310,9 @@ function Resume() {
           </li>
         ))}
       </ol>
-      <Button href="#" variant="secondary" className="w-full mt-6 group">
+      <Button href="#" variant="secondary" className="group mt-6 w-full">
         Download CV
-        <ArrowDownIcon className="w-4 h-4 transition stroke-zinc-400 group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
+        <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
       </Button>
     </div>
   )
@@ -348,7 +343,7 @@ export default function Home() {
             , and {"don't"} hesitate to get in touch if you think we could work
             on something awesome together. Thanks for visiting!
           </p>
-          <div className="flex gap-6 mt-6">
+          <div className="mt-6 flex gap-6">
             <SocialLink
               href="https://github.com"
               aria-label="Follow on GitHub"
@@ -368,8 +363,8 @@ export default function Home() {
         </div>
       </Container>
       {/* <Photos /> */}
-      <Container className="p-6 mt-6 ">
-        <div className="grid max-w-xl grid-cols-1 mx-auto gap-y-20 lg:max-w-none lg:grid-cols-2">
+      <Container className="mt-6 p-6 ">
+        <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <ProjectsSection />
           <div className="space-y-10 lg:pl-16 xl:pl-24">
             <Resume />
@@ -380,5 +375,3 @@ export default function Home() {
     </>
   )
 }
-
-

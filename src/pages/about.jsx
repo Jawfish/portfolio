@@ -4,11 +4,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
-import {
-  GitHubIcon,
-  ItchIcon,
-  LinkedInIcon,
-} from '@/components/SocialIcons'
+import { GitHubIcon, ItchIcon, LinkedInIcon } from '@/components/SocialIcons'
 import portraitImage from '@/images/portrait.jpg'
 
 function SocialLink({ className, href, children, icon: Icon }) {
@@ -16,9 +12,9 @@ function SocialLink({ className, href, children, icon: Icon }) {
     <li className={clsx(className, 'flex')}>
       <Link
         href={href}
-        className="flex text-sm font-medium transition group text-zinc-800 hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
+        className="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
       >
-        <Icon className="flex-none w-6 h-6 transition fill-zinc-500 group-hover:fill-teal-500" />
+        <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
         <span className="ml-4">{children}</span>
       </Link>
     </li>
@@ -41,10 +37,7 @@ export default function About() {
     <>
       <Head>
         <title>About - James Fitzgerald</title>
-        <meta
-          name="description"
-          content="About me."
-        />
+        <meta name="description" content="About me." />
       </Head>
       <Container className="mt-16 sm:mt-32">
         <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
@@ -54,7 +47,7 @@ export default function About() {
                 src={portraitImage}
                 alt=""
                 sizes="(min-width: 1024px) 32rem, 20rem"
-                className="object-cover aspect-square rotate-3 rounded-md bg-zinc-100 dark:bg-zinc-800"
+                className="aspect-square rotate-3 rounded-md bg-zinc-100 object-cover dark:bg-zinc-800"
               />
             </div>
           </div>
@@ -62,21 +55,96 @@ export default function About() {
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
               {"I'm"} James Fitzgerald, a self-taught developer from Georgia.
             </h1>
-            <div className="mt-6 text-base space-y-7 text-zinc-600 dark:text-zinc-400">
+            <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
               <p>
-                My passion for software development began by creating games in C# with <Link href="https://www.monogame.net/" className="text-emerald-500 hover:text-emerald-400 transition-all">MonoGame</Link>. {"I've"} continued making games with various frameworks and languages since then, with some of my work being released on <Link href="https://jawfish.itch.io/" className="text-emerald-500 hover:text-emerald-400 transition-all">Itch.io</Link>.
+                My passion for software development began by creating games in
+                C# with{' '}
+                <Link
+                  href="https://www.monogame.net/"
+                  className="text-emerald-500 transition-all hover:text-emerald-400"
+                >
+                  MonoGame
+                </Link>
+                . {"I've"} continued making games with various frameworks and
+                languages since then, with some of my work being released on{' '}
+                <Link
+                  href="https://jawfish.itch.io/"
+                  className="text-emerald-500 transition-all hover:text-emerald-400"
+                >
+                  Itch.io
+                </Link>
+                .
               </p>
               <p>
-                From there, I began building Bash/PowerShell/Python scripts to automate and streamline my workflow. As I learned more, coding became more of a creative outlet and a means of enhancing my own life and the lives of those around me.
+                From there, I began building Bash/PowerShell/Python scripts to
+                automate and streamline my workflow. As I learned more, coding
+                became more of a creative outlet and a means of enhancing my own
+                life and the lives of those around me.
               </p>
               <p>
-                Seeking to create more complex apps, I began building projects in Vue, later moving to React for the improved developer experience provided by its better TypeScript support. I quickly adopted a full-stack approach, familiarizing myself with technologies like Flask, FastAPI, Node, and both SQL and NoSQL databases.
+                Seeking to create more complex apps, I began building projects
+                in Vue, later moving to React for the improved developer
+                experience provided by its better TypeScript support. I quickly
+                adopted a full-stack approach, familiarizing myself with
+                technologies like Flask, FastAPI, Node, and both SQL and NoSQL
+                databases.
               </p>
               <p>
-                With all of that typing, I inevitably ended up with an interest in keyboards. After building a few custom keyboards, I started contributing to <Link href="https://github.com/KMKfw/kmk_firmware" className="text-emerald-500 hover:text-emerald-400 transition-all">KMK</Link>, an open-source keyboard firmware. I wrote the <Link href="https://github.com/KMKfw/kmk_firmware/blob/master/docs/en/rapidfire.md" className='text-emerald-500 hover:text-emerald-400 transition-all'>RapidFire</Link> and <Link href="https://github.com/KMKfw/kmk_firmware/blob/master/docs/en/string_substitution.md" className='text-emerald-500 hover:text-emerald-400 transition-all'>String Substitution</Link> modules and contributed a few fixes here and there. This was a great learning experience and gave me the chance to participate in a collaborative software development process after working mostly solo.
+                With all of that typing, I inevitably ended up with an interest
+                in keyboards. After building a few custom keyboards, I started
+                contributing to{' '}
+                <Link
+                  href="https://github.com/KMKfw/kmk_firmware"
+                  className="text-emerald-500 transition-all hover:text-emerald-400"
+                >
+                  KMK
+                </Link>
+                , an open-source keyboard firmware. I wrote the{' '}
+                <Link
+                  href="https://github.com/KMKfw/kmk_firmware/blob/master/docs/en/rapidfire.md"
+                  className="text-emerald-500 transition-all hover:text-emerald-400"
+                >
+                  RapidFire
+                </Link>{' '}
+                and{' '}
+                <Link
+                  href="https://github.com/KMKfw/kmk_firmware/blob/master/docs/en/string_substitution.md"
+                  className="text-emerald-500 transition-all hover:text-emerald-400"
+                >
+                  String Substitution
+                </Link>{' '}
+                modules and contributed a few fixes here and there. This was a
+                great learning experience and gave me the chance to participate
+                in a collaborative software development process after working
+                mostly solo.
               </p>
               <p>
-                My interest in tech {"doesn't"} stop at software development. I built a home server that provides various containerized services, including a PostgreSQL database, a <Link href="https://gitea.io/en-us/" className="text-emerald-500 hover:text-emerald-400 transition-all">Gitea</Link> instance, and <Link href="https://www.portainer.io/" className='text-emerald-500 hover:text-emerald-400 transition-all'>Portainer</Link>, a Docker management frontend. It also acts as a VPN, NGINX server, and remote development environment using <Link href="https://code.visualstudio.com/docs/remote/vscode-server" className="text-emerald-500 hover:text-emerald-400 transition-all">Visual Studio Code Server</Link>. This has taught me a lot about Linux, networking technologies like DNS and HTTP/HTTPS, and other useful industry skills.
+                My interest in tech {"doesn't"} stop at software development. I
+                built a home server that provides various containerized
+                services, including a PostgreSQL database, a{' '}
+                <Link
+                  href="https://gitea.io/en-us/"
+                  className="text-emerald-500 transition-all hover:text-emerald-400"
+                >
+                  Gitea
+                </Link>{' '}
+                instance, and{' '}
+                <Link
+                  href="https://www.portainer.io/"
+                  className="text-emerald-500 transition-all hover:text-emerald-400"
+                >
+                  Portainer
+                </Link>
+                , a Docker management frontend. It also acts as a VPN, NGINX
+                server, and remote development environment using{' '}
+                <Link
+                  href="https://code.visualstudio.com/docs/remote/vscode-server"
+                  className="text-emerald-500 transition-all hover:text-emerald-400"
+                >
+                  Visual Studio Code Server
+                </Link>
+                . This has taught me a lot about Linux, networking technologies
+                like DNS and HTTP/HTTPS, and other useful industry skills.
               </p>
               {/* <p>
                 Outside of tech, I enjoy cooking and baking as another way to express my creativity and try new things. I also have a passion for music and enjoy going to concerts to see my favorite artists perform live, with some of my favorites being Porcupine Tree, Leprous, Riverside, and Opeth.
@@ -97,7 +165,7 @@ export default function About() {
               <SocialLink
                 href="mailto:james@jawfish.dev"
                 icon={MailIcon}
-                className="pt-8 mt-8 border-t border-zinc-100 dark:border-zinc-700/40"
+                className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
               >
                 james@jawfish.dev
               </SocialLink>
