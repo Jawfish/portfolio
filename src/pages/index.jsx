@@ -330,7 +330,7 @@ export default function Home() {
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
             Full-stack developer and hobbyist game designer.
           </h1>
-          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+          <p className="mt-6 max-w-xl text-base text-zinc-600 dark:text-zinc-400">
             {"I'm"} James, a self-taught developer with a passion for bringing
             ideas to life, be it through building websites or designing games.
             Check out my{' '}
