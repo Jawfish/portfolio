@@ -2,105 +2,9 @@ import Image from 'next/image'
 import Head from 'next/head'
 
 import { SimpleLayout } from '@/components/SimpleLayout'
+import { endpoint } from '@/lib/client'
+import Link from 'next/link'
 
-import connexitImage from '@/images/connexit.png'
-import rebookImage from '@/images/rebook.jpg'
-import pywinmodalImage from '@/images/pywinmodal.jpg'
-import overbookedImage from '@/images/overbooked.jpg'
-import placeholderImage from '@/images/placeholder.jpg'
-import archaeoImage from '@/images/archaeo.jpg'
-import healsimImage from '@/images/healsim.jpg'
-import wordlistImage from '@/images/wordlist.jpg'
-import portfolioImage from '@/images/portfolio.jpg'
-
-const websites = [
-  {
-    name: 'Rebook',
-    description:
-      'Rebook is a user-friendly e-book reader application using React, featuring functionality for bookmarking, highlighting, and annotating EPUB files. The application also allows users to export their highlights and annotations as markdown files. It supports user accounts for storing progress in the cloud, but also works locally without an account.',
-    link: 'https://rebook.jawfish.dev',
-    github: 'https://github.com/Jawfish/rebook',
-    languages: ['TypeScript', 'Python'],
-    stack: ['React', 'FastAPI', 'PostgreSQL'],
-    image: rebookImage,
-  },
-  {
-    name: 'Solidarity',
-    description:
-      'Solidarity is a fully-functional demo of an e-commerce platform, showcasing features such as user accounts, an ordering system, and a CMS for managing products. The frontend is implemented with SolidJS while the backend is built on Node and MongoDB with KeystoneJS serving as the CMS. GraphQL is used for communication between the two.',
-    link: { href: 'https://shop.jawfish.dev', label: 'jawfish.dev' },
-    github: '',
-    stack: ['SolidJS', 'Node', 'MongoDB', 'GraphQL'],
-    image: placeholderImage,
-  },
-  {
-    name: 'Portfolio',
-    description:
-      "This is the site you're on right now! It's a responsive site built with React, Next.js, and Tailwind, and is hosted on my own VPS. The site addresses many accessibility concerns, including dark mode, focus targets, semantic HTML, and proper aria attributes.",
-    link: 'https://jawfish.dev',
-    github: '',
-    stack: ['React', 'Next.js', 'Tailwind'],
-    image: portfolioImage,
-  },
-]
-const games = [
-  {
-    name: 'Connexit',
-    description:
-      'Connexit is a puzzle game where players go through a series of levels in which shapes with various behaviors must be navigated to their respective goals for the player to progress. It was developed in one week as my entry for the Godot Wild Jam #21 competition and placed 11th out of 87 entries.',
-    link: 'https://jawfish.itch.io/connexit',
-    github: 'https://github.com/Jawfish/connexit',
-    stack: ['Godot'],
-    image: connexitImage,
-  },
-  {
-    name: 'Overbooked',
-    description:
-      "Overbooked is another one-week game jam entry, this time for the Godot Wild Jam #27 competition. It's a hectic game loosely inspired by Overcooked where the player needs to sort as many library books into their respective shelves as they can before the library closes.",
-    link: 'https://jawfish.itch.io/overbooked',
-    github: 'https://github.com/Jawfish/Overbooked',
-    stack: ['Godot'],
-    image: overbookedImage,
-  },
-  {
-    name: 'Archaeo',
-    description:
-      'Archaeo is my entry for Godot Wild Jam #19, and it was developed in one week like the other games here. The game is a simple score attack game where players order workers to dig into the ground to find diamonds. The deeper the workers dig, the harder the ground becomes to dig through, so the player must recruit additional workers to keep up with the increasing difficulty.',
-    link: 'https://jawfish.itch.io/archaeo',
-    github: 'https://github.com/Jawfish/Archaeo',
-    stack: ['Godot'],
-    image: archaeoImage,
-  },
-  {
-    name: 'Healsim',
-    description:
-      'I developed Healsim in one week as my entry for the Godot Wild Jam #33 competition. The game is inspired by the healing mechanics in popular MMOs such as World of Warcraft and Final Fantasy XIV. In Healsim, players assume the role of a healer and must use their spells to keep their party alive and defeat the boss before they run out of mana.',
-    link: 'https://jawfish.itch.io/healsim',
-    github: '',
-    stack: ['Godot'],
-    image: healsimImage,
-  },
-]
-const utilities = [
-  {
-    name: 'PyWinModal',
-    description:
-      "PyWinModal is a productivity tool for Windows that allows users to easily execute user-defined commands through a customizable modal popup. The modal's simple API facilitates easy customization and extensibility, making it a versatile tool for enhancing productivity.",
-    link: '',
-    github: 'https://github.com/Jawfish/PyWinModal',
-    stack: ['Python'],
-    image: pywinmodalImage,
-  },
-  {
-    name: 'wordlist-generator',
-    description:
-      'wordlist-generator is a small CLI utility written in Rust. It takes a list of words and outputs a new list of only the words which contain some combination of a given set of characters. I created this to generate wordlists for targetting specific sets of characters while practicing typing on Monkeytype, as well as to learn a bit of Rust.',
-    link: '',
-    github: 'https://github.com/Jawfish/wordlist-generator',
-    stack: ['Rust'],
-    image: wordlistImage,
-  },
-]
 function WebsiteIcon(props) {
   return (
     <svg
@@ -176,6 +80,7 @@ function LinkIcon(props) {
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
+      className="inline-flex h-4 w-4 self-center"
       {...props}
     >
       <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
@@ -197,6 +102,7 @@ function GitHubIcon(props) {
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
+      className="inline-flex h-4 w-4 self-center"
       {...props}
     >
       <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
@@ -204,61 +110,64 @@ function GitHubIcon(props) {
   )
 }
 
-function Project({ project, alignRight = true }) {
+function TechTags({ tags }) {
   return (
-    <div
-      as="li"
-      key={project.name}
-      className=" rounded-md border border-zinc-100 dark:border-zinc-700/40"
-    >
-      <div className="xs:h-64 flex h-auto justify-between">
-        {alignRight && (
-          <div className="hidden w-96 rounded-l-md md:block">
-            <Image
-              src={project.image}
-              alt=""
-              className="h-full w-full rounded-l-md border-r border-zinc-100 object-cover dark:border-zinc-700/40 dark:brightness-90"
-            />
-          </div>
-        )}
-        <div className="flex w-full  flex-col p-6 ">
-          <h2
-            className={`text-base font-semibold text-zinc-800 dark:text-zinc-100  ${
-              !alignRight ? 'text-end' : ''
-            }`}
-          >
+    <div className="flex gap-2">
+      {tags.map((tag) => (
+        <span
+          key={tag.id}
+          className="text-xs text-zinc-400  transition-all  dark:text-zinc-600"
+        >
+          {tag.name}
+        </span>
+      ))}
+    </div>
+  )
+}
+
+function Project({ project }) {
+  return (
+    <div as="li" key={project.id} className="">
+      <div className="xs:h-64 flex h-auto justify-between gap-6">
+        <div className="hidden w-80 rounded-l-md md:block">
+          <Image
+            src={project.image}
+            alt=""
+            width={256}
+            height={256}
+            className="h-full w-full rounded-md border-r border-zinc-100 object-cover dark:border-zinc-700/40 dark:brightness-90"
+          />
+        </div>
+        <div className="flex w-full flex-col">
+          <h2 className="pb-1 font-medium text-zinc-800 transition-all dark:text-zinc-200 dark:group-hover:text-white">
             {project.name}
           </h2>
-          <div className="relative z-10 my-2 text-sm text-zinc-600 dark:text-zinc-400 ">
+          <TechTags tags={project.stack} />
+          <div className="py-1 text-base text-zinc-600 transition-all dark:text-zinc-400 dark:group-hover:text-zinc-300">
             {project.description}
           </div>
           <div className="mt-auto flex w-full items-center justify-between">
             <div className="group-hover:text-teal-1000 relative z-10 mt-auto flex gap-4 text-sm font-medium text-zinc-400 transition dark:text-zinc-200">
-              {project.link !== '' && (
-                <a href={project.link}>
-                  <LinkIcon className="h-6 w-6 flex-none transition-all hover:text-emerald-500" />
-                </a>
+              {project.link && (
+                <Link
+                  href={project.link}
+                  className="flex gap-1 text-xs font-normal transition-all hover:text-emerald-500"
+                >
+                  <LinkIcon />
+                  Visit Site
+                </Link>
               )}
-              {project.github !== '' && (
-                <a href={project.github}>
-                  <GitHubIcon className="h-6 w-6 flex-none transition-all hover:text-emerald-500" />
-                </a>
+              {project.github && (
+                <Link
+                  href={project.github}
+                  className="flex gap-1 text-xs font-normal transition-all hover:text-emerald-500"
+                >
+                  <GitHubIcon /> View Source
+                </Link>
               )}
-            </div>
-            <div className="flex gap-1 pt-2">
-              {project.stack &&
-                project.stack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded-full bg-zinc-50 px-2 text-xs text-zinc-400 dark:bg-zinc-800 dark:text-zinc-400"
-                  >
-                    {tech}
-                  </span>
-                ))}
             </div>
           </div>
         </div>
-        {!alignRight && <div className="w-64 rounded-r-md bg-red-100"> </div>}
       </div>
     </div>
   )
@@ -266,21 +175,22 @@ function Project({ project, alignRight = true }) {
 
 function ProjectsSection({ items, icon, title }) {
   return (
-    <>
-      <h2 className="mt-16 mb-8 flex text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+    <div>
+      <h2 className="mt-16 mb-8 flex text-2xl text-zinc-900 dark:text-zinc-100">
         {icon}
         <span className="ml-3">{title}</span>
       </h2>
-      <ul role="list" className="grid grid-cols-1 gap-x-12 gap-y-12">
+      <ul role="list" className="grid grid-cols-1 gap-12">
         {items.map((project, i) => (
           <Project key={i} project={project} />
         ))}
       </ul>
-    </>
+    </div>
   )
 }
 
-export default function Projects() {
+export default function Projects({ projects }) {
+  projects.reverse()
   return (
     <>
       <Head>
@@ -292,21 +202,21 @@ export default function Projects() {
         intro="I have a range of personal projects I've worked on, including websites, games, and utilities, most of which are open-source and available on my GitHub. Take a look at the code to see how I tackle projects, and feel free to check out the rest of my GitHub profile."
       >
         <ProjectsSection
-          items={websites}
+          items={projects.filter((project) => project.category === 'website')}
           icon={
-            <WebsiteIcon className="h-8 w-8 flex-none text-zinc-900 dark:text-zinc-100" />
+            <WebsiteIcon className="inline-flex h-8 w-8 self-center text-zinc-900 dark:text-zinc-100" />
           }
           title="Websites"
         />
         <ProjectsSection
-          items={games}
+          items={projects.filter((project) => project.category === 'game')}
           icon={
-            <GameIcon className="h-8 w-8 flex-none text-zinc-900 dark:text-zinc-100" />
+            <GameIcon className="inline-flex h-8 w-8 self-center text-zinc-900 dark:text-zinc-100" />
           }
           title="Games"
         />
         <ProjectsSection
-          items={utilities}
+          items={projects.filter((project) => project.category === 'utility')}
           icon={
             <UtilityIcon className="h-8 w-8 flex-none text-zinc-900 dark:text-zinc-100" />
           }
@@ -315,4 +225,41 @@ export default function Projects() {
       </SimpleLayout>
     </>
   )
+}
+
+export async function getStaticProps() {
+  const query = `query {
+    Projects {
+      docs {
+        id
+        name
+        category
+        description
+        link
+        github
+        stack {
+          id
+          name
+        }
+        image
+      }
+    }
+  }
+  `
+  const projects = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: query,
+    }),
+  })
+    .then((res) => res.json())
+    .then((res) => res.data.Projects.docs)
+  return {
+    props: {
+      projects,
+    },
+  }
 }

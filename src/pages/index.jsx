@@ -1,29 +1,11 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import clsx from 'clsx'
-import Image from 'next/image'
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { ItchIcon, GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
-import logoPlanetaria from '@/images/logos/planetaria.svg'
-import image1 from '@/images/connexit.jpg'
-import image2 from '@/images/rebook.jpg'
-import image3 from '@/images/pywinmodal.jpg'
-import image4 from '@/images/overbooked.jpg'
-import image5 from '@/images/portrait.jpg'
+import { endpoint } from '@/lib/client'
 
 const border = 'p-6 border rounded-md border-zinc-100 dark:border-zinc-700/40'
-
-function LinkIcon(props) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
-      <path
-        d="M15.712 11.823a.75.75 0 1 0 1.06 1.06l-1.06-1.06Zm-4.95 1.768a.75.75 0 0 0 1.06-1.06l-1.06 1.06Zm-2.475-1.414a.75.75 0 1 0-1.06-1.06l1.06 1.06Zm4.95-1.768a.75.75 0 1 0-1.06 1.06l1.06-1.06Zm3.359.53-.884.884 1.06 1.06.885-.883-1.061-1.06Zm-4.95-2.12 1.414-1.415L12 6.344l-1.415 1.413 1.061 1.061Zm0 3.535a2.5 2.5 0 0 1 0-3.536l-1.06-1.06a4 4 0 0 0 0 5.656l1.06-1.06Zm4.95-4.95a2.5 2.5 0 0 1 0 3.535L17.656 12a4 4 0 0 0 0-5.657l-1.06 1.06Zm1.06-1.06a4 4 0 0 0-5.656 0l1.06 1.06a2.5 2.5 0 0 1 3.536 0l1.06-1.06Zm-7.07 7.07.176.177 1.06-1.06-.176-.177-1.06 1.06Zm-3.183-.353.884-.884-1.06-1.06-.884.883 1.06 1.06Zm4.95 2.121-1.414 1.414 1.06 1.06 1.415-1.413-1.06-1.061Zm0-3.536a2.5 2.5 0 0 1 0 3.536l1.06 1.06a4 4 0 0 0 0-5.656l-1.06 1.06Zm-4.95 4.95a2.5 2.5 0 0 1 0-3.535L6.344 12a4 4 0 0 0 0 5.656l1.06-1.06Zm-1.06 1.06a4 4 0 0 0 5.657 0l-1.061-1.06a2.5 2.5 0 0 1-3.535 0l-1.061 1.06Zm7.07-7.07-.176-.177-1.06 1.06.176.178 1.06-1.061Z"
-        fill="currentColor"
-      />
-    </svg>
-  )
-}
 
 function MailIcon(props) {
   return (
@@ -37,6 +19,7 @@ function MailIcon(props) {
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
+      {...props}
     >
       <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
       <polyline points="22,6 12,13 2,6"></polyline>
@@ -56,6 +39,7 @@ function ChartIcon(props) {
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
+      {...props}
     >
       <line x1="12" y1="20" x2="12" y2="10"></line>
       <line x1="18" y1="20" x2="18" y2="4"></line>
@@ -76,6 +60,7 @@ function ProjectsIcon(props) {
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
+      {...props}
     >
       <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
       <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
@@ -96,63 +81,19 @@ function ArrowDownIcon(props) {
   )
 }
 
-function Photos() {
-  let rotations = ['rotate-2', '-rotate-2', 'rotate-2', '-rotate-2', 'rotate-2']
-
-  return (
-    <div className="mt-16 sm:mt-20">
-      <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
-        {[image1, image2, image3, image4, image5].map((image, imageIndex) => (
-          <div
-            key={image.src}
-            className={clsx(
-              'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 shadow-md dark:bg-zinc-800 sm:w-72 sm:rounded-md',
-              rotations[imageIndex % rotations.length]
-            )}
-          >
-            <Image
-              src={image}
-              alt=""
-              sizes="(min-width: 640px) 18rem, 11rem"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
-
-const projects = [
-  {
-    name: 'Rebook',
-    description:
-      'Rebook is a user-friendly e-book reader application using React, featuring functionality for bookmarking, highlighting, and annotating EPUB files. The application also allows users to export their highlights and annotations as markdown files. It supports user accounts for storing progress in the cloud, but also functions without an account.',
-    cta: 'Visit site',
-    image: '/connexit.png',
-    url: 'https://rebook.jawfish.dev',
-  },
-  {
-    name: 'Connexit',
-    description:
-      'Connexit is a puzzle game that was developed under tight time constraints as part of a game jam competition. In Connexit, players go through a series of levels in which shapes with various behaviors must be navigated to their respective goals for the player to progress.',
-    cta: 'Play on Itch.io',
-    image: '/connexit.png',
-    url: 'https://jawfish.itch.io/connexit',
-  },
-  {
-    name: 'PyWinModal',
-    description:
-      "PyWinModal is a productivity tool for Windows that allows users to easily execute user-defined commands through a customizable modal popup. The modal's simple API facilitates easy customization and extensibility, making it a versatile tool for enhancing productivity.",
-    cta: 'View on GitHub',
-    image: '/connexit.png',
-    url: 'https://github.com/Jawfish/PyWinModal',
-  },
-]
-
 function ChevronRightIcon(props) {
   return (
-    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="inline-flex self-center"
+      {...props}
+    >
       <path
         d="M6.75 5.75 9.25 8l-2.5 2.25"
         strokeWidth="1.5"
@@ -178,7 +119,7 @@ function Project({ project }) {
           className="relative z-10 mt-4 flex items-end text-sm font-medium text-emerald-500"
         >
           <Link
-            href={project.url}
+            href={project.link}
             className="transition-all hover:text-emerald-400 hover:underline"
           >
             {project.cta}
@@ -211,9 +152,6 @@ function Contact() {
         <MailIcon className="h-6 w-6 flex-none" />
         <span className="ml-3">Contact me</span>
       </h2>
-      {/* <p className="col-span-4 text-sm text-zinc-600 dark:text-zinc-400"> */}
-      {/* {"Shoot me a message. I'll get back to you as soon as I can."} */}
-      {/* </p> */}
       <textarea
         required
         name="message"
@@ -248,7 +186,8 @@ function Contact() {
   )
 }
 
-function ProjectsSection() {
+function ProjectsSection({ projects }) {
+  projects.reverse()
   return (
     <div className="pt-6">
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
@@ -256,38 +195,16 @@ function ProjectsSection() {
         <span className="ml-3">Featured Projects</span>
       </h2>
       <div className="mt-6 flex flex-col gap-6">
-        {projects.map((project) => (
-          <Project key={project.name} project={project} />
-        ))}
+        {projects.map(
+          (project) =>
+            project.featured && <Project key={project.id} project={project} />
+        )}
       </div>
     </div>
   )
 }
 
-function Resume() {
-  let resume = [
-    {
-      title: 'Languages',
-      logo: logoPlanetaria,
-      stack: ['JavaScript', 'TypeScript', 'HTML', 'CSS', 'Python'],
-    },
-    {
-      title: 'Frontend',
-      logo: logoPlanetaria,
-      stack: ['React', 'Svelte', 'SolidJS', 'Next.js', 'Tailwind'],
-    },
-    {
-      title: 'Backend',
-      logo: logoPlanetaria,
-      stack: ['Node.js', 'FastAPI', 'MongoDB', 'PostgreSQL'],
-    },
-    {
-      title: 'Other',
-      logo: logoPlanetaria,
-      stack: ['Docker', 'Git', 'Linux', 'NGINX'],
-    },
-  ]
-
+function Resume({ skills }) {
   return (
     <div className={border}>
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
@@ -295,17 +212,23 @@ function Resume() {
         <span className="ml-3">Skills</span>
       </h2>
       <ol className="mt-6 space-y-4">
-        {resume.map((role, roleIndex) => (
-          <li key={roleIndex} className="flex gap-4">
+        {skills.map((skill) => (
+          <li key={skill.id} className="flex gap-4">
             <dl className="flex flex-auto flex-wrap gap-x-2">
               <dt className="sr-only">Company</dt>
               <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
-                {role.title}
+                {skill.name}
               </dd>
               <dt className="sr-only">Stack</dt>
-              <dd className="text-sm text-zinc-500 dark:text-zinc-400">
-                {role.stack.join(', ')}
-              </dd>
+              {skill.technologies.map((tech, idx) => (
+                <dd
+                  key={tech.id}
+                  className="text-sm text-zinc-500 dark:text-zinc-400"
+                >
+                  {tech.name}
+                  {idx < skill.technologies.length - 1 && ','}
+                </dd>
+              ))}
             </dl>
           </li>
         ))}
@@ -318,7 +241,7 @@ function Resume() {
   )
 }
 
-export default function Home() {
+export default function Home({ page, projects, skills }) {
   return (
     <>
       <Head>
@@ -328,20 +251,10 @@ export default function Home() {
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Full-stack developer and hobbyist game designer.
+            {page.heading}
           </h1>
           <p className="mt-6 max-w-xl text-base text-zinc-600 dark:text-zinc-400">
-            {"I'm"} James, a self-taught developer with a passion for bringing
-            ideas to life, be it through building websites or designing games.
-            Check out my{' '}
-            <Link
-              className="text-emerald-500 hover:text-emerald-400 hover:underline"
-              href="/projects"
-            >
-              past projects
-            </Link>
-            , and {"don't"} hesitate to get in touch if you think we could work
-            on something awesome together. Thanks for visiting!
+            {page.subheading}
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
@@ -362,16 +275,62 @@ export default function Home() {
           </div>
         </div>
       </Container>
-      {/* <Photos /> */}
       <Container className="mt-6 p-6 ">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
-          <ProjectsSection />
+          <ProjectsSection projects={projects} />
           <div className="space-y-10 lg:pl-16 xl:pl-24">
-            <Resume />
+            <Resume skills={skills} />
             <Contact />
           </div>
         </div>
       </Container>
     </>
   )
+}
+
+export async function getStaticProps() {
+  const query = `query {
+    Page(id: "63b4723fee0e2fcf686355ca") {
+      heading
+      subheading
+    }
+    Projects {
+      docs {
+        id
+        name
+        link
+        featured
+        description
+        cta
+      }
+    }
+    Skills {
+      docs {
+        id
+        name
+        technologies {
+          name
+        }
+      }
+    }
+  }
+  `
+  const content = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: query,
+    }),
+  })
+    .then((res) => res.json())
+    .then((res) => res.data)
+  return {
+    props: {
+      page: content.Page,
+      projects: content.Projects.docs,
+      skills: content.Skills.docs,
+    },
+  }
 }

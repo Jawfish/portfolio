@@ -6,6 +6,9 @@ import clsx from 'clsx'
 import { Container } from '@/components/Container'
 import { GitHubIcon, ItchIcon, LinkedInIcon } from '@/components/SocialIcons'
 import portraitImage from '@/images/portrait.jpg'
+import serialize from '@/lib/serialize'
+
+import { endpoint } from '@/lib/client'
 
 function SocialLink({ className, href, children, icon: Icon }) {
   return (
@@ -32,7 +35,7 @@ function MailIcon(props) {
   )
 }
 
-export default function About() {
+export default function About({ page }) {
   return (
     <>
       <Head>
@@ -53,102 +56,10 @@ export default function About() {
           </div>
           <div className="lg:order-first lg:row-span-2">
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-              {"I'm"} James Fitzgerald, a self-taught developer from Georgia.
+              {page.heading}
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
-              <p>
-                My passion for software development began by creating games in
-                C# with{' '}
-                <Link
-                  href="https://www.monogame.net/"
-                  className="text-emerald-500 transition-all hover:text-emerald-400"
-                >
-                  MonoGame
-                </Link>
-                . {"I've"} continued making games with various frameworks and
-                languages since then, with some of my work being released on{' '}
-                <Link
-                  href="https://jawfish.itch.io/"
-                  className="text-emerald-500 transition-all hover:text-emerald-400"
-                >
-                  Itch.io
-                </Link>
-                .
-              </p>
-              <p>
-                From there, I began building Bash/PowerShell/Python scripts to
-                automate and streamline my workflow. As I learned more, coding
-                became more of a creative outlet and a means of enhancing my own
-                life and the lives of those around me.
-              </p>
-              <p>
-                Seeking to create more complex apps, I began building projects
-                in Vue, later moving to React for the improved developer
-                experience provided by its better TypeScript support. I quickly
-                adopted a full-stack approach, familiarizing myself with
-                technologies like Flask, FastAPI, Node, and both SQL and NoSQL
-                databases.
-              </p>
-              <p>
-                With all of that typing, I inevitably ended up with an interest
-                in keyboards. After building a few custom keyboards, I started
-                contributing to{' '}
-                <Link
-                  href="https://github.com/KMKfw/kmk_firmware"
-                  className="text-emerald-500 transition-all hover:text-emerald-400"
-                >
-                  KMK
-                </Link>
-                , an open-source keyboard firmware. I wrote the{' '}
-                <Link
-                  href="https://github.com/KMKfw/kmk_firmware/blob/master/docs/en/rapidfire.md"
-                  className="text-emerald-500 transition-all hover:text-emerald-400"
-                >
-                  RapidFire
-                </Link>{' '}
-                and{' '}
-                <Link
-                  href="https://github.com/KMKfw/kmk_firmware/blob/master/docs/en/string_substitution.md"
-                  className="text-emerald-500 transition-all hover:text-emerald-400"
-                >
-                  String Substitution
-                </Link>{' '}
-                modules and contributed a few fixes here and there. This was a
-                great learning experience and gave me the chance to participate
-                in a collaborative software development process after working
-                mostly solo.
-              </p>
-              <p>
-                My interest in tech {"doesn't"} stop at software development. I
-                built a home server that provides various containerized
-                services, including a PostgreSQL database, a{' '}
-                <Link
-                  href="https://gitea.io/en-us/"
-                  className="text-emerald-500 transition-all hover:text-emerald-400"
-                >
-                  Gitea
-                </Link>{' '}
-                instance, and{' '}
-                <Link
-                  href="https://www.portainer.io/"
-                  className="text-emerald-500 transition-all hover:text-emerald-400"
-                >
-                  Portainer
-                </Link>
-                , a Docker management frontend. It also acts as a VPN, NGINX
-                server, and remote development environment using{' '}
-                <Link
-                  href="https://code.visualstudio.com/docs/remote/vscode-server"
-                  className="text-emerald-500 transition-all hover:text-emerald-400"
-                >
-                  Visual Studio Code Server
-                </Link>
-                . This has taught me a lot about Linux, networking technologies
-                like DNS and HTTP/HTTPS, and other useful industry skills.
-              </p>
-              {/* <p>
-                Outside of tech, I enjoy cooking and baking as another way to express my creativity and try new things. I also have a passion for music and enjoy going to concerts to see my favorite artists perform live, with some of my favorites being Porcupine Tree, Leprous, Riverside, and Opeth.
-              </p> */}
+              {serialize(page.content)}
             </div>
           </div>
           <div className="lg:pl-20">
@@ -175,4 +86,30 @@ export default function About() {
       </Container>
     </>
   )
+}
+
+export async function getStaticProps() {
+  const query = `query {
+    Page(id: "63b47dad5f65e8d5f4f7b758") {
+      heading
+      content
+  }
+}
+  `
+  const content = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: query,
+    }),
+  })
+    .then((res) => res.json())
+    .then((res) => res.data)
+  return {
+    props: {
+      page: content.Page,
+    },
+  }
 }
