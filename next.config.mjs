@@ -10,7 +10,7 @@ const nextConfig = {
     scrollRestoration: true,
   },
   images: {
-    domains: ['cdn.sanity.io', 'via.placeholder.com'],
+    domains: ['via.placeholder.com', 'i.imgur.com'],
   },
 }
 

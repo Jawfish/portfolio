@@ -5,7 +5,6 @@ import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
 import { GitHubIcon, ItchIcon, LinkedInIcon } from '@/components/SocialIcons'
-import portraitImage from '@/images/portrait.jpg'
 import serialize from '@/lib/serialize'
 
 import { endpoint } from '@/lib/client'
@@ -47,9 +46,11 @@ export default function About({ page }) {
           <div className="lg:pl-20">
             <div className="max-w-xs px-2.5 lg:max-w-none">
               <Image
-                src={portraitImage}
+                src="https://i.imgur.com/51AMGto.jpg"
                 alt=""
                 sizes="(min-width: 1024px) 32rem, 20rem"
+                width={1024}
+                height={1024}
                 className="aspect-square rotate-3 rounded-md bg-zinc-100 object-cover dark:bg-zinc-800"
               />
             </div>
