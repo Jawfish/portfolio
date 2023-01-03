@@ -9,6 +9,9 @@ const nextConfig = {
   experimental: {
     scrollRestoration: true,
   },
+  images: {
+    domains: ['cdn.sanity.io', 'via.placeholder.com'],
+  },
 }
 
 const withMDX = nextMDX({
