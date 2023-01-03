@@ -212,24 +212,14 @@ function Resume({ skills }) {
         <span className="ml-3">Skills</span>
       </h2>
       <ol className="mt-6 space-y-4">
-        {skills.map((skill) => (
-          <li key={skill.id} className="flex gap-4">
-            <dl className="flex flex-auto flex-wrap gap-x-2">
-              <dt className="sr-only">Company</dt>
-              <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
-                {skill.name}
-              </dd>
-              <dt className="sr-only">Stack</dt>
-              {skill.technologies.map((tech, idx) => (
-                <dd
-                  key={tech.id}
-                  className="text-sm text-zinc-500 dark:text-zinc-400"
-                >
-                  {tech.name}
-                  {idx < skill.technologies.length - 1 && ','}
-                </dd>
-              ))}
-            </dl>
+        {skills.reverse().map((skill) => (
+          <li key={skill.id} className="flex flex-auto flex-wrap gap-x-2">
+            <div className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
+              {skill.name}
+            </div>
+            <div className="text-sm text-zinc-500 dark:text-zinc-400">
+              {skill.technologies}
+            </div>
           </li>
         ))}
       </ol>
@@ -308,9 +298,7 @@ export async function getStaticProps() {
       docs {
         id
         name
-        technologies {
-          name
-        }
+        technologies
       }
     }
   }

@@ -34,7 +34,7 @@ function MailIcon(props) {
   )
 }
 
-export default function About({ page }) {
+export default function About({ page, profilePicture }) {
   return (
     <>
       <Head>
@@ -46,7 +46,7 @@ export default function About({ page }) {
           <div className="lg:pl-20">
             <div className="max-w-xs px-2.5 lg:max-w-none">
               <Image
-                src="https://i.imgur.com/51AMGto.jpg"
+                src={profilePicture.url}
                 alt=""
                 sizes="(min-width: 1024px) 32rem, 20rem"
                 width={1024}
@@ -95,6 +95,9 @@ export async function getStaticProps() {
       heading
       content
   }
+  ProfilePicture(id: "63b49b56783fa290cfb05c61"){
+    url
+  }
 }
   `
   const content = await fetch(endpoint, {
@@ -111,6 +114,7 @@ export async function getStaticProps() {
   return {
     props: {
       page: content.Page,
+      profilePicture: content.ProfilePicture,
     },
   }
 }
