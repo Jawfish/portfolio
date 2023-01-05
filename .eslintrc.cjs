@@ -3,7 +3,7 @@ module.exports = {
 		'eslint:recommended',
 		'plugin:react/recommended',
 		'next/core-web-vitals',
-		'plugin:prettier/recommended'
+		'prettier'
 	],
 	plugins: ['tailwindcss', 'react', 'prettier'],
 	parserOptions: {
@@ -51,6 +51,7 @@ module.exports = {
 				trailingComma: 'none',
 				useTabs: true
 			}
-		]
+		],
+		'tailwindcss/enforces-negative-arbitrary-values': 'warn'
 	}
 };
