@@ -1,18 +1,6 @@
 import Link from 'next/link';
 import clsx from 'clsx';
-
-function ChevronRightIcon(props) {
-	return (
-		<svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
-			<path
-				d="M6.75 5.75 9.25 8l-2.5 2.25"
-				strokeWidth="1.5"
-				strokeLinecap="round"
-				strokeLinejoin="round"
-			/>
-		</svg>
-	);
-}
+import { HiChevronRight } from 'react-icons/hi';
 
 export function Card({ as: Component = 'div', className, children }) {
 	return (
@@ -37,7 +25,7 @@ Card.Link = function CardLink({ children, ...props }) {
 
 Card.Title = function CardTitle({ as: Component = 'h2', href, children }) {
 	return (
-		<Component className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+		<Component className="text-base font-medium tracking-tight text-zinc-800 dark:text-zinc-100">
 			{href ? <Card.Link href={href}>{children}</Card.Link> : children}
 		</Component>
 	);
@@ -57,7 +45,7 @@ Card.Cta = function CardCta({ children }) {
 			aria-hidden="true"
 			className="relative z-10 mt-4 flex items-center text-sm font-medium text-emerald-500">
 			{children}
-			<ChevronRightIcon className="ml-1 h-4 w-4 stroke-current" />
+			<HiChevronRight className="ml-1 mt-1 h-4 w-4 stroke-current" />
 		</div>
 	);
 };
