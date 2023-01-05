@@ -20,7 +20,7 @@ function SocialLink({ className, href, children, icon: Icon }) {
 		<li className={clsx(className, 'flex')}>
 			<Link
 				href={href}
-				className="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500">
+				className="flex group text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500">
 				<Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
 				<span className="ml-4">{children}</span>
 			</Link>
@@ -45,7 +45,7 @@ export default function About({ page, profilePicture }) {
 								sizes="(min-width: 1024px) 32rem, 20rem"
 								width={1024}
 								height={1024}
-								className="aspect-square rotate-3 rounded-md bg-zinc-100 object-cover dark:bg-zinc-800"
+								className="aspect-square rounded-md bg-zinc-100 object-cover dark:bg-zinc-800"
 							/>
 						</div>
 					</div>

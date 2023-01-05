@@ -4,7 +4,6 @@ import { Container } from '@/components/Container';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-import { formatDate } from '@/lib/formatDate';
 import { Prose } from '@/components/Prose';
 import { HiChevronLeft as ArrowLeftIcon } from 'react-icons/hi';
 

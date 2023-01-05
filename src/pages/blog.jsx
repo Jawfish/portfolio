@@ -26,20 +26,20 @@ function Article({ article }) {
 	);
 }
 
-function Tags({ tags }) {
-	return (
-		<span className="text-sm text-zinc-400  transition-all dark:text-zinc-600 ">
-			<ul className="flex gap-2">
-				{tags.map(tag => (
-					<li key={tag.id}>
-						{'#'}
-						{tag.name}
-					</li>
-				))}
-			</ul>
-		</span>
-	);
-}
+// function Tags({ tags }) {
+// 	return (
+// 		<span className="text-sm text-zinc-400  transition-all dark:text-zinc-600 ">
+// 			<ul className="flex gap-2">
+// 				{tags.map(tag => (
+// 					<li key={tag.id}>
+// 						{'#'}
+// 						{tag.name}
+// 					</li>
+// 				))}
+// 			</ul>
+// 		</span>
+// 	);
+// }
 
 function DateLine({ date }) {
 	return (
