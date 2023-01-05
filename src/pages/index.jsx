@@ -2,124 +2,35 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { Button } from '@/components/Button';
 import { Container } from '@/components/Container';
-import { ItchIcon, GitHubIcon, LinkedInIcon } from '@/components/SocialIcons';
 import { endpoint } from '@/lib/client';
+import { HiChevronDown as ChevronDownIcon } from 'react-icons/hi';
+import { CiMail as MailIcon } from 'react-icons/ci';
+import {
+	BsBriefcase as ProjectsIcon,
+	BsBarChart as ChartIcon
+} from 'react-icons/bs';
+import {
+	FaItchIo as ItchIcon,
+	FaGithub as GitHubIcon,
+	FaLinkedinIn as LinkedInIcon
+} from 'react-icons/fa';
+import { Card } from '@/components/Card';
 
 const border = 'p-6 border rounded-md border-zinc-100 dark:border-zinc-700/40';
-
-function MailIcon(props) {
-	return (
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			width="24"
-			height="24"
-			viewBox="0 0 24 24"
-			fill="none"
-			stroke="currentColor"
-			strokeWidth="1.5"
-			strokeLinecap="round"
-			strokeLinejoin="round"
-			{...props}>
-			<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-			<polyline points="22,6 12,13 2,6"></polyline>
-		</svg>
-	);
-}
-
-function ChartIcon(props) {
-	return (
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			width="24"
-			height="24"
-			viewBox="0 0 24 24"
-			fill="none"
-			stroke="currentColor"
-			strokeWidth="1.5"
-			strokeLinecap="round"
-			strokeLinejoin="round"
-			{...props}>
-			<line x1="12" y1="20" x2="12" y2="10"></line>
-			<line x1="18" y1="20" x2="18" y2="4"></line>
-			<line x1="6" y1="20" x2="6" y2="16"></line>
-		</svg>
-	);
-}
-
-function ProjectsIcon(props) {
-	return (
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			width="24"
-			height="24"
-			viewBox="0 0 24 24"
-			fill="none"
-			stroke="currentColor"
-			strokeWidth="1.5"
-			strokeLinecap="round"
-			strokeLinejoin="round"
-			{...props}>
-			<rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-			<path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-		</svg>
-	);
-}
-
-function ArrowDownIcon(props) {
-	return (
-		<svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
-			<path
-				d="M4.75 8.75 8 12.25m0 0 3.25-3.5M8 12.25v-8.5"
-				strokeWidth="1.5"
-				strokeLinecap="round"
-				strokeLinejoin="round"
-			/>
-		</svg>
-	);
-}
-
-function ChevronRightIcon(props) {
-	return (
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			viewBox="0 0 16 16"
-			fill="none"
-			stroke="currentColor"
-			strokeWidth="1.5"
-			strokeLinecap="round"
-			strokeLinejoin="round"
-			className="inline-flex self-center"
-			{...props}>
-			<path
-				d="M6.75 5.75 9.25 8l-2.5 2.25"
-				strokeWidth="1.5"
-				strokeLinecap="round"
-				strokeLinejoin="round"
-			/>
-		</svg>
-	);
-}
 
 function Project({ project }) {
 	return (
 		<div>
 			<div>
-				<div className="w-full flex-none pb-3 font-medium text-zinc-700 dark:text-zinc-100">
-					{project.name}
-				</div>
-				<div className="text-sm text-zinc-500 dark:text-zinc-400">
-					{project.description}
-				</div>
-				<span
-					aria-hidden="true"
-					className="relative z-10 mt-4 flex items-end text-sm font-medium text-emerald-500">
+				<Card.Title>{project.name}</Card.Title>
+				<Card.Description>{project.description}</Card.Description>
+				<Card.Cta>
 					<Link
 						href={project.link}
 						className="transition-all hover:text-emerald-400 hover:underline">
 						{project.cta}
 					</Link>
-					<ChevronRightIcon className="inline h-5 w-5 stroke-current" />
-				</span>
+				</Card.Cta>
 			</div>
 		</div>
 	);
@@ -217,7 +128,7 @@ function Resume({ skills }) {
 			</ol>
 			<Button href="#" variant="secondary" className="group mt-6 w-full">
 				Download CV
-				<ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
+				<ChevronDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
 			</Button>
 		</div>
 	);
@@ -230,7 +141,7 @@ export default function Home({ page, projects, skills }) {
 				<title>James Fitzgerald - Web developer</title>
 				<meta name="description" content="Full-stack web developer." />
 			</Head>
-			<Container className="mt-9">
+			<Container className="mt-16 sm:mt-32">
 				<div className="max-w-2xl">
 					<h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
 						{page.heading}

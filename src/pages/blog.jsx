@@ -1,21 +1,15 @@
 import Head from 'next/head';
-import Link from 'next/link';
-import { Container } from '@/components/Container';
-import Image from 'next/image';
 import { endpoint } from '@/lib/client';
 import { SimpleLayout } from '@/components/SimpleLayout';
 import { Card } from '@/components/Card';
-import { formatDate } from '@/lib/formatDate';
 
 function Article({ article }) {
 	const date = new Date(article.publishedDate);
 	return (
 		<article className="md:grid md:grid-cols-4 md:items-baseline">
 			<Card className=" md:col-span-3">
-				<Card.Title href={`/articles/${article.slug}`}>
-					{article.title}
-				</Card.Title>
-				<Tags tags={article.tags} />
+				<Card.Title href={`/blog/${article.id}`}>{article.title}</Card.Title>
+				{/* <Tags tags={article.tags} /> */}
 				<Card.Eyebrow as="time" dateTime={date} className="md:hidden" decorate>
 					<DateLine date={date} />
 				</Card.Eyebrow>
@@ -47,25 +41,6 @@ function Tags({ tags }) {
 	);
 }
 
-function ArrowIcon(props) {
-	return (
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			width="24"
-			height="24"
-			viewBox="0 0 24 24"
-			fill="none"
-			stroke="currentColor"
-			strokeWidth="1.5"
-			strokeLinecap="round"
-			strokeLinejoin="round"
-			className="inline-flex h-4 w-4 self-center"
-			{...props}>
-			<polyline points="9 18 15 12 9 6"></polyline>
-		</svg>
-	);
-}
-
 function DateLine({ date }) {
 	return (
 		<Details>
@@ -78,53 +53,11 @@ function DateLine({ date }) {
 	);
 }
 
-function PersonIcon(props) {
-	return (
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			width="24"
-			height="24"
-			viewBox="0 0 24 24"
-			fill="none"
-			stroke="currentColor"
-			strokeWidth="1.5"
-			strokeLinecap="round"
-			strokeLinejoin="round"
-			className="inline-flex h-4 w-4 self-center"
-			{...props}>
-			<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-			<circle cx="12" cy="7" r="4"></circle>
-		</svg>
-	);
-}
-
-function DateIcon(props) {
-	return (
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			width="24"
-			height="24"
-			viewBox="0 0 24 24"
-			fill="none"
-			stroke="currentColor"
-			strokeWidth="1.5"
-			strokeLinecap="round"
-			strokeLinejoin="round"
-			className="inline-flex h-4 w-4 self-center"
-			{...props}>
-			<rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-			<line x1="16" y1="2" x2="16" y2="6"></line>
-			<line x1="8" y1="2" x2="8" y2="6"></line>
-			<line x1="3" y1="10" x2="21" y2="10"></line>
-		</svg>
-	);
-}
-
 function PostsSection({ posts }) {
 	return (
 		<div className="flex max-w-3xl flex-col space-y-16">
 			{posts.map(post => (
-				<Article article={post} key={post.slug} />
+				<Article article={post} key={post.id} />
 			))}
 		</div>
 	);
