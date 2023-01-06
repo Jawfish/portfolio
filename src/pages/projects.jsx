@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Head from 'next/head';
+import React, { useState } from 'react';
 
 import { SimpleLayout } from '@/components/SimpleLayout';
 import { endpoint } from '@/lib/client';
@@ -11,6 +12,7 @@ import {
 import { Card } from '@/components/Card';
 import Link from 'next/link';
 import { BiLinkExternal as LinkIcon } from 'react-icons/bi';
+import { IoClose as CloseIcon } from 'react-icons/io5';
 
 function TechTags({ tags }) {
 	return (
@@ -26,7 +28,29 @@ function TechTags({ tags }) {
 	);
 }
 
-function Project({ project }) {
+function Modal({ project, handleClose }) {
+	return (
+		<div
+			className="fixed top-0 left-0 z-50 grid h-screen w-screen overflow-y-auto overflow-x-hidden rounded-md bg-zinc-50/80 backdrop-blur-sm dark:bg-zinc-900/80"
+			onClick={() => handleClose()}>
+			{project.recording && (
+				<div className="my-auto mx-auto max-w-full rounded-md shadow-2xl sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl">
+					<CloseIcon className="absolute m-4 h-10 w-10  fill-zinc-500 transition-all hover:cursor-pointer hover:fill-zinc-300" />
+					<video
+						autoPlay={true}
+						loop={true}
+						controls={false}
+						alt={project.name}
+						className="rounded-lg">
+						<source src={`${project.recording.url}`} type="video/mp4" />
+					</video>
+				</div>
+			)}
+		</div>
+	);
+}
+
+function Project({ project, showModal }) {
 	return (
 		<a
 			id={project.name}
@@ -34,7 +58,7 @@ function Project({ project }) {
 			<div className="relative">
 				<Image
 					className="rounded-t-md border-b border-zinc-100 dark:border-zinc-700/40"
-					src={project.image}
+					src={project.image?.url || ''}
 					alt={project.name}
 					width={256}
 					height={256}
@@ -66,13 +90,22 @@ function Project({ project }) {
 							</span>
 						</Link>
 					)}
+					{project.recording && (
+						<div className="flex cursor-pointer items-end">
+							<span
+								onClick={() => showModal(project)}
+								className="inline-flex items-center gap-1 text-xs font-normal transition-all hover:text-emerald-500">
+								Watch Demo
+							</span>
+						</div>
+					)}
 				</div>
 			</div>
 		</a>
 	);
 }
 
-function ProjectsSection({ items, icon, title }) {
+function ProjectsSection({ items, icon, title, showModal }) {
 	return (
 		<div>
 			<h2 className="mt-16 mb-8 flex text-2xl text-zinc-900 dark:text-zinc-100">
@@ -83,7 +116,7 @@ function ProjectsSection({ items, icon, title }) {
 				role="list"
 				className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-9 xl:grid-cols-3 ">
 				{items.map((project, i) => (
-					<Project key={i} project={project} />
+					<Project key={i} project={project} showModal={showModal} />
 				))}
 			</ul>
 		</div>
@@ -91,6 +124,18 @@ function ProjectsSection({ items, icon, title }) {
 }
 
 export default function Projects({ projects }) {
+	const [show, setShow] = useState(false);
+	const [project, setProject] = useState(null);
+
+	const handleClose = () => {
+		setShow(false);
+		setProject(null);
+	};
+	const handleShow = project => {
+		setProject(project);
+		setShow(true);
+	};
+
 	projects.reverse();
 	return (
 		<>
@@ -98,11 +143,13 @@ export default function Projects({ projects }) {
 				<title>Projects - James Fitzgerald</title>
 				<meta name="description" content="Things I’ve made." />
 			</Head>
+			{show && <Modal project={project} handleClose={handleClose} />}
 			<SimpleLayout
 				title="Some of the things I've made."
 				intro="I have a range of personal projects I've worked on, including websites, games, and utilities, most of which are open-source and available on my GitHub. Take a look at the code to see how I tackle projects, and feel free to check out the rest of my GitHub profile.">
 				<ProjectsSection
 					items={projects.filter(project => project.category === 'website')}
+					showModal={handleShow}
 					icon={
 						<WebsiteIcon className="inline-flex h-8 w-8 self-center text-zinc-700 dark:text-zinc-400" />
 					}
@@ -110,6 +157,7 @@ export default function Projects({ projects }) {
 				/>
 				<ProjectsSection
 					items={projects.filter(project => project.category === 'game')}
+					showModal={handleShow}
 					icon={
 						<GameIcon className="inline-flex h-8 w-8 self-center text-zinc-700 dark:text-zinc-400" />
 					}
@@ -117,6 +165,7 @@ export default function Projects({ projects }) {
 				/>
 				<ProjectsSection
 					items={projects.filter(project => project.category === 'utility')}
+					showModal={handleShow}
 					icon={
 						<UtilityIcon className="h-8 w-8 flex-none text-zinc-700 dark:text-zinc-400" />
 					}
@@ -129,24 +178,30 @@ export default function Projects({ projects }) {
 
 export async function getStaticProps() {
 	const query = `query {
-    Projects {
-      docs {
-        id
-        name
-        category
-		blurb
-        description
-        link
-        github
-		cta
-        stack {
-          id
-          name
-        }
-        image
-      }
-    }
-  }
+		Projects {
+		  docs {
+			id
+			name
+			category
+			blurb
+			description
+			link
+			github
+			cta
+			recording {
+			  url
+			}
+			stack {
+			  id
+			  name
+			}
+			image {
+			  url
+			}
+		  }
+		}
+	  }
+			
   `;
 	const projects = await fetch(endpoint, {
 		method: 'POST',

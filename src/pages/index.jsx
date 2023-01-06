@@ -145,7 +145,7 @@ export default function Home({ page, projects, skills }) {
 					</div>
 					<div className="max-w-xs px-2.5 pb-16 lg:block lg:max-w-none lg:pb-0">
 						<Image
-							src={page.splash}
+							src={page.splash.url}
 							alt=""
 							width={512}
 							height={512}
@@ -189,7 +189,9 @@ export async function getStaticProps() {
     Page(id: "63b4723fee0e2fcf686355ca") {
       heading
       subheading
-	  splash
+	  splash {
+		url
+	  }
     }
     Projects {
       docs {

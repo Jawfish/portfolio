@@ -40,7 +40,7 @@ export default function About({ page }) {
 					<div className="lg:pl-20">
 						<div className="max-w-xs px-2.5 lg:max-w-none">
 							<Image
-								src={page.splash}
+								src={page.splash.url}
 								alt=""
 								width={512}
 								height={512}
@@ -86,7 +86,9 @@ export async function getStaticProps() {
     Page(id: "63b47dad5f65e8d5f4f7b758") {
       heading
       content
-	  splash
+	  splash {
+		url
+	  }
   }
 }
   `;

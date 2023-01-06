@@ -10,7 +10,7 @@ const nextConfig = {
 		scrollRestoration: true
 	},
 	images: {
-		domains: ['via.placeholder.com', 'i.imgur.com']
+		domains: ['via.placeholder.com', 'i.imgur.com', 'localhost']
 	}
 };
 
