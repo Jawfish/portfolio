@@ -28,7 +28,7 @@ function SocialLink({ className, href, children, icon: Icon }) {
 	);
 }
 
-export default function About({ page, profilePicture }) {
+export default function About({ page }) {
 	return (
 		<>
 			<Head>
@@ -40,12 +40,11 @@ export default function About({ page, profilePicture }) {
 					<div className="lg:pl-20">
 						<div className="max-w-xs px-2.5 lg:max-w-none">
 							<Image
-								src={profilePicture.url}
+								src={page.splash}
 								alt=""
-								sizes="(min-width: 1024px) 32rem, 20rem"
-								width={1024}
-								height={1024}
-								className="aspect-square rounded-md bg-zinc-100 object-cover dark:bg-zinc-800"
+								width={512}
+								height={512}
+								className="rounded-md object-cover"
 							/>
 						</div>
 					</div>
@@ -87,9 +86,7 @@ export async function getStaticProps() {
     Page(id: "63b47dad5f65e8d5f4f7b758") {
       heading
       content
-  }
-  ProfilePicture(id: "63b49b56783fa290cfb05c61"){
-    url
+	  splash
   }
 }
   `;
@@ -106,8 +103,7 @@ export async function getStaticProps() {
 		.then(res => res.data);
 	return {
 		props: {
-			page: content.Page,
-			profilePicture: content.ProfilePicture
+			page: content.Page
 		}
 	};
 }

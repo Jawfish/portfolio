@@ -5,7 +5,7 @@ import { HiChevronRight } from 'react-icons/hi';
 export function Card({ as: Component = 'div', className, children }) {
 	return (
 		<Component
-			className={clsx(className, 'group relative flex flex-col items-start')}>
+			className={clsx(className, 'flex group relative flex-col items-start')}>
 			{children}
 		</Component>
 	);
@@ -25,7 +25,7 @@ Card.Link = function CardLink({ children, ...props }) {
 
 Card.Title = function CardTitle({ as: Component = 'h2', href, children }) {
 	return (
-		<Component className="text-base font-medium tracking-tight text-zinc-800 dark:text-zinc-100">
+		<Component className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
 			{href ? <Card.Link href={href}>{children}</Card.Link> : children}
 		</Component>
 	);
@@ -43,7 +43,7 @@ Card.Cta = function CardCta({ children }) {
 	return (
 		<div
 			aria-hidden="true"
-			className="relative z-10 mt-4 flex items-center text-sm font-medium text-emerald-500">
+			className="flex relative z-10 mt-4 items-center text-sm font-medium text-emerald-500">
 			{children}
 			<HiChevronRight className="ml-1 mt-1 h-4 w-4 stroke-current" />
 		</div>
@@ -61,13 +61,13 @@ Card.Eyebrow = function CardEyebrow({
 		<Component
 			className={clsx(
 				className,
-				'relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500',
+				'flex relative z-10 order-first mb-3 items-center text-sm text-zinc-400 dark:text-zinc-500',
 				decorate && 'pl-3.5'
 			)}
 			{...props}>
 			{decorate && (
 				<span
-					className="absolute inset-y-0 left-0 flex items-center"
+					className="flex absolute inset-y-0 left-0 items-center"
 					aria-hidden="true">
 					<span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
 				</span>

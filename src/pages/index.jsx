@@ -4,35 +4,25 @@ import { Button } from '@/components/Button';
 import { Container } from '@/components/Container';
 import { endpoint } from '@/lib/client';
 import { HiChevronDown as ChevronDownIcon } from 'react-icons/hi';
-import { CiMail as MailIcon } from 'react-icons/ci';
-import {
-	BsBriefcase as ProjectsIcon,
-	BsBarChart as ChartIcon
-} from 'react-icons/bs';
 import {
 	FaItchIo as ItchIcon,
 	FaGithub as GitHubIcon,
 	FaLinkedinIn as LinkedInIcon
 } from 'react-icons/fa';
+import { FiBarChart as ChartIcon, FiMail as MailIcon } from 'react-icons/fi';
 import { Card } from '@/components/Card';
+import Image from 'next/image';
 
 const border = 'p-6 border rounded-md border-zinc-100 dark:border-zinc-700/40';
 
 function Project({ project }) {
 	return (
-		<div>
-			<div>
-				<Card.Title>{project.name}</Card.Title>
-				<Card.Description>{project.description}</Card.Description>
-				<Card.Cta>
-					<Link
-						href={project.link}
-						className="transition-all hover:text-emerald-400 hover:underline">
-						{project.cta}
-					</Link>
-				</Card.Cta>
-			</div>
-		</div>
+		<Card>
+			<Card.Eyebrow decorate>Featured Project</Card.Eyebrow>
+			<Card.Title href={`/projects#${project.name}`}>{project.name}</Card.Title>
+			<Card.Description>{project.blurb}</Card.Description>
+			<Card.Cta>See More</Card.Cta>
+		</Card>
 	);
 }
 
@@ -44,6 +34,15 @@ function SocialLink({ icon: Icon, ...props }) {
 	);
 }
 
+function SectionTitle({ icon, title }) {
+	return (
+		<h2 className="flex items-center gap-2 text-sm font-semibold text-zinc-800 dark:text-zinc-100">
+			<span className="">{icon}</span>
+			{title}
+		</h2>
+	);
+}
+
 function Contact() {
 	return (
 		<form
@@ -51,40 +50,42 @@ function Contact() {
 			acceptCharset="UTF-8"
 			encType="multipart/form-data"
 			method="POST"
-			className={`grid grid-cols-4 gap-6 ${border}`}>
-			<h2 className="col-span-4 flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-				<MailIcon className="h-6 w-6 flex-none" />
-				<span className="ml-3">Contact me</span>
-			</h2>
-			<textarea
-				required
-				name="message"
-				placeholder="Message"
-				aria-label="Message"
-				cols="30"
-				rows="4"
-				className="col-span-4 appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-emerald-400 dark:focus:ring-emerald-400/10 sm:text-sm"></textarea>
-			<div className="col-span-4 flex gap-6">
-				<input
-					type="name"
-					name="name"
-					placeholder="Name"
-					aria-label="Name"
+			className={` ${border}`}>
+			<SectionTitle
+				icon={<MailIcon className="h-4 w-4" />}
+				title="Contact Me"
+			/>
+			<div className="grid grid-cols-4 gap-6 pt-6">
+				<textarea
 					required
-					className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-emerald-400 dark:focus:ring-emerald-400/10 sm:text-sm"
-				/>{' '}
-				<input
-					type="email"
-					name="email"
-					required
-					placeholder="Email address"
-					aria-label="Email address"
-					className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-emerald-400 dark:focus:ring-emerald-400/10 sm:text-sm"
-				/>
+					name="message"
+					placeholder="Message"
+					aria-label="Message"
+					cols="30"
+					rows="4"
+					className="col-span-4 appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-emerald-400 dark:focus:ring-emerald-400/10 sm:text-sm"></textarea>
+				<div className="col-span-4 flex gap-6">
+					<input
+						type="name"
+						name="name"
+						placeholder="Name"
+						aria-label="Name"
+						required
+						className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-emerald-400 dark:focus:ring-emerald-400/10 sm:text-sm"
+					/>
+					<input
+						type="email"
+						name="email"
+						required
+						placeholder="Email address"
+						aria-label="Email address"
+						className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-emerald-400 dark:focus:ring-emerald-400/10 sm:text-sm"
+					/>
+				</div>
+				<Button type="submit" variant="primary" className="col-span-1">
+					Send
+				</Button>
 			</div>
-			<Button type="submit" variant="primary" className="col-span-1">
-				Send
-			</Button>
 		</form>
 	);
 }
@@ -93,11 +94,7 @@ function ProjectsSection({ projects }) {
 	projects.reverse();
 	return (
 		<div className="pt-6">
-			<h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-				<ProjectsIcon className="h-6 w-6 flex-none" />
-				<span className="ml-3">Featured Projects</span>
-			</h2>
-			<div className="mt-6 flex flex-col gap-6">
+			<div className="flex flex-col gap-12">
 				{projects.map(
 					project =>
 						project.featured && <Project key={project.id} project={project} />
@@ -110,19 +107,14 @@ function ProjectsSection({ projects }) {
 function Resume({ skills }) {
 	return (
 		<div className={border}>
-			<h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-				<ChartIcon className="h-6 w-6 flex-none" />
-				<span className="ml-3">Skills</span>
-			</h2>
-			<ol className="mt-6 space-y-4">
+			<SectionTitle icon={<ChartIcon className="h-4 w-4" />} title="Skills" />
+			<ol className="mt-4 space-y-4">
 				{skills.reverse().map(skill => (
-					<li key={skill.id} className="flex flex-auto flex-wrap gap-x-2">
-						<div className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
+					<li key={skill.id}>
+						<div className="-mb-2 text-sm text-zinc-400 dark:text-zinc-500">
 							{skill.name}
 						</div>
-						<div className="text-sm text-zinc-500 dark:text-zinc-400">
-							{skill.technologies}
-						</div>
+						<Card.Description>{skill.technologies}</Card.Description>
 					</li>
 				))}
 			</ol>
@@ -142,30 +134,41 @@ export default function Home({ page, projects, skills }) {
 				<meta name="description" content="Full-stack web developer." />
 			</Head>
 			<Container className="mt-16 sm:mt-32">
-				<div className="max-w-2xl">
-					<h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-						{page.heading}
-					</h1>
-					<p className="mt-6 max-w-xl text-base text-zinc-600 dark:text-zinc-400">
-						{page.subheading}
-					</p>
-					<div className="mt-6 flex gap-6">
-						<SocialLink
-							href="https://github.com"
-							aria-label="Follow on GitHub"
-							icon={GitHubIcon}
-						/>
-						<SocialLink
-							href="https://linkedin.com"
-							aria-label="Follow on LinkedIn"
-							icon={LinkedInIcon}
-						/>
-						<SocialLink
-							href="https://jawfish.itch.io/"
-							aria-label="Check out my itch.io page"
-							icon={ItchIcon}
+				<div className="flex w-full flex-col-reverse lg:flex-row">
+					<div className="max-w-2xl">
+						<h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+							{page.heading}
+						</h1>
+						<p className="mt-6 max-w-xl text-base text-zinc-600 dark:text-zinc-400">
+							{page.subheading}
+						</p>
+					</div>
+					<div className="max-w-xs px-2.5 pb-16 lg:block lg:max-w-none lg:pb-0">
+						<Image
+							src={page.splash}
+							alt=""
+							width={512}
+							height={512}
+							className="rounded-md object-cover"
 						/>
 					</div>
+				</div>
+				<div className="mt-6 flex gap-6">
+					<SocialLink
+						href="https://github.com"
+						aria-label="Follow on GitHub"
+						icon={GitHubIcon}
+					/>
+					<SocialLink
+						href="https://linkedin.com"
+						aria-label="Follow on LinkedIn"
+						icon={LinkedInIcon}
+					/>
+					<SocialLink
+						href="https://jawfish.itch.io/"
+						aria-label="Check out my itch.io page"
+						icon={ItchIcon}
+					/>
 				</div>
 			</Container>
 			<Container className="mt-6 p-6 ">
@@ -186,6 +189,7 @@ export async function getStaticProps() {
     Page(id: "63b4723fee0e2fcf686355ca") {
       heading
       subheading
+	  splash
     }
     Projects {
       docs {
@@ -195,6 +199,7 @@ export async function getStaticProps() {
         featured
         description
         cta
+        blurb
       }
     }
     Skills {

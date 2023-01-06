@@ -14,24 +14,26 @@ import { BiLinkExternal as LinkIcon } from 'react-icons/bi';
 
 function TechTags({ tags }) {
 	return (
-		<div className="flex gap-2">
+		<span className="flex absolute right-0 bottom-0 gap-1 pb-2 pr-2 sm:gap-2">
 			{tags.map(tag => (
 				<span
 					key={tag.id}
-					className="text-xs text-zinc-400  transition-all  dark:text-zinc-500">
+					className="rounded-full border border-zinc-200 bg-white/90 px-1 text-xs  text-zinc-700 backdrop-blur-sm dark:border-zinc-700/60 dark:bg-zinc-900/90 dark:text-zinc-400 sm:px-2">
 					{tag.name}
 				</span>
 			))}
-		</div>
+		</span>
 	);
 }
 
 function Project({ project }) {
 	return (
-		<div className=" rounded-mg h-fit rounded-md  border border-zinc-100 bg-white   dark:border-0 dark:border-zinc-700/40 dark:bg-zinc-800 lg:max-w-md">
-			<div className="">
+		<a
+			id={project.name}
+			className="rounded-mg h-fit rounded-md  border border-zinc-100 dark:border-zinc-700/40  lg:max-w-md">
+			<div className="relative">
 				<Image
-					className="rounded-t-md border-t border-l border-r border-zinc-100 dark:border-zinc-700/40"
+					className="rounded-t-md border-b border-zinc-100 dark:border-zinc-700/40"
 					src={project.image}
 					alt={project.name}
 					width={256}
@@ -43,10 +45,10 @@ function Project({ project }) {
 						height: '50%'
 					}}
 				/>
+				<TechTags tags={project.stack} />
 			</div>
 			<div className="p-5">
-				<Card.Title>{project.name}</Card.Title>
-				<TechTags tags={project.stack} />
+				<Card.Title className>{project.name}</Card.Title>
 				<Card.Description>{project.description}</Card.Description>
 				<div className="group-hover:text-teal-1000 flex relative z-10 mt-auto w-full gap-4 pt-2 text-sm font-medium text-zinc-400 transition-all dark:text-zinc-200">
 					{project.link && (
@@ -66,7 +68,7 @@ function Project({ project }) {
 					)}
 				</div>
 			</div>
-		</div>
+		</a>
 	);
 	// return (
 	// 	<div as="li" key={project.id} className="">
@@ -119,7 +121,7 @@ function ProjectsSection({ items, icon, title }) {
 			</h2>
 			<ul
 				role="list"
-				className="grid grid-cols-1  lg:grid-cols-2 lg:gap-9 xl:grid-cols-3 ">
+				className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-9 xl:grid-cols-3 ">
 				{items.map((project, i) => (
 					<Project key={i} project={project} />
 				))}
@@ -142,21 +144,21 @@ export default function Projects({ projects }) {
 				<ProjectsSection
 					items={projects.filter(project => project.category === 'website')}
 					icon={
-						<WebsiteIcon className="inline-flex h-8 w-8 self-center text-zinc-900 dark:text-zinc-100" />
+						<WebsiteIcon className="inline-flex h-8 w-8 self-center text-zinc-700 dark:text-zinc-400" />
 					}
 					title="Websites"
 				/>
 				<ProjectsSection
 					items={projects.filter(project => project.category === 'game')}
 					icon={
-						<GameIcon className="inline-flex h-8 w-8 self-center text-zinc-900 dark:text-zinc-100" />
+						<GameIcon className="inline-flex h-8 w-8 self-center text-zinc-700 dark:text-zinc-400" />
 					}
 					title="Games"
 				/>
 				<ProjectsSection
 					items={projects.filter(project => project.category === 'utility')}
 					icon={
-						<UtilityIcon className="h-8 w-8 flex-none text-zinc-900 dark:text-zinc-100" />
+						<UtilityIcon className="h-8 w-8 flex-none text-zinc-700 dark:text-zinc-400" />
 					}
 					title="Utilities"
 				/>
