@@ -29,7 +29,7 @@ module.exports = {
 		'prefer-rest-params': 'warn',
 		'prefer-spread': 'warn',
 		'@typescript-eslint/no-non-null-assertion': 'off',
-		'react/jsx-props-no-spreading': 1,
+		// 'react/jsx-props-no-spreading': 1,
 		yoda: 'error',
 		'prettier/prettier': [
 			'warn',
