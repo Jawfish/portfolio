@@ -12,7 +12,8 @@
 		"recommendations": [
 			"dsznajder.es7-react-js-snippets",
 			"dbaeumer.vscode-eslint",
-			"ms-vscode.vscode-typescript-next"
+			"ms-vscode.vscode-typescript-next",
+			"bradlc.vscode-tailwindcss"
 		]
 	}
 }

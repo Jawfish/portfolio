@@ -1,0 +1,17 @@
+.tag-default {
+    @apply  text-zinc-500 bg-zinc-100
+}
+.tag-react,
+.tag-next,
+.tag-godot,
+.tag-python,
+.tag-rust {
+    @apply  text-zinc-500 bg-zinc-100
+}
+.tag-fastapi,
+.tag-node,
+.tag-mongodb,
+.tag-graphql,
+.tag-postgresql {
+    @apply  text-zinc-300 bg-zinc-600
+}

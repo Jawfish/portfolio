@@ -1,7 +1,5 @@
 import Image from 'next/image';
-import Head from 'next/head';
 import React, { useState } from 'react';
-
 import { SimpleLayout } from '@/components/SimpleLayout';
 import { endpoint, revalidationSeconds } from '@/lib/client';
 import {
@@ -13,14 +11,18 @@ import { Card } from '@/components/Card';
 import Link from 'next/link';
 import { BiLinkExternal as LinkIcon } from 'react-icons/bi';
 import { IoClose as CloseIcon } from 'react-icons/io5';
+import { Meta } from '@/components/Meta';
 
 function TechTags({ tags }) {
 	return (
-		<span className="absolute right-0 bottom-0 flex gap-1 pb-2 pr-2 sm:gap-2">
+		<span className="absolute right-0 bottom-0 flex gap-1 pb-2 pr-2">
 			{tags.map(tag => (
 				<span
 					key={tag.id}
-					className="rounded-full border border-zinc-200 bg-white/90 px-1 text-xs  text-zinc-700 backdrop-blur-sm dark:border-zinc-700/60 dark:bg-zinc-900/90 dark:text-zinc-400 sm:px-2">
+					className={`rounded-full  px-1 shadow backdrop-blur-sm sm:px-2 tag-${
+						tag.names?.toLowerCase() || 'default'
+					}`}
+					style={{ fontSize: '0.7rem' }}>
 					{tag.name}
 				</span>
 			))}
@@ -74,19 +76,27 @@ function Project({ project, showModal }) {
 			<div className="p-5">
 				<Card.Title className>{project.name}</Card.Title>
 				<Card.Description>{project.description}</Card.Description>
-				<div className="group-hover:text-teal-1000 relative z-10 mt-auto flex w-full gap-4 pt-2 text-sm font-medium text-zinc-400 transition-all dark:text-zinc-200">
+				<div className="group-hover:text-teal-1000 relative z-10 mt-auto flex w-full gap-4  pt-3 text-sm font-medium text-zinc-400 transition-all dark:text-zinc-200">
 					{project.link && (
-						<Link href={project.link} className="group flex items-end">
-							<span className="inline-flex items-center gap-1 text-xs font-normal transition-all hover:text-emerald-500">
+						<Link
+							href={project.link}
+							passHref={true}
+							target="_blank"
+							className="group flex items-end">
+							<span className="inline-flex items-center gap-1 text-xs font-normal text-emerald-500 transition-all hover:text-emerald-300">
 								{project.cta}
 								<LinkIcon className="mt-0.5" />
 							</span>
 						</Link>
 					)}
 					{project.github && (
-						<Link href={project.github} className="flex items-end">
-							<span className="inline-flex items-center gap-1 text-xs font-normal transition-all hover:text-emerald-500">
-								View Source
+						<Link
+							href={project.github}
+							passHref={true}
+							target="_blank"
+							className="flex items-end">
+							<span className="inline-flex items-center gap-1 text-xs font-normal text-emerald-500 transition-all hover:text-emerald-300">
+								Source
 							</span>
 						</Link>
 					)}
@@ -94,7 +104,7 @@ function Project({ project, showModal }) {
 						<div className="flex cursor-pointer items-end">
 							<span
 								onClick={() => showModal(project)}
-								className="inline-flex items-center gap-1 text-xs font-normal transition-all hover:text-emerald-500">
+								className="inline-flex items-center gap-1 text-xs font-normal text-emerald-500 transition-all hover:text-emerald-300">
 								Watch Demo
 							</span>
 						</div>
@@ -123,9 +133,10 @@ function ProjectsSection({ items, icon, title, showModal }) {
 	);
 }
 
-export default function Projects({ projects }) {
+export default function Projects({ projects, page }) {
 	const [show, setShow] = useState(false);
 	const [project, setProject] = useState(null);
+	projects = projects.sort((a, b) => a.priority - b.priority);
 
 	const handleClose = () => {
 		setShow(false);
@@ -136,17 +147,11 @@ export default function Projects({ projects }) {
 		setShow(true);
 	};
 
-	projects.reverse();
 	return (
 		<>
-			<Head>
-				<title>Projects - James Fitzgerald</title>
-				<meta name="description" content="Things I’ve made." />
-			</Head>
+			<Meta page={page} />
 			{show && <Modal project={project} handleClose={handleClose} />}
-			<SimpleLayout
-				title="Some of the things I've made."
-				intro="I have a range of personal projects I've worked on, including websites, games, and utilities, most of which are open-source and available on my GitHub. Take a look at the code to see how I tackle projects, and feel free to check out the rest of my GitHub profile.">
+			<SimpleLayout title={page.heading} intro={page.subheading}>
 				<ProjectsSection
 					items={projects.filter(project => project.category === 'website')}
 					showModal={handleShow}
@@ -188,6 +193,7 @@ export async function getStaticProps() {
 			link
 			github
 			cta
+			priority
 			recording {
 			  url
 			}
@@ -200,10 +206,29 @@ export async function getStaticProps() {
 			}
 		  }
 		}
+		Page(id: "63b9b49dfc7bbfa352ef7f94") {
+		  heading
+		  subheading
+		  head {
+			title
+			meta {
+			  description
+			  keywords
+			  author
+			}
+			og {
+			  title
+			  description
+			  image {
+				url
+			  }
+			}
+		  }
+		}
 	  }
-			
+	  
   `;
-	const projects = await fetch(endpoint, {
+	const content = await fetch(endpoint, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -213,10 +238,12 @@ export async function getStaticProps() {
 		})
 	})
 		.then(res => res.json())
-		.then(res => res.data.Projects.docs);
+		.then(res => res.data);
+
 	return {
 		props: {
-			projects
+			projects: content.Projects.docs,
+			page: content.Page
 		},
 		revalidate: revalidationSeconds
 	};
