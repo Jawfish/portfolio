@@ -1,8 +1,7 @@
-import Head from 'next/head';
 import Link from 'next/link';
 import { Button } from '@/components/Button';
 import { Container } from '@/components/Container';
-import { endpoint } from '@/lib/client';
+import { endpoint, revalidationSeconds } from '@/lib/client';
 import { HiChevronDown as ChevronDownIcon } from 'react-icons/hi';
 import {
 	FaItchIo as ItchIcon,
@@ -12,6 +11,7 @@ import {
 import { FiBarChart as ChartIcon, FiMail as MailIcon } from 'react-icons/fi';
 import { Card } from '@/components/Card';
 import Image from 'next/image';
+import { Meta } from '@/components/Meta';
 
 const border = 'p-6 border rounded-md border-zinc-100 dark:border-zinc-700/40';
 
@@ -28,7 +28,7 @@ function Project({ project }) {
 
 function SocialLink({ icon: Icon, ...props }) {
 	return (
-		<Link className="group -m-1 p-1" {...props}>
+		<Link className="group -m-1 p-1" {...props} target="_blank">
 			<Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
 		</Link>
 	);
@@ -91,25 +91,28 @@ function Contact() {
 }
 
 function ProjectsSection({ projects }) {
-	projects.reverse();
+	projects = projects
+		.filter(project => project.featured)
+		.sort((a, b) => a.priority - b.priority);
 	return (
 		<div className="pt-6">
 			<div className="flex flex-col gap-12">
-				{projects.map(
-					project =>
-						project.featured && <Project key={project.id} project={project} />
-				)}
+				{projects.map(project => (
+					<Project key={project.id} project={project} />
+				))}
 			</div>
 		</div>
 	);
 }
 
-function Resume({ skills }) {
+function Resume({ skills, download }) {
+	const filename = download.split('/').pop();
+	skills = skills.sort((a, b) => a.priority - b.priority);
 	return (
 		<div className={border}>
 			<SectionTitle icon={<ChartIcon className="h-4 w-4" />} title="Skills" />
 			<ol className="mt-4 space-y-4">
-				{skills.reverse().map(skill => (
+				{skills.map(skill => (
 					<li key={skill.id}>
 						<div className="-mb-2 text-sm text-zinc-400 dark:text-zinc-500">
 							{skill.name}
@@ -118,7 +121,11 @@ function Resume({ skills }) {
 					</li>
 				))}
 			</ol>
-			<Button href="#" variant="secondary" className="group mt-6 w-full">
+			<Button
+				href={download}
+				download={filename}
+				variant="secondary"
+				className="group mt-6 w-full">
 				Download CV
 				<ChevronDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
 			</Button>
@@ -126,13 +133,10 @@ function Resume({ skills }) {
 	);
 }
 
-export default function Home({ page, projects, skills }) {
+export default function Home({ page, projects, skills, resume, profile }) {
 	return (
 		<>
-			<Head>
-				<title>James Fitzgerald - Web developer</title>
-				<meta name="description" content="Full-stack web developer." />
-			</Head>
+			<Meta page={page} />
 			<Container className="mt-16 sm:mt-32">
 				<div className="flex w-full flex-col-reverse lg:flex-row">
 					<div className="max-w-2xl">
@@ -155,17 +159,17 @@ export default function Home({ page, projects, skills }) {
 				</div>
 				<div className="mt-6 flex gap-6">
 					<SocialLink
-						href="https://github.com"
+						href={profile.github}
 						aria-label="Follow on GitHub"
 						icon={GitHubIcon}
 					/>
 					<SocialLink
-						href="https://linkedin.com"
+						href={profile.linkedin}
 						aria-label="Follow on LinkedIn"
 						icon={LinkedInIcon}
 					/>
 					<SocialLink
-						href="https://jawfish.itch.io/"
+						href={profile.itch}
 						aria-label="Check out my itch.io page"
 						icon={ItchIcon}
 					/>
@@ -175,7 +179,7 @@ export default function Home({ page, projects, skills }) {
 				<div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
 					<ProjectsSection projects={projects} />
 					<div className="space-y-10 lg:pl-16 xl:pl-24">
-						<Resume skills={skills} />
+						<Resume skills={skills} download={resume} />
 						<Contact />
 					</div>
 				</div>
@@ -186,32 +190,60 @@ export default function Home({ page, projects, skills }) {
 
 export async function getStaticProps() {
 	const query = `query {
-    Page(id: "63b4723fee0e2fcf686355ca") {
-      heading
-      subheading
-	  splash {
-		url
+		Page(id: "63b4723fee0e2fcf686355ca") {
+		  heading
+		  subheading
+		  content
+		  head {
+			title
+			meta {
+			  description
+			  keywords
+			  author
+			}
+			og {
+			  title
+			  description
+			  image {
+				url
+			  }
+			}
+		  }
+		  splash {
+			url
+		  }
+		}
+		Projects {
+		  docs {
+			id
+			name
+			link
+			featured
+			description
+			cta
+			blurb
+			priority
+		  }
+		}
+		Skills {
+		  docs {
+			id
+			name
+			technologies
+			priority
+		  }
+		}
+		Resume(id: "63b9d599638ee8bc9aebb6ee") {
+		  file {
+			url
+		  }
+		}
+		Profile(id: "63b9d30f14a9f9fb9928ce9d") {
+		  github
+		  linkedin
+		  itch
+		}
 	  }
-    }
-    Projects {
-      docs {
-        id
-        name
-        link
-        featured
-        description
-        cta
-        blurb
-      }
-    }
-    Skills {
-      docs {
-        id
-        name
-        technologies
-      }
-    }
-  }
   `;
 	const content = await fetch(endpoint, {
 		method: 'POST',
@@ -228,7 +260,10 @@ export async function getStaticProps() {
 		props: {
 			page: content.Page,
 			projects: content.Projects.docs,
-			skills: content.Skills.docs
-		}
+			skills: content.Skills.docs,
+			resume: content.Resume.file.url,
+			profile: content.Profile
+		},
+		revalidate: revalidationSeconds
 	};
 }

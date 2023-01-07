@@ -40,6 +40,7 @@ export default function Document() {
 		<Html className="h-full antialiased" lang="en">
 			<Head>
 				<script dangerouslySetInnerHTML={{ __html: modeScript }} />
+				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<body className="flex h-full flex-col bg-zinc-50 dark:bg-black">
 				<Main />

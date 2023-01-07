@@ -77,6 +77,8 @@ const serialize = children =>
 					<Link
 						key={i}
 						href={escapeHTML(node.url)}
+						passHref={true}
+						target="_blank"
 						className="text-emerald-500 transition-all hover:text-emerald-400">
 						{serialize(node.children)}
 					</Link>

@@ -1,12 +1,11 @@
 import Image from 'next/image';
-import Head from 'next/head';
 import Link from 'next/link';
 import clsx from 'clsx';
-
+import { Meta } from '@/components/Meta';
 import { Container } from '@/components/Container';
 import serialize from '@/lib/serialize';
 
-import { endpoint } from '@/lib/client';
+import { endpoint, revalidationSeconds } from '@/lib/client';
 
 import {
 	FaEnvelope as MailIcon,
@@ -20,6 +19,7 @@ function SocialLink({ className, href, children, icon: Icon }) {
 		<li className={clsx(className, 'flex')}>
 			<Link
 				href={href}
+				target="_blank"
 				className="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500">
 				<Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
 				<span className="ml-4">{children}</span>
@@ -28,13 +28,10 @@ function SocialLink({ className, href, children, icon: Icon }) {
 	);
 }
 
-export default function About({ page }) {
+export default function About({ page, profile }) {
 	return (
 		<>
-			<Head>
-				<title>About - James Fitzgerald</title>
-				<meta name="description" content="About me." />
-			</Head>
+			<Meta page={page} />
 			<Container className="mt-16 sm:mt-32">
 				<div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
 					<div className="lg:pl-20">
@@ -58,13 +55,19 @@ export default function About({ page }) {
 					</div>
 					<div className="lg:pl-20">
 						<ul role="list">
-							<SocialLink href="#" icon={GitHubIcon} className="mt-4">
+							<SocialLink
+								href={profile.github}
+								icon={GitHubIcon}
+								className="mt-4">
 								Explore my GitHub
 							</SocialLink>
-							<SocialLink href="#" icon={LinkedInIcon} className="mt-4">
+							<SocialLink
+								href={profile.linkedin}
+								icon={LinkedInIcon}
+								className="mt-4">
 								Follow on LinkedIn
 							</SocialLink>
-							<SocialLink href="#" icon={ItchIcon} className="mt-4">
+							<SocialLink href={profile.itch} icon={ItchIcon} className="mt-4">
 								Check out my Itch.io
 							</SocialLink>
 							<SocialLink
@@ -83,15 +86,35 @@ export default function About({ page }) {
 
 export async function getStaticProps() {
 	const query = `query {
-    Page(id: "63b47dad5f65e8d5f4f7b758") {
-      heading
-      content
-	  splash {
-		url
+		Page(id: "63b47dad5f65e8d5f4f7b758") {
+		  heading
+		  content
+		  head {
+			title
+			meta {
+			  description
+			  keywords
+			  author
+			}
+			og {
+			  title
+			  description
+			  image {
+				url
+			  }
+			}
+		  }
+		  splash {
+			url
+		  }
+		}
+		Profile(id: "63b9d30f14a9f9fb9928ce9d") {
+			github
+			linkedin
+			itch
+		}
 	  }
-  }
-}
-  `;
+	  `;
 	const content = await fetch(endpoint, {
 		method: 'POST',
 		headers: {
@@ -103,9 +126,12 @@ export async function getStaticProps() {
 	})
 		.then(res => res.json())
 		.then(res => res.data);
+
 	return {
 		props: {
-			page: content.Page
-		}
+			page: content.Page,
+			profile: content.Profile
+		},
+		revalidate: revalidationSeconds
 	};
 }

@@ -1,7 +1,7 @@
-import Head from 'next/head';
-import { endpoint } from '@/lib/client';
+import { endpoint, revalidationSeconds } from '@/lib/client';
 import { SimpleLayout } from '@/components/SimpleLayout';
 import { Card } from '@/components/Card';
+import { Meta } from '@/components/Meta';
 
 function Article({ article }) {
 	const date = new Date(article.publishedDate);
@@ -74,10 +74,7 @@ function Details({ children }) {
 export default function Blog({ posts, page }) {
 	return (
 		<>
-			<Head>
-				<title>Blog - James Fitzgerald</title>
-				<meta name="description" content="An example blog section." />
-			</Head>
+			<Meta page={page} />
 			<SimpleLayout title={page.heading} intro={page.subheading}>
 				<div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
 					<PostsSection posts={posts} />
@@ -108,6 +105,23 @@ export async function getStaticProps() {
     Page(id:"63b492735f65e8d5f4f7b939"){
       heading
       subheading
+	  heading
+	  content
+	  head {
+		title
+		meta {
+		  description
+		  keywords
+		  author
+		}
+		og {
+		  title
+		  description
+		  image {
+			url
+		  }
+		}
+	  }
     }
   }  
   `;
@@ -129,6 +143,7 @@ export async function getStaticProps() {
 			posts: content.Posts.docs.sort((a, b) =>
 				a.publishedDate > b.publishedDate ? -1 : 1
 			)
-		}
+		},
+		revalidate: revalidationSeconds
 	};
 }
