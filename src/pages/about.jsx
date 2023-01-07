@@ -6,7 +6,7 @@ import clsx from 'clsx';
 import { Container } from '@/components/Container';
 import serialize from '@/lib/serialize';
 
-import { endpoint } from '@/lib/client';
+import { endpoint, revalidationSeconds } from '@/lib/client';
 
 import {
 	FaEnvelope as MailIcon,
@@ -106,6 +106,7 @@ export async function getStaticProps() {
 	return {
 		props: {
 			page: content.Page
-		}
+		},
+		revalidate: revalidationSeconds
 	};
 }

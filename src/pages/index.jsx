@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { Button } from '@/components/Button';
 import { Container } from '@/components/Container';
-import { endpoint } from '@/lib/client';
+import { endpoint, revalidationSeconds } from '@/lib/client';
 import { HiChevronDown as ChevronDownIcon } from 'react-icons/hi';
 import {
 	FaItchIo as ItchIcon,
@@ -229,6 +229,7 @@ export async function getStaticProps() {
 			page: content.Page,
 			projects: content.Projects.docs,
 			skills: content.Skills.docs
-		}
+		},
+		revalidate: revalidationSeconds
 	};
 }

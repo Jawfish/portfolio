@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { endpoint } from '@/lib/client';
+import { endpoint, revalidationSeconds } from '@/lib/client';
 import { SimpleLayout } from '@/components/SimpleLayout';
 import { Card } from '@/components/Card';
 
@@ -129,6 +129,7 @@ export async function getStaticProps() {
 			posts: content.Posts.docs.sort((a, b) =>
 				a.publishedDate > b.publishedDate ? -1 : 1
 			)
-		}
+		},
+		revalidate: revalidationSeconds
 	};
 }

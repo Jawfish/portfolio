@@ -3,7 +3,7 @@ import Head from 'next/head';
 import React, { useState } from 'react';
 
 import { SimpleLayout } from '@/components/SimpleLayout';
-import { endpoint } from '@/lib/client';
+import { endpoint, revalidationSeconds } from '@/lib/client';
 import {
 	FaGamepad as GameIcon,
 	FaWrench as UtilityIcon,
@@ -217,6 +217,7 @@ export async function getStaticProps() {
 	return {
 		props: {
 			projects
-		}
+		},
+		revalidate: revalidationSeconds
 	};
 }
