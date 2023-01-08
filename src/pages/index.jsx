@@ -139,13 +139,32 @@ export default function Home({ page, projects, skills, resume, profile }) {
 			<Meta page={page} />
 			<Container className="mt-16 sm:mt-32">
 				<div className="flex w-full flex-col-reverse lg:flex-row">
-					<div className="max-w-2xl">
-						<h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-							{page.heading}
-						</h1>
-						<p className="mt-6 max-w-xl text-base text-zinc-600 dark:text-zinc-400">
-							{page.subheading}
-						</p>
+					<div>
+						<div className="max-w-2xl">
+							<h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+								{page.heading}
+							</h1>
+							<p className="mt-6 max-w-xl text-base text-zinc-600 dark:text-zinc-400">
+								{page.subheading}
+							</p>
+						</div>
+						<div className="mt-6 flex gap-6">
+							<SocialLink
+								href={profile.github}
+								aria-label="Follow on GitHub"
+								icon={GitHubIcon}
+							/>
+							<SocialLink
+								href={profile.linkedin}
+								aria-label="Follow on LinkedIn"
+								icon={LinkedInIcon}
+							/>
+							<SocialLink
+								href={profile.itch}
+								aria-label="Check out my itch.io page"
+								icon={ItchIcon}
+							/>
+						</div>
 					</div>
 					<div className="max-w-xs px-2.5 pb-16 lg:block lg:max-w-none lg:pb-0">
 						<Image
@@ -156,23 +175,6 @@ export default function Home({ page, projects, skills, resume, profile }) {
 							className="rounded-md object-cover"
 						/>
 					</div>
-				</div>
-				<div className="mt-6 flex gap-6">
-					<SocialLink
-						href={profile.github}
-						aria-label="Follow on GitHub"
-						icon={GitHubIcon}
-					/>
-					<SocialLink
-						href={profile.linkedin}
-						aria-label="Follow on LinkedIn"
-						icon={LinkedInIcon}
-					/>
-					<SocialLink
-						href={profile.itch}
-						aria-label="Check out my itch.io page"
-						icon={ItchIcon}
-					/>
 				</div>
 			</Container>
 			<Container className="mt-6 p-6 ">
