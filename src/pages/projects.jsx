@@ -15,7 +15,7 @@ import { Meta } from '@/components/Meta';
 
 function TechTags({ tags }) {
 	return (
-		<span className="flex gap-2 pb-2 pr-2">
+		<span className="flex gap-2 pb-3 pr-2">
 			{tags.map(tag => (
 				<span
 					key={tag.id}
@@ -33,10 +33,10 @@ function TechTags({ tags }) {
 function Modal({ project, handleClose }) {
 	return (
 		<div
-			className="fixed top-0 left-0 z-50 grid h-screen w-screen overflow-y-auto overflow-x-hidden rounded-md bg-zinc-50/80 backdrop-blur-sm dark:bg-zinc-900/80"
+			className="fixed top-0 left-0 z-50 grid h-screen w-screen overflow-y-auto overflow-x-hidden rounded bg-zinc-50/80 backdrop-blur-sm dark:bg-zinc-900/80"
 			onClick={() => handleClose()}>
 			{project.recording && (
-				<div className="my-auto mx-auto max-w-full rounded-md shadow-2xl sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl">
+				<div className="my-auto mx-auto max-w-full rounded shadow-2xl sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl">
 					<CloseIcon className="absolute m-4 h-10 w-10  fill-zinc-500 transition-all hover:cursor-pointer hover:fill-zinc-300" />
 					<video
 						autoPlay={true}
@@ -56,7 +56,7 @@ function Project({ project, showModal }) {
 	return (
 		<a
 			id={project.name}
-			className="rounded-mg h-fit rounded-md  border border-zinc-100 dark:border-zinc-700/40  lg:max-w-md">
+			className="h-fit rounded  border border-zinc-100 dark:border-zinc-700/40  lg:max-w-md">
 			<div className="relative">
 				<Image
 					className="rounded-t-md border-b border-zinc-100 dark:border-zinc-700/40"
@@ -74,7 +74,7 @@ function Project({ project, showModal }) {
 			</div>
 			<div className="p-5">
 				<TechTags tags={project.stack} />
-				<Card.Title className>{project.name}</Card.Title>
+				<Card.Title>{project.name}</Card.Title>
 				<Card.Description>{project.description}</Card.Description>
 				<div className="group-hover:text-teal-1000 relative z-10 mt-auto flex w-full gap-4  pt-3 text-sm font-medium text-zinc-400 transition-all dark:text-zinc-200">
 					{project.link && (
