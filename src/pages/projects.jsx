@@ -15,14 +15,14 @@ import { Meta } from '@/components/Meta';
 
 function TechTags({ tags }) {
 	return (
-		<span className="absolute right-0 bottom-0 flex gap-1 pb-2 pr-2">
+		<span className="flex gap-2 pb-2 pr-2">
 			{tags.map(tag => (
 				<span
 					key={tag.id}
-					className={`rounded-full  px-1 shadow backdrop-blur-sm sm:px-2 tag-${
-						tag.names?.toLowerCase() || 'default'
+					className={`rounded  border-t border-l border-r border-zinc-200 bg-zinc-100 px-2 py-0.5 text-zinc-500 backdrop-blur-sm dark:border-zinc-600/70 dark:bg-zinc-800 dark:text-zinc-400/70 sm:px-2 tag-${
+						tag.name?.toLowerCase() || 'default'
 					}`}
-					style={{ fontSize: '0.7rem' }}>
+					style={{ fontSize: '0.8rem' }}>
 					{tag.name}
 				</span>
 			))}
@@ -71,9 +71,9 @@ function Project({ project, showModal }) {
 						height: '50%'
 					}}
 				/>
-				<TechTags tags={project.stack} />
 			</div>
 			<div className="p-5">
+				<TechTags tags={project.stack} />
 				<Card.Title className>{project.name}</Card.Title>
 				<Card.Description>{project.description}</Card.Description>
 				<div className="group-hover:text-teal-1000 relative z-10 mt-auto flex w-full gap-4  pt-3 text-sm font-medium text-zinc-400 transition-all dark:text-zinc-200">
