@@ -38,10 +38,10 @@ export default function About({ page, profile }) {
 						<div className="max-w-xs px-2.5 lg:max-w-none">
 							<Image
 								src={page.splash.url}
-								alt=""
+								alt={page.splash.alt}
 								width={512}
 								height={512}
-								className="rounded-md object-cover"
+								className="rounded object-cover"
 							/>
 						</div>
 					</div>
@@ -106,6 +106,7 @@ export async function getStaticProps() {
 		  }
 		  splash {
 			url
+			alt
 		  }
 		}
 		Profile(id: "63b9d30f14a9f9fb9928ce9d") {

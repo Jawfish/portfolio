@@ -1,17 +1,34 @@
 .tag-default {
     @apply  text-zinc-500 bg-zinc-100
 }
-.tag-react,
-.tag-next,
-.tag-godot,
-.tag-python,
-.tag-rust {
-    @apply  text-zinc-500 bg-zinc-100
+.tag-react {
+    @apply border-b-2 border-b-cyan-500 dark:border-b-cyan-500/70
 }
-.tag-fastapi,
-.tag-node,
-.tag-mongodb,
-.tag-graphql,
+.tag-next {
+    @apply border-b-2 border-b-zinc-500 dark:border-b-zinc-400/70
+}
+.tag-godot {
+    @apply border-b-2 border-b-purple-400 dark:border-b-purple-400/70
+}
+.tag-python {
+    @apply border-b-2 border-b-yellow-500 dark:border-b-yellow-500/70
+}
+.tag-rust {
+    @apply  border-b-2 border-b-red-400 dark:border-b-red-400/70
+}
+.tag-fastapi {
+    @apply border-b-2 border-b-teal-500 dark:border-b-teal-500/70
+}
+.tag-node {
+    @apply border-b-2 border-b-lime-400 dark:border-b-lime-400/70
+}
+.tag-mongodb {
+    @apply border-b-2 border-b-green-500 dark:border-b-green-500/70
+}
+.tag-graphql {
+    @apply border-b-2 border-b-pink-400 dark:border-b-pink-400/70
+}
 .tag-postgresql {
-    @apply  text-zinc-300 bg-zinc-600
+    @apply border-b-2 border-b-blue-600/70 dark:border-b-blue-600/70
+
 }

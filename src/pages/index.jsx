@@ -13,15 +13,31 @@ import { Card } from '@/components/Card';
 import Image from 'next/image';
 import { Meta } from '@/components/Meta';
 
-const border = 'p-6 border rounded-md border-zinc-100 dark:border-zinc-700/40';
+const border = 'p-6 border rounded border-zinc-100 dark:border-zinc-700/40';
 
 function Project({ project }) {
 	return (
 		<Card>
 			<Card.Eyebrow decorate>Featured Project</Card.Eyebrow>
-			<Card.Title href={`/projects#${project.name}`}>{project.name}</Card.Title>
-			<Card.Description>{project.blurb}</Card.Description>
-			<Card.Cta>See More</Card.Cta>
+			<div className="flex gap-6 rounded">
+				<div className="relative col-span-3 h-[96px] min-h-[96px] w-[96px] min-w-[96px]  sm:h-[128px]  sm:min-h-[128px] sm:w-[128px]  sm:min-w-[128px]">
+					<Image
+						src={project.icon?.url || ''}
+						alt={project.icon?.alt || ''}
+						height={128}
+						width={128}
+						className="relative z-10 rounded"
+						unoptimized={true}
+					/>
+				</div>
+				<div className="">
+					<Card.Title href={`/projects#${project.name}`}>
+						{project.name}
+					</Card.Title>
+					<Card.Description>{project.blurb}</Card.Description>
+					<Card.Cta>See More</Card.Cta>
+				</div>
+			</div>
 		</Card>
 	);
 }
@@ -63,7 +79,7 @@ function Contact() {
 					aria-label="Message"
 					cols="30"
 					rows="4"
-					className="col-span-4 appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-emerald-400 dark:focus:ring-emerald-400/10 sm:text-sm"></textarea>
+					className="col-span-4 appearance-none rounded border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-emerald-400 dark:focus:ring-emerald-400/10 sm:text-sm"></textarea>
 				<div className="col-span-4 flex gap-6">
 					<input
 						type="name"
@@ -71,7 +87,7 @@ function Contact() {
 						placeholder="Name"
 						aria-label="Name"
 						required
-						className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-emerald-400 dark:focus:ring-emerald-400/10 sm:text-sm"
+						className="min-w-0 flex-auto appearance-none rounded border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-emerald-400 dark:focus:ring-emerald-400/10 sm:text-sm"
 					/>
 					<input
 						type="email"
@@ -79,7 +95,7 @@ function Contact() {
 						required
 						placeholder="Email address"
 						aria-label="Email address"
-						className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-emerald-400 dark:focus:ring-emerald-400/10 sm:text-sm"
+						className="min-w-0 flex-auto appearance-none rounded border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-emerald-400 dark:focus:ring-emerald-400/10 sm:text-sm"
 					/>
 				</div>
 				<Button type="submit" variant="primary" className="col-span-1">
@@ -169,16 +185,16 @@ export default function Home({ page, projects, skills, resume, profile }) {
 					<div className="max-w-xs px-2.5 pb-16 lg:block lg:max-w-none lg:pb-0">
 						<Image
 							src={page.splash.url}
-							alt=""
+							alt={page.splash.alt}
 							width={512}
 							height={512}
-							className="rounded-md object-cover"
+							className="rounded object-cover"
 						/>
 					</div>
 				</div>
 			</Container>
 			<Container className="mt-6 p-6 ">
-				<div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
+				<div className="mx-auto grid  grid-cols-1 gap-y-20  lg:grid-cols-2">
 					<ProjectsSection projects={projects} />
 					<div className="space-y-10 lg:pl-16 xl:pl-24">
 						<Resume skills={skills} download={resume} />
@@ -213,6 +229,7 @@ export async function getStaticProps() {
 		  }
 		  splash {
 			url
+			alt
 		  }
 		}
 		Projects {
@@ -225,6 +242,10 @@ export async function getStaticProps() {
 			cta
 			blurb
 			priority
+			icon {
+				url
+				alt
+			}
 		  }
 		}
 		Skills {
