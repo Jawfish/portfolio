@@ -33,7 +33,7 @@ const serialize = children =>
 			case 'h1':
 				return (
 					<h1
-						className="mt-12 mb-4 text-xl font-bold text-zinc-900 dark:text-zinc-100"
+						className="mt-12 mb-4 text-xl font-bold text-zinc-900 dark:text-zinc-50"
 						key={i}>
 						{serialize(node.children)}
 					</h1>

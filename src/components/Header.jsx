@@ -49,9 +49,9 @@ function MobileNavigation(props) {
 						className="fixed inset-x-4 top-8 z-40 origin-top rounded-3xl bg-white p-8 ring-1 ring-zinc-900/5 dark:bg-zinc-900 dark:ring-zinc-800">
 						<div className="flex flex-row-reverse items-center justify-between">
 							<Popover.Button aria-label="Close menu" className="-m-1 p-1">
-								<VscClose className="h-6 w-6 text-zinc-500 dark:text-zinc-400" />
+								<VscClose className="h-6 w-6 text-zinc-500 dark:text-zinc-300" />
 							</Popover.Button>
-							<h2 className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
+							<h2 className="text-sm font-medium text-zinc-600 dark:text-zinc-300">
 								Navigation
 							</h2>
 						</div>

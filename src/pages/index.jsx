@@ -36,7 +36,7 @@ function SocialLink({ icon: Icon, ...props }) {
 
 function SectionTitle({ icon, title }) {
 	return (
-		<h2 className="flex items-center gap-2 text-sm font-semibold text-zinc-800 dark:text-zinc-100">
+		<h2 className="flex items-center gap-2 text-sm font-semibold text-zinc-800 dark:text-zinc-50">
 			<span className="">{icon}</span>
 			{title}
 		</h2>
@@ -141,10 +141,10 @@ export default function Home({ page, projects, skills, resume, profile }) {
 				<main className="flex w-full flex-col-reverse lg:flex-row">
 					<div>
 						<div className="max-w-2xl">
-							<h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+							<h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-50 sm:text-5xl">
 								{page.heading}
 							</h1>
-							<p className="mt-6 max-w-xl text-base text-zinc-600 dark:text-zinc-400">
+							<p className="mt-6 max-w-xl text-base text-zinc-600 dark:text-zinc-300">
 								{page.subheading}
 							</p>
 						</div>

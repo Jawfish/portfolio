@@ -5,122 +5,9 @@ import { endpoint, revalidationSeconds } from '@/lib/client';
 import { Card } from '@/components/Card';
 import Link from 'next/link';
 import { BiLinkExternal as LinkIcon } from 'react-icons/bi';
-import { IoClose as CloseIcon } from 'react-icons/io5';
 import { Meta } from '@/components/Meta';
-
-function ProjectsFilterCategory({ category, value, onChange, options }) {
-	return (
-		<div className="flex flex-col gap-2">
-			<label htmlFor={category} className="text-sm font-semibold">
-				{category}
-			</label>
-			<select
-				id={category}
-				name={category}
-				className="rounded-md border border-zinc-200 dark:border-zinc-600/70 dark:bg-zinc-800 dark:text-zinc-400/70"
-				value={value}
-				onChange={onChange}>
-				{options.map(option => (
-					<option key={option} value={option}>
-						{option}
-					</option>
-				))}
-			</select>
-		</div>
-	);
-}
-
-/**
- * Provide two drop-down filters for project.category with:
- * - Category, from the project.category array
- * - Technology, from the project.stack array
- * @param {Object} props - The props object.
- */
-function ProjectsFilter({ projects, setProjects }) {
-	/**
-	 * Convert a string to title case (e.g. "web development" -> "Web Development")
-	 * @param {string} str The term to be converted to title case.
-	 * @returns {string} The title-cased term.
-	 */
-	function titleCase(str) {
-		return str
-			.toLowerCase()
-			.split(' ')
-			.map(function (word) {
-				return word.charAt(0).toUpperCase() + word.slice(1);
-			})
-			.join(' ');
-	}
-
-	const [category, setCategory] = useState('All');
-	const [technology, setTechnology] = useState('All');
-
-	/**
-	 * Filter projects by category and/or technology.
-	 * @param {string} category The category to filter by.
-	 * @param {string} technology The technology to filter by.
-	 * @returns {Array} The filtered projects.
-	 */
-	const filterProjects = (category, technology) => {
-		if (category === 'All' && technology === 'All') return projects;
-		return projects.filter(project => {
-			if (category !== 'All' && project.category !== category.toLowerCase())
-				return false;
-			if (
-				technology !== 'All' &&
-				!project.stack.some(
-					tech => tech.name.toLowerCase() === technology.toLowerCase()
-				)
-			)
-				return false;
-			return true;
-		});
-	};
-
-	const handleCategoryChange = e => {
-		setCategory(e.target.value);
-		setProjects(filterProjects(e.target.value, technology));
-	};
-
-	const handleTechnologyChange = e => {
-		setTechnology(e.target.value);
-		setProjects(filterProjects(category, e.target.value));
-	};
-
-	return (
-		<>
-			<div className="flex gap-4">
-				<ProjectsFilterCategory
-					category="Category"
-					value={category}
-					onChange={handleCategoryChange}
-					options={[
-						'All',
-						// eslint-disable-next-line no-undef
-						...new Set(projects.map(project => titleCase(project.category)))
-					]}
-				/>
-				<ProjectsFilterCategory
-					category="Technology"
-					value={technology}
-					onChange={handleTechnologyChange}
-					options={
-						// create array of tech found in projects.stack for all projects
-						[
-							'All',
-							// eslint-disable-next-line no-undef
-							...new Set(
-								projects
-									.flatMap(project => project.stack)
-									.map(tech => titleCase(tech.name))
-							)
-						]
-					}
-				/>
-			</div>
-		</>
-	);
-}
+import ProjectsFilter from '@/components/Filter';
+import Modal from '@/components/Modal';
 
 function TechTags({ tags }) {
 	return (
@@ -128,7 +15,7 @@ function TechTags({ tags }) {
 			{tags.map(tag => (
 				<span
 					key={tag.id}
-					className={`rounded  border-t border-l border-r border-zinc-200 bg-zinc-100 px-2 py-0.5 text-zinc-500 backdrop-blur-sm dark:border-zinc-600/70 dark:bg-zinc-800 dark:text-zinc-400/70 sm:px-2 tag-${
+					className={`rounded  border-t border-l border-r border-zinc-100 bg-zinc-50 px-2 py-0.5 text-zinc-500 backdrop-blur-sm dark:border-zinc-600/70 dark:bg-zinc-800 dark:text-zinc-300/70 sm:px-2 tag-${
 						tag.name?.toLowerCase() || 'default'
 					}`}
 					style={{ fontSize: '0.8rem' }}>
@@ -136,31 +23,6 @@ function TechTags({ tags }) {
 				</span>
 			))}
 		</span>
-	);
-}
-
-function Modal({ project, handleClose }) {
-	return (
-		<aside
-			className="fixed top-0 left-0 z-50 grid h-screen w-screen overflow-y-auto overflow-x-hidden rounded bg-zinc-50/80 backdrop-blur-sm dark:bg-zinc-900/80"
-			onClick={() => handleClose()}
-			onKeyDown={() => handleClose()}
-			role={'presentation'}>
-			{project.recording && (
-				<div className="my-auto mx-auto max-w-full rounded shadow-2xl sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl">
-					<CloseIcon className="absolute m-4 h-10 w-10  fill-zinc-500 transition-all hover:cursor-pointer hover:fill-zinc-300" />
-					<video
-						autoPlay={true}
-						loop={true}
-						controls={false}
-						alt={project.name}
-						className="rounded-lg"
-						muted>
-						<source src={`${project.recording.url}`} type="video/mp4" />
-					</video>
-				</div>
-			)}
-		</aside>
 	);
 }
 
