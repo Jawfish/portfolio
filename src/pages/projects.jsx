@@ -8,6 +8,120 @@ import { BiLinkExternal as LinkIcon } from 'react-icons/bi';
 import { IoClose as CloseIcon } from 'react-icons/io5';
 import { Meta } from '@/components/Meta';
 
+function ProjectsFilterCategory({ category, value, onChange, options }) {
+	return (
+		<div className="flex flex-col gap-2">
+			<label htmlFor={category} className="text-sm font-semibold">
+				{category}
+			</label>
+			<select
+				id={category}
+				name={category}
+				className="rounded-md border border-zinc-200 dark:border-zinc-600/70 dark:bg-zinc-800 dark:text-zinc-400/70"
+				value={value}
+				onChange={onChange}>
+				{options.map(option => (
+					<option key={option} value={option}>
+						{option}
+					</option>
+				))}
+			</select>
+		</div>
+	);
+}
+
+/**
+ * Provide two drop-down filters for project.category with:
+ * - Category, from the project.category array
+ * - Technology, from the project.stack array
+ * @param {Object} props - The props object.
+ */
+function ProjectsFilter({ projects, setProjects }) {
+	/**
+	 * Convert a string to title case (e.g. "web development" -> "Web Development")
+	 * @param {string} str The term to be converted to title case.
+	 * @returns {string} The title-cased term.
+	 */
+	function titleCase(str) {
+		return str
+			.toLowerCase()
+			.split(' ')
+			.map(function (word) {
+				return word.charAt(0).toUpperCase() + word.slice(1);
+			})
+			.join(' ');
+	}
+
+	const [category, setCategory] = useState('All');
+	const [technology, setTechnology] = useState('All');
+
+	/**
+	 * Filter projects by category and/or technology.
+	 * @param {string} category The category to filter by.
+	 * @param {string} technology The technology to filter by.
+	 * @returns {Array} The filtered projects.
+	 */
+	const filterProjects = (category, technology) => {
+		if (category === 'All' && technology === 'All') return projects;
+		return projects.filter(project => {
+			if (category !== 'All' && project.category !== category.toLowerCase())
+				return false;
+			if (
+				technology !== 'All' &&
+				!project.stack.some(
+					tech => tech.name.toLowerCase() === technology.toLowerCase()
+				)
+			)
+				return false;
+			return true;
+		});
+	};
+
+	const handleCategoryChange = e => {
+		setCategory(e.target.value);
+		setProjects(filterProjects(e.target.value, technology));
+	};
+
+	const handleTechnologyChange = e => {
+		setTechnology(e.target.value);
+		setProjects(filterProjects(category, e.target.value));
+	};
+
+	return (
+		<>
+			<div className="flex gap-4">
+				<ProjectsFilterCategory
+					category="Category"
+					value={category}
+					onChange={handleCategoryChange}
+					options={[
+						'All',
+						// eslint-disable-next-line no-undef
+						...new Set(projects.map(project => titleCase(project.category)))
+					]}
+				/>
+				<ProjectsFilterCategory
+					category="Technology"
+					value={technology}
+					onChange={handleTechnologyChange}
+					options={
+						// create array of tech found in projects.stack for all projects
+						[
+							'All',
+							// eslint-disable-next-line no-undef
+							...new Set(
+								projects
+									.flatMap(project => project.stack)
+									.map(tech => titleCase(tech.name))
+							)
+						]
+					}
+				/>
+			</div>
+		</>
+	);
+}
+
 function TechTags({ tags }) {
 	return (
 		<span className="flex gap-2 pb-3 pr-2">
@@ -114,10 +228,12 @@ function Project({ project, showModal }) {
 }
 
 function ProjectsSection({ items, showModal }) {
+	const [filteredItems, setFilteredItems] = useState(items);
 	return (
 		<div>
+			<ProjectsFilter projects={items} setProjects={setFilteredItems} />
 			<ul className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-9 xl:grid-cols-3 ">
-				{items.map((project, i) => (
+				{filteredItems.map((project, i) => (
 					<Project key={i} project={project} showModal={showModal} />
 				))}
 			</ul>
