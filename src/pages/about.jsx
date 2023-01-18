@@ -49,12 +49,12 @@ export default function About({ page, profile }) {
 						<h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
 							{page.heading}
 						</h1>
-						<div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
+						<article className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
 							{serialize(page.content)}
-						</div>
+						</article>
 					</div>
 					<div className="lg:pl-20">
-						<ul role="list">
+						<ul>
 							<SocialLink
 								href={profile.github}
 								icon={GitHubIcon}

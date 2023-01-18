@@ -19,25 +19,9 @@ function Project({ project }) {
 	return (
 		<Card>
 			<Card.Eyebrow decorate>Featured Project</Card.Eyebrow>
-			<div className="flex gap-6 rounded">
-				<div className="relative col-span-3 h-[96px] min-h-[96px] w-[96px] min-w-[96px]  sm:h-[128px]  sm:min-h-[128px] sm:w-[128px]  sm:min-w-[128px]">
-					<Image
-						src={project.icon?.url || ''}
-						alt={project.icon?.alt || ''}
-						height={128}
-						width={128}
-						className="relative z-10 rounded"
-						unoptimized={true}
-					/>
-				</div>
-				<div className="">
-					<Card.Title href={`/projects#${project.name}`}>
-						{project.name}
-					</Card.Title>
-					<Card.Description>{project.blurb}</Card.Description>
-					<Card.Cta>See More</Card.Cta>
-				</div>
-			</div>
+			<Card.Title href={`/projects#${project.name}`}>{project.name}</Card.Title>
+			<Card.Description>{project.blurb}</Card.Description>
+			<Card.Cta>See More</Card.Cta>
 		</Card>
 	);
 }
@@ -125,7 +109,7 @@ function Resume({ skills, download }) {
 	const filename = download.split('/').pop();
 	skills = skills.sort((a, b) => a.priority - b.priority);
 	return (
-		<div className={border}>
+		<aside className={border}>
 			<SectionTitle icon={<ChartIcon className="h-4 w-4" />} title="Skills" />
 			<ol className="mt-4 space-y-4">
 				{skills.map(skill => (
@@ -145,7 +129,7 @@ function Resume({ skills, download }) {
 				Download CV
 				<ChevronDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
 			</Button>
-		</div>
+		</aside>
 	);
 }
 
@@ -154,7 +138,7 @@ export default function Home({ page, projects, skills, resume, profile }) {
 		<>
 			<Meta page={page} />
 			<Container className="mt-16 sm:mt-32">
-				<div className="flex w-full flex-col-reverse lg:flex-row">
+				<main className="flex w-full flex-col-reverse lg:flex-row">
 					<div>
 						<div className="max-w-2xl">
 							<h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
@@ -191,7 +175,7 @@ export default function Home({ page, projects, skills, resume, profile }) {
 							className="rounded object-cover"
 						/>
 					</div>
-				</div>
+				</main>
 			</Container>
 			<Container className="mt-6 p-6 ">
 				<div className="mx-auto grid  grid-cols-1 gap-y-20  lg:grid-cols-2">

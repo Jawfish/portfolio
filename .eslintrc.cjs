@@ -1,11 +1,12 @@
 module.exports = {
+	plugins: ['tailwindcss', 'react', 'prettier', 'jsx-a11y'],
 	extends: [
 		'eslint:recommended',
 		'plugin:react/recommended',
 		'next/core-web-vitals',
-		'prettier'
+		'prettier',
+		'plugin:jsx-a11y/recommended'
 	],
-	plugins: ['tailwindcss', 'react', 'prettier'],
 	parserOptions: {
 		ecmaFeatures: {
 			jsx: true

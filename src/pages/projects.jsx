@@ -2,11 +2,6 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import { SimpleLayout } from '@/components/SimpleLayout';
 import { endpoint, revalidationSeconds } from '@/lib/client';
-import {
-	FaGamepad as GameIcon,
-	FaWrench as UtilityIcon,
-	FaGlobe as WebsiteIcon
-} from 'react-icons/fa';
 import { Card } from '@/components/Card';
 import Link from 'next/link';
 import { BiLinkExternal as LinkIcon } from 'react-icons/bi';
@@ -32,9 +27,11 @@ function TechTags({ tags }) {
 
 function Modal({ project, handleClose }) {
 	return (
-		<div
+		<aside
 			className="fixed top-0 left-0 z-50 grid h-screen w-screen overflow-y-auto overflow-x-hidden rounded bg-zinc-50/80 backdrop-blur-sm dark:bg-zinc-900/80"
-			onClick={() => handleClose()}>
+			onClick={() => handleClose()}
+			onKeyDown={() => handleClose()}
+			role={'presentation'}>
 			{project.recording && (
 				<div className="my-auto mx-auto max-w-full rounded shadow-2xl sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl">
 					<CloseIcon className="absolute m-4 h-10 w-10  fill-zinc-500 transition-all hover:cursor-pointer hover:fill-zinc-300" />
@@ -43,18 +40,19 @@ function Modal({ project, handleClose }) {
 						loop={true}
 						controls={false}
 						alt={project.name}
-						className="rounded-lg">
+						className="rounded-lg"
+						muted>
 						<source src={`${project.recording.url}`} type="video/mp4" />
 					</video>
 				</div>
 			)}
-		</div>
+		</aside>
 	);
 }
 
 function Project({ project, showModal }) {
 	return (
-		<a
+		<div
 			id={project.name}
 			className="h-fit rounded  border border-zinc-100 dark:border-zinc-700/40  lg:max-w-md">
 			<div className="relative">
@@ -102,29 +100,23 @@ function Project({ project, showModal }) {
 					)}
 					{project.recording && (
 						<div className="flex cursor-pointer items-end">
-							<span
+							<button
 								onClick={() => showModal(project)}
 								className="inline-flex items-center gap-1 text-xs font-normal text-emerald-500 transition-all hover:text-emerald-300">
 								Watch Demo
-							</span>
+							</button>
 						</div>
 					)}
 				</div>
 			</div>
-		</a>
+		</div>
 	);
 }
 
-function ProjectsSection({ items, icon, title, showModal }) {
+function ProjectsSection({ items, showModal }) {
 	return (
 		<div>
-			<h2 className="mt-16 mb-8 flex text-2xl text-zinc-900 dark:text-zinc-100">
-				{icon}
-				<span className="ml-3">{title}</span>
-			</h2>
-			<ul
-				role="list"
-				className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-9 xl:grid-cols-3 ">
+			<ul className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-9 xl:grid-cols-3 ">
 				{items.map((project, i) => (
 					<Project key={i} project={project} showModal={showModal} />
 				))}
@@ -153,28 +145,9 @@ export default function Projects({ projects, page }) {
 			{show && <Modal project={project} handleClose={handleClose} />}
 			<SimpleLayout title={page.heading} intro={page.subheading}>
 				<ProjectsSection
-					items={projects.filter(project => project.category === 'website')}
+					// items={projects.filter(project => project.category === 'website')}
+					items={projects}
 					showModal={handleShow}
-					icon={
-						<WebsiteIcon className="inline-flex h-8 w-8 self-center text-zinc-700 dark:text-zinc-400" />
-					}
-					title="Websites"
-				/>
-				<ProjectsSection
-					items={projects.filter(project => project.category === 'game')}
-					showModal={handleShow}
-					icon={
-						<GameIcon className="inline-flex h-8 w-8 self-center text-zinc-700 dark:text-zinc-400" />
-					}
-					title="Games"
-				/>
-				<ProjectsSection
-					items={projects.filter(project => project.category === 'utility')}
-					showModal={handleShow}
-					icon={
-						<UtilityIcon className="h-8 w-8 flex-none text-zinc-700 dark:text-zinc-400" />
-					}
-					title="Utilities"
 				/>
 			</SimpleLayout>
 		</>
