@@ -13,7 +13,6 @@ import Dropdown from '@/components/Dropdown';
  */
 export default function ProjectsFilter({ projects, setProjects }) {
 	const allTechOptions = [
-		'All',
 		// eslint-disable-next-line no-undef
 		...new Set(
 			projects.flatMap(project => project.stack).map(tech => tech.name)
@@ -21,7 +20,6 @@ export default function ProjectsFilter({ projects, setProjects }) {
 	];
 
 	const allCategoryOptions = [
-		'All',
 		// eslint-disable-next-line no-undef
 		...new Set(projects.map(project => titleCase(project.category)))
 	];
@@ -85,7 +83,7 @@ export default function ProjectsFilter({ projects, setProjects }) {
 						)
 					)
 			);
-			setAvailableTechnologyOptions(['All', ...listOfOptions]);
+			setAvailableTechnologyOptions(listOfOptions);
 		} else {
 			// if category is 'All', show all technologies
 			setAvailableTechnologyOptions(allTechOptions);
@@ -107,7 +105,7 @@ export default function ProjectsFilter({ projects, setProjects }) {
 						)
 					)
 			);
-			setAvailableCategoryOptions(['All', ...listOfOptions]);
+			setAvailableCategoryOptions(listOfOptions);
 		} else {
 			// if technology is 'All', show all categories
 			setAvailableCategoryOptions(allCategoryOptions);
@@ -130,13 +128,13 @@ export default function ProjectsFilter({ projects, setProjects }) {
 						category="Category"
 						value={selectedCategory}
 						onChange={handleCategoryChange}
-						options={availableCategoryOptions.sort()}
+						options={['All', ...availableCategoryOptions.sort()]}
 					/>
 					<Dropdown
 						category="Technology"
 						value={selectedTechnology}
 						onChange={handleTechnologyChange}
-						options={availableTechnologyOptions.sort()}
+						options={['All', ...availableTechnologyOptions.sort()]}
 					/>
 				</div>
 				<button title="Reset filter" className="mt-7">
