@@ -14,7 +14,7 @@ export default function Dropdown({ category, value, onChange, options }) {
 					<Listbox.Label className="block text-sm font-medium text-zinc-700 dark:text-zinc-500">
 						{category}
 					</Listbox.Label>
-					<div className="relative mt-1 w-80 text-zinc-900 dark:text-zinc-200">
+					<div className="relative mt-1 w-80 text-zinc-900 dark:text-zinc-200 md:w-64 lg:w-80">
 						<Listbox.Button className="relative w-full cursor-default rounded-md border border-zinc-100 bg-white py-2 pl-3 pr-10 text-left focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 dark:border-zinc-700 dark:bg-zinc-800 sm:text-sm">
 							<span className="block truncate">{value}</span>
 							<span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">

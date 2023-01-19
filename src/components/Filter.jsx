@@ -122,8 +122,8 @@ export default function ProjectsFilter({ projects, setProjects }) {
 
 	return (
 		<>
-			<div className="flex gap-8 pb-12">
-				<div className="flex gap-8">
+			<div className="flex gap-8 pb-12 lg:flex-row">
+				<div className="flex flex-col gap-8 md:flex-row">
 					<Dropdown
 						category="Category"
 						value={selectedCategory}
@@ -137,9 +137,9 @@ export default function ProjectsFilter({ projects, setProjects }) {
 						options={['All', ...availableTechnologyOptions.sort()]}
 					/>
 				</div>
-				<button title="Reset filter" className="mt-7">
+				<button title="Reset filter" className="mt-7 sm:ml-0 md:ml-8 lg:ml-0">
 					<ArrowPathIcon
-						className=" h-6 w-6 text-zinc-300 dark:text-zinc-700"
+						className="h-6 w-6 text-zinc-300 dark:text-zinc-700 "
 						onClick={handleReset}
 					/>
 				</button>
