@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import { ArrowPathIcon } from '@heroicons/react/20/solid';
 
 import Dropdown from '@/components/Dropdown';
+
+// function constructOptionsList() {}
 
 /**
  * Provide two drop-down filters for project.category with:
@@ -9,8 +12,26 @@ import Dropdown from '@/components/Dropdown';
  * @param {Object} props - The props object.
  */
 export default function ProjectsFilter({ projects, setProjects }) {
-	const [category, setCategory] = useState('All');
-	const [technology, setTechnology] = useState('All');
+	const allTechOptions = [
+		'All',
+		// eslint-disable-next-line no-undef
+		...new Set(
+			projects.flatMap(project => project.stack).map(tech => tech.name)
+		)
+	];
+
+	const allCategoryOptions = [
+		'All',
+		// eslint-disable-next-line no-undef
+		...new Set(projects.map(project => titleCase(project.category)))
+	];
+
+	const [selectedCategory, setCategory] = useState('All');
+	const [selectedTechnology, setTechnology] = useState('All');
+	const [availableTechnologyOptions, setAvailableTechnologyOptions] =
+		useState(allTechOptions);
+	const [availableCategoryOptions, setAvailableCategoryOptions] =
+		useState(allCategoryOptions);
 
 	/**
 	 * Convert a string to title case (e.g. "web development" -> "Web Development")
@@ -51,44 +72,79 @@ export default function ProjectsFilter({ projects, setProjects }) {
 
 	const handleCategoryChange = e => {
 		setCategory(e);
-		setProjects(filterProjects(e, technology));
+		setProjects(filterProjects(e, selectedTechnology));
+
+		// only show technologies if their projects.category array includes category
+		if (e !== 'All') {
+			const listOfOptions = allTechOptions.filter(technology =>
+				projects
+					.filter(project => project.category === e.toLowerCase())
+					.some(project =>
+						project.stack.some(
+							tech => tech.name.toLowerCase() === technology.toLowerCase()
+						)
+					)
+			);
+			setAvailableTechnologyOptions(['All', ...listOfOptions]);
+		} else {
+			// if category is 'All', show all technologies
+			setAvailableTechnologyOptions(allTechOptions);
+		}
 	};
 
 	const handleTechnologyChange = e => {
 		setTechnology(e);
-		setProjects(filterProjects(category, e));
+		setProjects(filterProjects(selectedCategory, e));
+
+		// only show categories if their projects.stack array includes technology
+		if (e !== 'All') {
+			const listOfOptions = allCategoryOptions.filter(category =>
+				projects
+					.filter(project => project.category === category.toLowerCase())
+					.some(project =>
+						project.stack.some(
+							tech => tech.name.toLowerCase() === e.toLowerCase()
+						)
+					)
+			);
+			setAvailableCategoryOptions(['All', ...listOfOptions]);
+		} else {
+			// if technology is 'All', show all categories
+			setAvailableCategoryOptions(allCategoryOptions);
+		}
+	};
+
+	const handleReset = () => {
+		setCategory('All');
+		setTechnology('All');
+		setProjects(projects);
+		setAvailableTechnologyOptions(allTechOptions);
+		setAvailableCategoryOptions(allCategoryOptions);
 	};
 
 	return (
 		<>
 			<div className="flex gap-8 pb-12">
-				<Dropdown
-					category="Category"
-					value={category}
-					onChange={handleCategoryChange}
-					options={[
-						'All',
-						// eslint-disable-next-line no-undef
-						...new Set(projects.map(project => titleCase(project.category)))
-					]}
-				/>
-				<Dropdown
-					category="Technology"
-					value={technology}
-					onChange={handleTechnologyChange}
-					options={
-						// create array of tech found in projects.stack for all projects
-						[
-							'All',
-							// eslint-disable-next-line no-undef
-							...new Set(
-								projects
-									.flatMap(project => project.stack)
-									.map(tech => tech.name)
-							)
-						]
-					}
-				/>
+				<div className="flex gap-8">
+					<Dropdown
+						category="Category"
+						value={selectedCategory}
+						onChange={handleCategoryChange}
+						options={availableCategoryOptions}
+					/>
+					<Dropdown
+						category="Technology"
+						value={selectedTechnology}
+						onChange={handleTechnologyChange}
+						options={availableTechnologyOptions}
+					/>
+				</div>
+				<button title="Reset filter" className="mt-7">
+					<ArrowPathIcon
+						className=" h-6 w-6 text-zinc-300 dark:text-zinc-700"
+						onClick={handleReset}
+					/>
+				</button>
 			</div>
 		</>
 	);

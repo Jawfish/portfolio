@@ -14,12 +14,12 @@ export default function Dropdown({ category, value, onChange, options }) {
 					<Listbox.Label className="block text-sm font-medium text-zinc-700 dark:text-zinc-500">
 						{category}
 					</Listbox.Label>
-					<div className="relative mt-1 w-32">
-						<Listbox.Button className="relative w-full cursor-default rounded-md border border-zinc-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 sm:text-sm">
+					<div className="relative mt-1 w-80 text-zinc-900 dark:text-zinc-200">
+						<Listbox.Button className="relative w-full cursor-default rounded-md border border-zinc-100 bg-white py-2 pl-3 pr-10 text-left focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 dark:border-zinc-700 dark:bg-zinc-800 sm:text-sm">
 							<span className="block truncate">{value}</span>
 							<span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
 								<ChevronUpDownIcon
-									className="h-5 w-5 text-zinc-400"
+									className="h-5 w-5 text-zinc-300 dark:text-zinc-500"
 									aria-hidden="true"
 								/>
 							</span>
@@ -31,13 +31,15 @@ export default function Dropdown({ category, value, onChange, options }) {
 							leave="transition ease-in duration-100"
 							leaveFrom="opacity-100"
 							leaveTo="opacity-0">
-							<Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+							<Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-zinc-900  ring-opacity-5 focus:outline-none dark:bg-zinc-800  sm:text-sm">
 								{options.map(option => (
 									<Listbox.Option
 										key={option}
 										className={({ active }) =>
 											classNames(
-												active ? 'bg-emerald-500 text-white' : 'text-zinc-900',
+												active
+													? 'bg-emerald-500 text-white'
+													: 'text-zinc-900 dark:text-zinc-200',
 												'relative cursor-default select-none py-2 pl-3 pr-9'
 											)
 										}
