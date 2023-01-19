@@ -130,13 +130,13 @@ export default function ProjectsFilter({ projects, setProjects }) {
 						category="Category"
 						value={selectedCategory}
 						onChange={handleCategoryChange}
-						options={availableCategoryOptions}
+						options={availableCategoryOptions.sort()}
 					/>
 					<Dropdown
 						category="Technology"
 						value={selectedTechnology}
 						onChange={handleTechnologyChange}
-						options={availableTechnologyOptions}
+						options={availableTechnologyOptions.sort()}
 					/>
 				</div>
 				<button title="Reset filter" className="mt-7">
