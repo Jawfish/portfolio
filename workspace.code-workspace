@@ -6,7 +6,10 @@
 	],
 	"settings": {
 		"eslint.format.enable": true,
-		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint",
+		"[markdown]": {
+			"editor.defaultFormatter": "yzhang.markdown-all-in-one"
+		}
 	},
 	"extensions": {
 		"recommendations": [
