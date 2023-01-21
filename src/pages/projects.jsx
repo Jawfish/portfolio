@@ -6,31 +6,15 @@ import { Card } from '@/components/Card';
 import Link from 'next/link';
 import { BiLinkExternal as LinkIcon } from 'react-icons/bi';
 import { Meta } from '@/components/Meta';
-import ProjectsFilter from '@/components/Filter';
+import Filter from '@/components/Filter';
 import Modal from '@/components/Modal';
-
-function TechTags({ tags }) {
-	return (
-		<span className="flex gap-2 pb-3 pr-2">
-			{tags.map(tag => (
-				<span
-					key={tag.id}
-					className={`rounded  border-t border-l border-r border-zinc-100 bg-zinc-50 px-2 py-0.5 text-zinc-500 backdrop-blur-sm dark:border-zinc-600/70 dark:bg-zinc-800 dark:text-zinc-300/70 sm:px-2 tag-${
-						tag.name?.toLowerCase() || 'default'
-					}`}
-					style={{ fontSize: '0.8rem' }}>
-					{tag.name}
-				</span>
-			))}
-		</span>
-	);
-}
+import { AnimatePresence, motion } from 'framer-motion';
 
 function Project({ project, showModal }) {
 	return (
 		<div
 			id={project.name}
-			className="h-fit rounded  border border-zinc-100 dark:border-zinc-700/40  lg:max-w-md">
+			className="-z-10 h-fit rounded  border border-zinc-100 dark:border-zinc-700/40  lg:max-w-md">
 			<div className="relative">
 				<Image
 					className="rounded-t-md border-b border-zinc-100 dark:border-zinc-700/40"
@@ -47,7 +31,7 @@ function Project({ project, showModal }) {
 				/>
 			</div>
 			<div className="p-5">
-				<TechTags tags={project.stack} />
+				{/* <TechTags tags={project.stack} /> */}
 				<Card.Title>{project.name}</Card.Title>
 				<Card.Description>{project.description}</Card.Description>
 				<div className="group-hover:text-teal-1000 relative z-10 mt-auto flex w-full gap-4  pt-3 text-sm font-medium text-zinc-400 transition-all dark:text-zinc-200">
@@ -92,13 +76,23 @@ function Project({ project, showModal }) {
 function ProjectsSection({ items, showModal }) {
 	const [filteredItems, setFilteredItems] = useState(items);
 	return (
-		<div>
-			<ProjectsFilter projects={items} setProjects={setFilteredItems} />
-			<ul className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-9 xl:grid-cols-3 ">
+		<div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-9 xl:grid-cols-3 ">
+			<div className="xl:col-span-2"></div>
+			<div className="col-span-1">
+				<Filter projects={items} setProjects={setFilteredItems} />
+			</div>
+			<AnimatePresence>
 				{filteredItems.map((project, i) => (
-					<Project key={i} project={project} showModal={showModal} />
+					<motion.div
+						key={i}
+						initial={{ opacity: 0, scale: 0.5, zIndex: 0 }}
+						animate={{ opacity: 1, scale: 1 }}
+						exit={{ opacity: 0, scale: 0.5 }}
+						transition={{ duration: 0.25 }}>
+						<Project project={project} showModal={showModal} />
+					</motion.div>
 				))}
-			</ul>
+			</AnimatePresence>
 		</div>
 	);
 }
@@ -122,11 +116,7 @@ export default function Projects({ projects, page }) {
 			<Meta page={page} />
 			{show && <Modal project={project} handleClose={handleClose} />}
 			<SimpleLayout title={page.heading} intro={page.subheading}>
-				<ProjectsSection
-					// items={projects.filter(project => project.category === 'website')}
-					items={projects}
-					showModal={handleShow}
-				/>
+				<ProjectsSection items={projects} showModal={handleShow} />
 			</SimpleLayout>
 		</>
 	);
