@@ -191,66 +191,65 @@ export default function Home({ page, projects, skills, resume, profile }) {
 }
 
 export async function getStaticProps() {
-	const query = `query {
-		Page(id: "63b4723fee0e2fcf686355ca") {
-		  heading
-		  subheading
-		  content
-		  head {
+	const query = `# Write your query or mutation here
+	query {
+	  Page(id: "63b4723fee0e2fcf686355ca") {
+		heading
+		subheading
+		content
+		head {
+		  title
+		  meta {
+			description
+			keywords
+			author
+		  }
+		  og {
 			title
-			meta {
-			  description
-			  keywords
-			  author
-			}
-			og {
-			  title
-			  description
-			  image {
-				url
-			  }
+			description
+			image {
+			  url
 			}
 		  }
-		  splash {
+		}
+		splash {
+		  url
+		  alt
+		}
+	  }
+	  Projects {
+		docs {
+		  id
+		  name
+		  link
+		  featured
+		  description
+		  cta
+		  blurb
+		  priority
+		  icon {
 			url
 			alt
 		  }
 		}
-		Projects {
-		  docs {
-			id
-			name
-			link
-			featured
-			description
-			cta
-			blurb
-			priority
-			icon {
-				url
-				alt
-			}
-		  }
-		}
-		Skills {
-		  docs {
-			id
-			name
-			technologies
-			priority
-		  }
-		}
-		Resume(id: "63b9d599638ee8bc9aebb6ee") {
-		  file {
-			url
-		  }
-		}
-		Profile(id: "63b9d30f14a9f9fb9928ce9d") {
-		  github
-		  linkedin
-		  itch
+	  }
+	  Skills {
+		docs {
+		  id
+		  name
+		  technologies
+		  priority
 		}
 	  }
+	  File(id:"63cbd853fd69e5f69f8a5d64"){
+		url
+	  }
+	  Profile(id: "63b9d30f14a9f9fb9928ce9d") {
+		github
+		linkedin
+		itch
+	  }
+	}	
   `;
 	const content = await fetch(endpoint, {
 		method: 'POST',
@@ -268,7 +267,7 @@ export async function getStaticProps() {
 			page: content.Page,
 			projects: content.Projects.docs,
 			skills: content.Skills.docs,
-			resume: content.Resume.file.url,
+			resume: content.File.url,
 			profile: content.Profile
 		},
 		revalidate: revalidationSeconds
