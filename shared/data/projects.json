@@ -1,0 +1,186 @@
+[
+	{
+		"name": "Rebook",
+		"description": "React eBook reader with bookmarks, highlights, and annotations, which can all be exported to markdown.",
+		"link": "https://rebook.jawfish.dev",
+		"github": "https://github.com/Jawfish/rebook",
+		"stack": [
+			{
+				"name": "React"
+			},
+			{
+				"name": "FastAPI"
+			},
+			{
+				"name": "PostgreSQL"
+			}
+		],
+		"image": "/images/rebook.png",
+		"category": "website",
+		"featured": true,
+		"cta": "Visit Site",
+		"blurb": "A user-friendly e-book reader app built with React",
+		"recording": "/videos/rebook.mp4",
+		"screenshots": [
+			{
+				"image": "https://via.placeholder.com/512x512.png"
+			},
+			{
+				"image": "https://via.placeholder.com/512x512.png"
+			},
+			{
+				"image": "https://via.placeholder.com/512x512.png"
+			},
+			{
+				"image": "https://via.placeholder.com/512x512.png"
+			}
+		],
+		"priority": 1
+	},
+	{
+		"name": "Solidarity",
+		"description": "Solidarity is an e-commerce platform demo with user accounts, an ordering system, and a CMS for managing products.",
+		"link": "https://shop.jawfish.dev",
+		"stack": [
+			{
+				"name": "React"
+			},
+			{
+				"name": "Node"
+			},
+			{
+				"name": "MongoDB"
+			},
+			{
+				"name": "GraphQL"
+			}
+		],
+		"image": "/images/1000x500.png",
+		"category": "website",
+		"cta": "Visit Site",
+		"featured": true,
+		"blurb": "An e-commerce platform built with SolidJS, Express, and PostgreSQL",
+		"priority": 3
+	},
+	{
+		"name": "Portfolio",
+		"category": "website",
+		"description": "This site! Responsive with accessibility features like dark mode, semantic HTML, and proper aria attributes. Built with Next.js.",
+		"link": "https://jawfish.dev",
+		"stack": [
+			{
+				"name": "React"
+			},
+			{
+				"name": "Next"
+			},
+			{
+				"name": "MongoDB"
+			},
+			{
+				"name": "GraphQL"
+			}
+		],
+		"image": "/images/portfolio.png",
+		"cta": "Visit Site",
+		"blurb": "This site.",
+		"priority": 2
+	},
+	{
+		"name": "Connexit",
+		"category": "game",
+		"description": "Puzzle game where shapes with various behaviors must be navigated to their respective goals for the player to progress.",
+		"link": "https://jawfish.itch.io/connexit",
+		"github": "https://github.com/Jawfish/connexit",
+		"stack": [
+			{
+				"name": "Godot"
+			}
+		],
+		"image": "/images/connexit.png",
+		"cta": "Play Game",
+		"featured": true,
+		"blurb": "A puzzle game built in Godot as a submission for a game jam competition",
+		"recording": "/videos/connexit.mp4",
+		"priority": 4
+	},
+	{
+		"name": "Overbooked",
+		"category": "game",
+		"description": "Arcade game where the player needs to sort as many library books into shelves as they can before time runs out.",
+		"stack": [
+			{
+				"name": "Godot"
+			}
+		],
+		"image": "/images/overbooked.png",
+		"github": "https://github.com/Jawfish/Overbooked",
+		"link": "https://jawfish.itch.io/overbooked",
+		"cta": "Play Game",
+		"blurb": "Arcade game entry for a game jam competition.",
+		"priority": 5
+	},
+	{
+		"name": "Archaeo",
+		"category": "game",
+		"description": "Score-attack game where workers to dig to find diamonds, with more diggers needed as the terrain becomes tougher.",
+		"link": "https://jawfish.itch.io/archaeo",
+		"github": "https://github.com/Jawfish/Archaeo",
+		"stack": [
+			{
+				"name": "Godot"
+			}
+		],
+		"image": "/images/archaeo.png",
+		"cta": "Play Game",
+		"blurb": "Arcade game entry for a game jam competition.",
+		"priority": 6
+	},
+	{
+		"name": "Healsim",
+		"category": "game",
+		"description": "Inspired by the healing mechanics in popular MMOs, players must use their spells to keep their party alive and defeat the boss.",
+		"link": "https://jawfish.itch.io/healsim",
+		"github": "",
+		"stack": [
+			{
+				"name": "Godot"
+			}
+		],
+		"image": "/images/healsim.png",
+		"cta": "Play Game",
+		"blurb": "Simulation game entry for a game jam competition.",
+		"priority": 7
+	},
+	{
+		"name": "PyWinModal",
+		"category": "utility",
+		"description": "Productivity tool with a simple API to execute user-defined commands through a customizable modal popup.",
+		"github": "https://github.com/Jawfish/PyWinModal",
+		"stack": [
+			{
+				"name": "Python"
+			}
+		],
+		"image": "/images/pywinmodal.png",
+		"cta": "View Project",
+		"blurb": "Customizable Windows productivity tool.",
+		"priority": 8
+	},
+	{
+		"name": "wordlist-generator",
+		"category": "utility",
+		"description": "A small CLI that provides a list of words which contain some combination of a given set of characters. ",
+		"link": "",
+		"stack": [
+			{
+				"name": "Rust"
+			}
+		],
+		"image": "/images/wordlist-generator.png",
+		"github": "https://github.com/Jawfish/wordlist-generator",
+		"cta": "View Project",
+		"blurb": "A word generation tool for practicing typing.",
+		"priority": 9
+	}
+]
