@@ -1,6 +1,8 @@
+import Balancer from 'react-wrap-balancer';
+
 export default function Excerpt() {
 	return (
-		<div>
+		<Balancer>
 			<p className="pb-8">
 				My passion for software development began by creating games in C# with{' '}
 				<a
@@ -80,6 +82,6 @@ export default function Excerpt() {
 				. This has taught me a lot about Linux, networking technologies, and
 				other useful industry skills.
 			</p>
-		</div>
+		</Balancer>
 	);
 }

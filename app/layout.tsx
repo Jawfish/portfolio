@@ -1,5 +1,6 @@
 import './globals.css';
 
+import { Lato } from '@next/font/google';
 import Link from 'next/link';
 
 import {
@@ -12,15 +13,21 @@ import ThemeToggle from '@/shared/components/theme-toggle';
 import NavItem from './home/component.nav-item';
 import Provider from './theme-provider';
 
+const font = Lato({
+	variable: '--font-next',
+	weight: '400',
+	subsets: ['latin']
+});
+
 export default function RootLayout({
 	children
 }: {
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en" suppressHydrationWarning>
+		<html lang="en" suppressHydrationWarning className={`${font.variable}`}>
 			<head />
-			<body className="bg-zinc-50 font-lato dark:bg-black">
+			<body className="bg-zinc-50 font-next dark:bg-black">
 				<Provider>
 					<div className="fixed inset-0 flex justify-center sm:px-8">
 						<div className="flex w-full max-w-7xl lg:px-8">

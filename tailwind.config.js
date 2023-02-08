@@ -11,7 +11,8 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				lato: ['lato', 'sans-serif']
+				next: ['var(--font-next)', 'sans-serif'],
+				heading: ['var(--font-lato-black)', 'sans-serif']
 			}
 		}
 	},

@@ -4,6 +4,7 @@ import {
 	FaItchIo as ItchIcon,
 	FaLinkedinIn as LinkedInIcon
 } from 'react-icons/fa';
+import Balancer from 'react-wrap-balancer';
 
 import { Container } from '@/shared/components/container';
 import Heading from '@/shared/components/heading';
@@ -27,7 +28,7 @@ export default function Home() {
 						<section className="max-w-2xl">
 							<Heading>{content.heading}</Heading>
 							<p className="mt-6 max-w-xl text-base text-zinc-600 dark:text-zinc-300">
-								{content.subheading}
+								<Balancer>{content.subheading}</Balancer>
 							</p>
 						</section>
 						<div className="mt-6 flex gap-6">
