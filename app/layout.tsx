@@ -84,7 +84,7 @@ export default function RootLayout({
 											Projects
 										</Link>
 									</div>
-									<p className="text-sm text-zinc-400 dark:text-zinc-400">
+									<p className="text-sm text-zinc-500">
 										&copy; {new Date().getFullYear()} James Fitzgerald. All
 										rights reserved.
 									</p>

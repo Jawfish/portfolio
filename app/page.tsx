@@ -4,16 +4,22 @@ import {
 	FaItchIo as ItchIcon,
 	FaLinkedinIn as LinkedInIcon
 } from 'react-icons/fa';
+import { FiBarChart as ChartIcon } from 'react-icons/fi';
+import { HiChevronDown as ChevronDownIcon } from 'react-icons/hi';
 import Balancer from 'react-wrap-balancer';
 
+import Button from '@/shared/components/button';
+import { Card } from '@/shared/components/card';
 import { Container } from '@/shared/components/container';
 import Heading from '@/shared/components/heading';
 import SocialLink from '@/shared/components/social-link';
 import profiles from '@/shared/data/profiles.json';
+import projects from '@/shared/data/projects.json';
+import { border } from '@/shared/lib/styles';
+import { titleCase } from '@/shared/lib/utils';
 
 import Contact from './home/component.contact';
-import ProjectsSection from './home/component.projects-section';
-import Resume from './home/component.resume';
+import SectionTitle from './home/component.section-title';
 import content from './home/content.json';
 
 export default function Home() {
@@ -68,6 +74,60 @@ export default function Home() {
 					</aside>
 				</div>
 			</Container>
+		</div>
+	);
+}
+
+/**
+ * Section that displays featured projects on the home page.
+ */
+function ProjectsSection() {
+	const sortedProjects = projects
+		.filter(project => project.featured)
+		.sort((a, b) => a.priority - b.priority);
+
+	return (
+		<section className="pt-6">
+			<div className="flex flex-col gap-12">
+				{sortedProjects.map(project => (
+					<Card key={project.name}>
+						<Card.Title href={`/projects#${project.name}`}>
+							{project.name}
+						</Card.Title>
+						<Card.Description>{project.blurb}</Card.Description>
+						<Card.Cta>See More</Card.Cta>
+					</Card>
+				))}
+			</div>
+		</section>
+	);
+}
+
+/**
+ * Section that displays the skills and a download link for the resume.
+ */
+function Resume() {
+	return (
+		<div className={border}>
+			<SectionTitle icon={<ChartIcon className="h-4 w-4" />} title="Skills" />
+			<ol className="mt-4 space-y-4">
+				{content.skills.map(skill => (
+					<li key={skill.name}>
+						<div className="-mb-1 text-xs text-zinc-500">
+							{titleCase(skill.name)}
+						</div>
+						<Card.Description>{skill.items.join(', ')}</Card.Description>
+					</li>
+				))}
+			</ol>
+			<Button
+				href="/"
+				// download={filename}
+				type="button"
+				className="group mt-6 w-full">
+				Download CV
+				<ChevronDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
+			</Button>
 		</div>
 	);
 }
