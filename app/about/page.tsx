@@ -2,13 +2,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {
 	FaEnvelope as MailIcon,
-	FaItchIo as ItchIcon,
 	FaGithub as GitHubIcon,
+	FaItchIo as ItchIcon,
 	FaLinkedinIn as LinkedInIcon
 } from 'react-icons/fa';
 
-import Heading from '@/shared/components/heading';
 import { Container } from '@/shared/components/container';
+import Heading from '@/shared/components/heading';
 import profiles from '@/shared/data/profiles.json';
 
 import content from './content.json';

@@ -1,15 +1,16 @@
+import './globals.css';
+
 import Link from 'next/link';
 
 import {
+	Container,
 	InnerContainer,
-	OuterContainer,
-	Container
+	OuterContainer
 } from '@/shared/components/container';
-import './globals.css';
 import ThemeToggle from '@/shared/components/theme-toggle';
 
-import Provider from './theme-provider';
 import NavItem from './home/component.nav-item';
+import Provider from './theme-provider';
 
 export default function RootLayout({
 	children
@@ -20,12 +21,12 @@ export default function RootLayout({
 		<html lang="en" suppressHydrationWarning>
 			<head />
 			<body className="bg-zinc-50 font-lato dark:bg-black">
-				<div className="fixed inset-0 flex justify-center sm:px-8">
-					<div className="flex w-full max-w-7xl lg:px-8">
-						<div className="w-full bg-white ring-1 ring-zinc-100 dark:bg-zinc-900 dark:ring-zinc-300/20" />
-					</div>
-				</div>
 				<Provider>
+					<div className="fixed inset-0 flex justify-center sm:px-8">
+						<div className="flex w-full max-w-7xl lg:px-8">
+							<div className="w-full bg-white ring-1 ring-zinc-100 dark:bg-zinc-900 dark:ring-zinc-300/20" />
+						</div>
+					</div>
 					<header
 						className="pointer-events-none relative z-40 flex flex-col"
 						style={{

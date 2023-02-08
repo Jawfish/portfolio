@@ -1,13 +1,13 @@
-import { HiChevronDown as ChevronDownIcon } from 'react-icons/hi';
 import { FiBarChart as ChartIcon } from 'react-icons/fi';
+import { HiChevronDown as ChevronDownIcon } from 'react-icons/hi';
 
 import Button from '@/shared/components/button';
 import { Card } from '@/shared/components/card';
 import { border } from '@/shared/lib/styles';
 import { titleCase } from '@/shared/lib/utils';
 
-import content from './content.json';
 import SectionTitle from './component.section-title';
+import content from './content.json';
 
 export default function Resume() {
 	return (

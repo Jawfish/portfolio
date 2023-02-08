@@ -5,8 +5,8 @@ import { useState } from 'react';
 import { Project } from '@/globals';
 
 import Filter from './component.filter';
-import ProjectCard from './component.project-card';
 import Modal from './component.modal';
+import ProjectCard from './component.project-card';
 
 export default function ProjectsSection({
 	projects
@@ -25,6 +25,7 @@ export default function ProjectsSection({
 		setProject(project);
 		setShow(true);
 	};
+
 	return (
 		// <section> is not needed because the parent component already has it
 		<div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-9 xl:grid-cols-3 ">

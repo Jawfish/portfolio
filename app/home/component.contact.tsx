@@ -1,7 +1,7 @@
 import { FiMail as MailIcon } from 'react-icons/fi';
 
-import { border } from '@/shared/lib/styles';
 import Button from '@/shared/components/button';
+import { border } from '@/shared/lib/styles';
 
 import SectionTitle from './component.section-title';
 

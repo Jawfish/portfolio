@@ -1,5 +1,5 @@
-import Heading from '@/shared/components/heading';
 import { Container } from '@/shared/components/container';
+import Heading from '@/shared/components/heading';
 
 export default function Layout({
 	title,

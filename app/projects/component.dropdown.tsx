@@ -42,7 +42,7 @@ export default function Dropdown({
 }) {
 	return (
 		<Listbox value={value} onChange={onChange}>
-			{({ open }) => (
+			{({ open }: { open: boolean }) => (
 				<div className="z-10 w-full lg:max-w-md xl:w-80">
 					<div className="relative mt-1  text-zinc-900 dark:text-zinc-200">
 						<Listbox.Button
@@ -59,7 +59,7 @@ export default function Dropdown({
 						</Listbox.Button>
 						<motion.nav animate={open ? 'open' : 'closed'} variants={variants}>
 							<Listbox.Options
-								className="z-100 absolute z-10 mt-1 max-h-60 w-full 
+								className="absolute z-10 mt-1 max-h-60 w-full 
 							overflow-auto rounded-md bg-white py-1 text-base shadow-lg  ring-1 ring-zinc-900/5  focus:outline-none dark:bg-zinc-800 sm:text-sm">
 								{options.map(option => (
 									<motion.div
@@ -67,7 +67,7 @@ export default function Dropdown({
 										animate={open ? 'open' : 'closed'}
 										{...itemProps}>
 										<Listbox.Option
-											className={({ active }) =>
+											className={({ active }: { active: boolean }) =>
 												classNames(
 													active
 														? 'bg-emerald-500 text-white'
@@ -76,7 +76,13 @@ export default function Dropdown({
 												)
 											}
 											value={option}>
-											{({ selected, active }) => (
+											{({
+												selected,
+												active
+											}: {
+												selected: boolean;
+												active: boolean;
+											}) => (
 												<div>
 													<span
 														className={classNames(

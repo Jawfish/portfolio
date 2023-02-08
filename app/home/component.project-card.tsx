@@ -1,5 +1,5 @@
-import { Card } from '@/shared/components/card';
 import { Project } from '@/globals';
+import { Card } from '@/shared/components/card';
 
 export default function ProjectCard({ project }: { project: Project }) {
 	return (

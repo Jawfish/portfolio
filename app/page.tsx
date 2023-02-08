@@ -1,23 +1,24 @@
+import Image from 'next/image';
 import {
-	FaItchIo as ItchIcon,
 	FaGithub as GitHubIcon,
+	FaItchIo as ItchIcon,
 	FaLinkedinIn as LinkedInIcon
 } from 'react-icons/fa';
-import Image from 'next/image';
 
-import SocialLink from '@/shared/components/social-link';
-import profiles from '@/shared/data/profiles.json';
 import { Container } from '@/shared/components/container';
 import Heading from '@/shared/components/heading';
+import SocialLink from '@/shared/components/social-link';
+import profiles from '@/shared/data/profiles.json';
 
-import content from './home/content.json';
+import Contact from './home/component.contact';
 import ProjectsSection from './home/component.projects-section';
 import Resume from './home/component.resume';
-import Contact from './home/component.contact';
+import content from './home/content.json';
 
 export default function Home() {
 	const iconClasses =
 		'h-6 w-6 fill-zinc-500 transition group-hover:fill-emerald-500 dark:fill-zinc-400';
+
 	return (
 		<div>
 			<Container className="mt-16 sm:mt-32">

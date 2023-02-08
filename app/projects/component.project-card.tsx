@@ -2,8 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { BiLinkExternal } from 'react-icons/bi';
 
-import { Card } from '@/shared/components/card';
 import { Project } from '@/globals';
+import { Card } from '@/shared/components/card';
 
 import WatchDemo from './component.watch-demo';
 
@@ -20,7 +20,7 @@ export default function ProjectCard({
 			className="-z-10 h-fit rounded  border border-zinc-100 dark:border-zinc-700/40  lg:max-w-md">
 			<div className="relative">
 				<Image
-					className="rounded-t-md border-b border-zinc-100 dark:border-zinc-700/40"
+					className="rounded-t border-b border-zinc-100 dark:border-zinc-700/40"
 					src={project.image || ''}
 					alt={project.name}
 					width={256}
@@ -37,7 +37,7 @@ export default function ProjectCard({
 				{/* <TechTags tags={project.stack} /> */}
 				<Card.Title>{project.name}</Card.Title>
 				<Card.Description>{project.description}</Card.Description>
-				<div className="group-hover:text-emerald-1000 relative z-10 mt-auto flex w-full gap-4  pt-3 text-sm font-medium text-zinc-400 transition-all dark:text-zinc-200">
+				<div className="relative z-10 mt-auto flex w-full gap-4 pt-3  text-sm font-medium text-zinc-400 transition-all group-hover:text-emerald-100 dark:text-zinc-200">
 					{project.link && (
 						<Link
 							href={project.link}

@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 
-import { titleCase } from '@/shared/lib/utils';
 import { Project } from '@/globals';
+import { titleCase } from '@/shared/lib/utils';
 
 import Dropdown from './component.dropdown';
 

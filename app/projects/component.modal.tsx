@@ -1,7 +1,7 @@
 'use client';
-import { AnimatePresence, motion } from 'framer-motion';
-import { IoClose as CloseIcon } from 'react-icons/io5';
+import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { IoClose as CloseIcon } from 'react-icons/io5';
 
 import { Project } from '@/globals';
 
