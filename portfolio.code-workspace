@@ -12,6 +12,7 @@
 		"recommendations": [
 			"ms-vscode.vscode-typescript-next",
 			"rvest.vs-code-prettier-eslint",
+			"dbaeumer.vscode-eslint"
 		],
 		"unwantedRecommendations": [
 			"tylerleonhardt.vscode-inline-values-powershell"

@@ -16,5 +16,5 @@
 // }
 
 export default function Meta() {
-	return <div>hi</div>;
+  return <div>hi</div>;
 }
