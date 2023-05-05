@@ -5,19 +5,41 @@
 	"skills": [
 		{
 			"name": "languages",
-			"items": ["JavaScript", "TypeScript", "Python", "C#", "SQL", "GraphQL"]
+			"items": [
+				"JavaScript",
+				"TypeScript",
+				"Python",
+				"C#",
+				"GraphQL"
+			]
 		},
 		{
 			"name": "frontend",
-			"items": ["React", "Next.js", "Svelte", "Tailwind", "Astro"]
+			"items": [
+				"React",
+				"Next.js",
+				"Svelte",
+				"Tailwind"
+			]
 		},
 		{
 			"name": "backend",
-			"items": ["Node", "Express", "FastAPI", "Prisma", "PostgreSQL", "MongoDB"]
+			"items": [
+				"Node",
+				"FastAPI",
+				"Prisma",
+				"PostgreSQL",
+				"MongoDB"
+			]
 		},
 		{
 			"name": "other",
-			"items": ["Docker", "Git", "Linux", "NGINX"]
+			"items": [
+				"Docker",
+				"Git",
+				"Linux",
+				"NGINX"
+			]
 		}
 	]
 }
