@@ -1,4 +1,4 @@
-import { Lato } from '@next/font/google';
+import { Lato } from 'next/font/google';
 
 const font = Lato({
   variable: '--font-lato-black',
@@ -9,7 +9,7 @@ const font = Lato({
 export default function Heading({ children }: { children: React.ReactNode }) {
   return (
     <h1
-      className={`font-heading text-5xl tracking-tight text-zinc-800 dark:text-zinc-50 ${font.variable}`}>
+      className={`font-heading text-5xl font-black tracking-tight text-zinc-800 dark:text-zinc-50 ${font.variable}`}>
       {children}
     </h1>
   );

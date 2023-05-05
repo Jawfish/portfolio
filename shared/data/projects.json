@@ -137,22 +137,6 @@
 		"priority": 6
 	},
 	{
-		"name": "Healsim",
-		"category": "game",
-		"description": "Inspired by the healing mechanics in popular MMOs, players must use their spells to keep their party alive and defeat the boss.",
-		"link": "https://jawfish.itch.io/healsim",
-		"github": "",
-		"stack": [
-			{
-				"name": "Godot"
-			}
-		],
-		"image": "/images/healsim.png",
-		"cta": "Play Game",
-		"blurb": "Simulation game entry for a game jam competition.",
-		"priority": 7
-	},
-	{
 		"name": "PyWinModal",
 		"category": "utility",
 		"description": "Productivity tool with a simple API to execute user-defined commands through a customizable modal popup.",

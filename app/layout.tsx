@@ -1,6 +1,6 @@
 import './globals.css';
 
-import { Lato } from '@next/font/google';
+import { Lato } from 'next/font/google';
 import Link from 'next/link';
 
 import {
@@ -8,9 +8,9 @@ import {
   InnerContainer,
   OuterContainer
 } from '@/shared/components/container';
+import NavItem from '@/shared/components/nav-item';
 import ThemeToggle from '@/shared/components/theme-toggle';
 
-import NavItem from './home/component.nav-item';
 import Provider from './theme-provider';
 
 const font = Lato({
@@ -66,7 +66,7 @@ export default function RootLayout({
           <footer className="mt-32">
             <OuterContainer>
               <InnerContainer>
-                <div className="flex flex-col items-center justify-between gap-6 border-t border-zinc-100 pt-10 pb-16 dark:border-zinc-700/40 sm:flex-row">
+                <div className="flex flex-col items-center justify-between gap-6 border-t border-zinc-100 pb-16 pt-10 dark:border-zinc-700/40 sm:flex-row">
                   <div className="flex gap-6 text-sm font-medium text-zinc-800 dark:text-zinc-200">
                     <Link
                       href="/"
