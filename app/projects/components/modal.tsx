@@ -23,7 +23,7 @@ export default function Modal({
 
   return (
     <aside
-      className="fixed top-0 left-0 z-50 grid h-screen w-screen overflow-y-auto overflow-x-hidden rounded bg-zinc-50/80 backdrop-blur-sm dark:bg-zinc-900/80"
+      className="fixed left-0 top-0 z-50 grid h-screen w-screen overflow-y-auto overflow-x-hidden rounded bg-zinc-50/80 backdrop-blur-sm dark:bg-zinc-900/80"
       onClick={() => handleClose()}
       onKeyDown={() => handleClose()}
       role={'presentation'}>

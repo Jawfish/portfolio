@@ -1,7 +1,7 @@
 import Layout from '@/shared/components/layout';
 import p from '@/shared/data/projects.json';
 
-import ProjectsSection from './component.projects-section';
+import ProjectsSection from './components/project-section';
 
 /**
  * This is the page where projects are listed.

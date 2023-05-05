@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Project } from '@/globals';
 import { titleCase } from '@/shared/lib/utils';
 
-import Dropdown from './component.dropdown';
+import Dropdown from './dropdown';
 
 /**
  * Provide a drop-down filter for project.category for the project.category array

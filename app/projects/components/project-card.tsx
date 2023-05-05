@@ -5,7 +5,7 @@ import { BiLinkExternal } from 'react-icons/bi';
 import { Project } from '@/globals';
 import { Card } from '@/shared/components/card';
 
-import WatchDemo from './component.watch-demo';
+import WatchDemo from './watch-demo';
 
 export default function ProjectCard({
   project,
@@ -17,7 +17,7 @@ export default function ProjectCard({
   return (
     <div
       id={project.name}
-      className="-z-10 h-fit rounded  border border-zinc-100 dark:border-zinc-700/40  lg:max-w-md">
+      className="h-fit rounded border border-zinc-100 dark:border-zinc-700/40 lg:max-w-md">
       <div className="relative">
         <Image
           className="rounded-t border-b border-zinc-100 dark:border-zinc-700/40"
