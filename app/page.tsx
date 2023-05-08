@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 import Image from 'next/image';
 import {
   FaGithub as GitHubIcon,
@@ -14,14 +16,21 @@ import { Container } from '@/shared/components/container';
 import Heading from '@/shared/components/heading';
 import SectionTitle from '@/shared/components/section-title';
 import SocialLink from '@/shared/components/social-link';
-import profiles from '@/shared/data/profiles.json';
-import projects from '@/shared/data/projects.json';
 import { border } from '@/shared/lib/styles';
 import { titleCase } from '@/shared/lib/utils';
+import { Project } from '@/globals';
 
-import content from './content.json';
+type Profiles = {
+  github: { link: string; username: string };
+  linkedin: { link: string; username: string };
+  itch: { link: string; username: string };
+};
 
-export default function Home() {
+export default async function Home() {
+  const content = await JSON.parse(fs.readFileSync('app/content.json', 'utf8'));
+  const profiles: Profiles = await JSON.parse(
+    fs.readFileSync('shared/data/profiles.json', 'utf8')
+  );
   const iconClasses =
     'h-6 w-6 fill-zinc-500 transition group-hover:fill-emerald-500 dark:fill-zinc-400';
 
@@ -66,9 +75,10 @@ export default function Home() {
       </Container>
       <Container className="mt-6 p-6 ">
         <div className="mx-auto grid  grid-cols-1 gap-y-20  lg:grid-cols-2">
+          {/* @ts-expect-error Async Server Component */}
           <ProjectsSection />
           <aside className="space-y-10 lg:pl-16 xl:pl-24">
-            <Resume />
+            <Resume content={content} />
             <Contact />
           </aside>
         </div>
@@ -80,7 +90,10 @@ export default function Home() {
 /**
  * Section that displays featured projects on the home page.
  */
-function ProjectsSection() {
+async function ProjectsSection() {
+  const rawData = fs.readFileSync('shared/data/projects.json', 'utf8');
+  const projects: Project[] = JSON.parse(rawData);
+
   const sortedProjects = projects
     .filter(project => project.featured)
     .sort((a, b) => a.priority - b.priority);
@@ -105,7 +118,12 @@ function ProjectsSection() {
 /**
  * Section that displays the skills and a download link for the resume.
  */
-function Resume() {
+function Resume({
+  content
+}: {
+  // not the best way to do this, but it works for now
+  content: { skills: { name: string; items: string[] }[] };
+}) {
   return (
     <div className={border}>
       <SectionTitle icon={<ChartIcon className="h-4 w-4" />} title="Skills" />

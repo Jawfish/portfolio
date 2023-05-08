@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -9,19 +11,26 @@ import {
 
 import { Container } from '@/shared/components/container';
 import Heading from '@/shared/components/heading';
-import profiles from '@/shared/data/profiles.json';
 
-import content from './content.json';
 import Excerpt from './excerpt';
 
-export default function About() {
+type Profiles = {
+  github: { link: string; username: string };
+  linkedin: { link: string; username: string };
+  itch: { link: string; username: string };
+};
+export default async function About() {
+  const profiles: Profiles = await JSON.parse(
+    fs.readFileSync('shared/data/profiles.json', 'utf8')
+  );
+
   return (
     <Container className="mt-24">
       <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
         <div className="lg:pl-20">
           <div className="max-w-xs px-2.5 lg:max-w-none">
             <Image
-              src={content.splash}
+              src="/images/splash_about.png"
               alt="Person wearing headphones typing on a desktop computer with git commit activity in the background."
               width={512}
               height={512}
@@ -31,7 +40,9 @@ export default function About() {
           </div>
         </div>
         <section className="lg:order-first lg:row-span-2">
-          <Heading>{content.heading}</Heading>
+          <Heading>
+            {"I'm James, a self-taught developer from Georgia."}
+          </Heading>
           <article className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-300">
             <Excerpt />
           </article>
