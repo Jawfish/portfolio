@@ -69,7 +69,7 @@ Card.Cta = function CardCta({ children }: { children: React.ReactNode }) {
   return (
     <div
       aria-hidden="true"
-      className="relative z-10 mt-4 flex items-center text-sm font-medium text-emerald-500">
+      className="relative z-10 mt-4 flex items-center text-sm font-medium text-emerald-700 transition-colors hover:text-emerald-500 dark:text-emerald-500 dark:hover:text-emerald-400">
       {children}
       <HiChevronRight className="ml-1 mt-1 h-4 w-4 stroke-current" />
     </div>

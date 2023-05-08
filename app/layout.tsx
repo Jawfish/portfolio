@@ -96,21 +96,21 @@ export default function RootLayout({
                   <div className="flex gap-6 text-sm font-medium text-zinc-800 dark:text-zinc-200">
                     <Link
                       href="/"
-                      className="transition hover:text-emerald-500 dark:hover:text-emerald-500">
+                      className="transition hover:text-emerald-500 dark:hover:text-emerald-400">
                       Home
                     </Link>
                     <Link
                       href="/about"
-                      className="transition hover:text-emerald-500 dark:hover:text-emerald-500">
+                      className="transition hover:text-emerald-500 dark:hover:text-emerald-400">
                       About
                     </Link>
                     <Link
                       href="/projects"
-                      className="transition hover:text-emerald-500 dark:hover:text-emerald-500">
+                      className="transition hover:text-emerald-500 dark:hover:text-emerald-400">
                       Projects
                     </Link>
                   </div>
-                  <p className="text-sm text-zinc-500">
+                  <p className="text-sm text-zinc-500 dark:text-zinc-400">
                     &copy; {new Date().getFullYear()} James Fitzgerald. All
                     rights reserved.
                   </p>

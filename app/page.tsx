@@ -130,7 +130,7 @@ function Resume({
       <ol className="mt-4 space-y-4">
         {content.skills.map(skill => (
           <li key={skill.name}>
-            <div className="-mb-1 text-xs text-zinc-500">
+            <div className="-mb-1 text-xs text-zinc-500 dark:text-zinc-400">
               {titleCase(skill.name)}
             </div>
             <Card.Description>{skill.items.join(', ')}</Card.Description>

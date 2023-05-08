@@ -48,7 +48,7 @@ export default function ProjectCard({
               passHref={true}
               target="_blank"
               className="group flex items-end">
-              <span className="inline-flex items-center gap-1 text-sm font-normal text-emerald-500 transition-all hover:text-emerald-300">
+              <span className="inline-flex items-center gap-1 text-sm font-normal text-emerald-700 transition-colors hover:text-emerald-500 dark:text-emerald-500 dark:hover:text-emerald-400">
                 {project.cta}
                 <BiLinkExternal className="mt-0.5" />
               </span>
@@ -60,7 +60,7 @@ export default function ProjectCard({
               passHref={true}
               target="_blank"
               className="flex items-end">
-              <span className="inline-flex items-center gap-1 text-sm font-normal text-emerald-500 transition-all hover:text-emerald-300">
+              <span className="inline-flex items-center gap-1 text-sm font-normal text-emerald-700 transition-colors hover:text-emerald-500 dark:text-emerald-500 dark:hover:text-emerald-400">
                 Source
               </span>
             </Link>

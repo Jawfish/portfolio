@@ -88,7 +88,7 @@ function SocialLink({
         href={href}
         aria-label={aria}
         target="_blank"
-        className="group flex gap-4 text-sm font-medium text-zinc-800 transition hover:text-emerald-500 dark:text-zinc-200 dark:hover:text-emerald-500">
+        className="group flex gap-4 text-sm font-medium text-zinc-800 transition hover:text-emerald-500 dark:text-zinc-200 dark:hover:text-emerald-400">
         {children}
       </Link>
     </li>
