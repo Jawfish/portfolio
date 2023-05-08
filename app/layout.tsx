@@ -9,7 +9,6 @@ import {
   OuterContainer
 } from '@/shared/components/container';
 import NavItem from '@/shared/components/nav-item';
-import ThemeToggle from '@/shared/components/theme-toggle';
 
 import Provider from './theme-provider';
 
