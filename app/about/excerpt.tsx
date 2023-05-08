@@ -6,14 +6,14 @@ export default function Excerpt() {
       <p className="pb-8">
         My passion for software development began by creating games in C# with{' '}
         <a
-          className="font-medium text-emerald-400"
+          className="font-medium text-emerald-400 transition-colors hover:text-emerald-300"
           href="https://www.monogame.net/">
           MonoGame
         </a>
         . I&#39;ve continued making games with various frameworks and languages
         since then, with some of my work being released on{' '}
         <a
-          className="font-medium text-emerald-400"
+          className="font-medium text-emerald-400 transition-colors hover:text-emerald-300"
           href="https://jawfish.itch.io/">
           Itch.io
         </a>
@@ -37,19 +37,19 @@ export default function Excerpt() {
         keyboards. After building a few custom keyboards, I started contributing
         to{' '}
         <a
-          className="font-medium text-emerald-400"
+          className="font-medium text-emerald-400 transition-colors hover:text-emerald-300"
           href="https://github.com/KMKfw/kmk_firmware">
           KMK
         </a>
         , an open-source keyboard firmware. I wrote the{' '}
         <a
-          className="font-medium text-emerald-400"
+          className="font-medium text-emerald-400 transition-colors hover:text-emerald-300"
           href="https://github.com/KMKfw/kmk_firmware/blob/master/docs/en/rapidfire.md">
           RapidFire
         </a>{' '}
         and{' '}
         <a
-          className="font-medium text-emerald-400"
+          className="font-medium text-emerald-400 transition-colors hover:text-emerald-300"
           href="https://github.com/KMKfw/kmk_firmware/blob/master/docs/en/string_substitution.md">
           String Substitution
         </a>{' '}
@@ -62,20 +62,20 @@ export default function Excerpt() {
         home server that provides various containerized services, including a
         PostgreSQL database, a{' '}
         <a
-          className="font-medium text-emerald-400"
+          className="font-medium text-emerald-400 transition-colors hover:text-emerald-300"
           href="https://gitea.io/en-us/">
           Gitea
         </a>{' '}
         instance, and{' '}
         <a
-          className="font-medium text-emerald-400"
+          className="font-medium text-emerald-400 transition-colors hover:text-emerald-300"
           href="https://www.portainer.io/">
           Portainer
         </a>
         , a Docker management frontend. It also acts as a VPN, NGINX server, and
         remote development environment using{' '}
         <a
-          className="font-medium text-emerald-400"
+          className="font-medium text-emerald-400 transition-colors hover:text-emerald-300"
           href="https://code.visualstudio.com/docs/remote/vscode-server">
           Visual Studio Code Server
         </a>

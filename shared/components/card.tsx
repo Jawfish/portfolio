@@ -47,7 +47,7 @@ Card.Title = function CardTitle({
   children
 }: CardTitleProps) {
   return (
-    <Component className="text-base font-semibold text-zinc-800 dark:text-zinc-50">
+    <Component className="text-base font-semibold tracking-wide text-zinc-800 dark:text-zinc-50">
       {href ? <Card.Link href={href}>{children}</Card.Link> : children}
     </Component>
   );

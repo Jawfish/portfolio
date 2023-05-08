@@ -14,7 +14,6 @@
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "editor.insertSpaces": true,
   "eslint.format.enable": true,
-  "tailwindCSS.experimental.configFile": "tailwind.config.cjs",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.tsdk": "node_modules/.pnpm/typescript@4.9.4/node_modules/typescript/lib"
 }
