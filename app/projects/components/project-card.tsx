@@ -9,15 +9,19 @@ import WatchDemo from './watch-demo';
 
 export default function ProjectCard({
   project,
-  showModal
+  showModal,
+  hidden = false
 }: {
   project: Project;
   showModal: (project: Project) => void;
+  hidden: boolean;
 }) {
   return (
     <div
       id={project.name}
-      className="h-fit rounded border border-zinc-100 dark:border-zinc-700/40 lg:max-w-md">
+      className={`h-fit rounded border border-zinc-100 dark:border-zinc-700/40 lg:max-w-md ${
+        hidden ? 'hidden' : ''
+      }`}>
       <div className="relative">
         <Image
           className="rounded-t border-b border-zinc-100 dark:border-zinc-700/40"

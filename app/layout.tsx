@@ -54,7 +54,7 @@ export default function RootLayout({
                   </nav>
                   <div className="flex justify-end md:flex-1">
                     <div className="pointer-events-auto">
-                      <ThemeToggle />
+                      {/* <ThemeToggle /> */}
                     </div>
                   </div>
                 </div>
