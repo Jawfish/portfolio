@@ -1,15 +1,14 @@
-import { Lato } from 'next/font/google';
+import localFont from 'next/font/local';
 
-const font = Lato({
-  variable: '--font-lato-black',
-  weight: '900',
-  subsets: ['latin']
+const bold = localFont({
+  src: '../../public/fonts/atkinson-bold.ttf',
+  variable: '--font-atkinson-bold'
 });
 
 export default function Heading({ children }: { children: React.ReactNode }) {
   return (
     <h1
-      className={`font-heading text-5xl font-black tracking-tight text-zinc-800 dark:text-zinc-50 ${font.variable}`}>
+      className={`font-atkinson-bold text-5xl tracking-tight text-zinc-800 dark:text-zinc-50 ${bold.variable}`}>
       {children}
     </h1>
   );

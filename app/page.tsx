@@ -27,7 +27,7 @@ export default function Home() {
 
   return (
     <div>
-      <Container className="mt-16 sm:mt-32">
+      <Container className="mt-24">
         <main className="flex w-full flex-col-reverse lg:flex-row">
           <aside>
             <section className="max-w-2xl">

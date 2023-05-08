@@ -11,8 +11,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        next: ['var(--font-next)', 'sans-serif'],
-        heading: ['var(--font-lato-black)', 'sans-serif']
+        atkinson: ['var(--font-atkinson)', 'sans-serif'],
+        'atkinson-bold': ['var(--font-atkinson-bold)', 'sans-serif']
       }
     }
   },

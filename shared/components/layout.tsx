@@ -13,7 +13,7 @@ export default function Layout({
   children: React.ReactNode;
 }) {
   return (
-    <Container className="mt-16 sm:mt-32">
+    <Container className="mt-24">
       <section className="max-w-2xl">
         <Heading>{title}</Heading>
         <p className="mt-6 text-base text-zinc-600 dark:text-zinc-300">

@@ -1,6 +1,6 @@
 import './globals.css';
 
-import { Lato } from 'next/font/google';
+import localFont from 'next/font/local';
 import Link from 'next/link';
 
 import {
@@ -13,10 +13,9 @@ import ThemeToggle from '@/shared/components/theme-toggle';
 
 import Provider from './theme-provider';
 
-const font = Lato({
-  variable: '--font-next',
-  weight: '400',
-  subsets: ['latin']
+const font = localFont({
+  src: '../public/fonts/atkinson.ttf',
+  variable: '--font-atkinson'
 });
 
 export default function RootLayout({
@@ -27,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${font.variable}`}>
       <head />
-      <body className="bg-zinc-50 font-next dark:bg-black">
+      <body className="bg-zinc-50 font-atkinson dark:bg-black">
         <Provider>
           <div className="fixed inset-0 flex justify-center sm:px-8">
             <div className="flex w-full max-w-7xl lg:px-8">
@@ -38,14 +37,14 @@ export default function RootLayout({
             className="pointer-events-none relative z-40 flex flex-col"
             style={{
               height: 'var(--header-height)',
-              marginBottom: 'var(--header-mb)'
+              marginBottom: 'var(--header-)'
             }}>
             <div className="top-0 z-10 h-16 pt-6">
               <Container className="top-[var(--header-top,theme(spacing.6))] w-full">
                 <div className="relative flex gap-4">
                   <div className="flex flex-1"></div>
                   <nav className="flex flex-1 justify-end md:justify-center">
-                    <div className="pointer-events-auto hidden md:block">
+                    <div className="pointer-events-auto md:block">
                       <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
                         <NavItem href="/">Home</NavItem>
                         <NavItem href="/about">About</NavItem>
