@@ -19,6 +19,7 @@ type Profiles = {
   linkedin: { link: string; username: string };
   itch: { link: string; username: string };
 };
+
 export default async function About() {
   const profiles: Profiles = await JSON.parse(
     fs.readFileSync('shared/data/profiles.json', 'utf8')

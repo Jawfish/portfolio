@@ -2,6 +2,7 @@ import './globals.css';
 
 import localFont from 'next/font/local';
 import Link from 'next/link';
+import { Metadata } from 'next';
 
 import {
   Container,
@@ -16,6 +17,33 @@ const font = localFont({
   src: '../public/fonts/atkinson.ttf',
   variable: '--font-atkinson'
 });
+
+export const metadata: Metadata = {
+  title:
+    'James Fitzgerald - Full Stack Software Developer | Portfolio & Resume',
+  description:
+    'James is a full stack developer specializing in JavaScript and TypeScript, Python, React, and more. Check out his portfolio for projects and contact information.',
+  keywords: [
+    'James Fitzgerald',
+    'full stack',
+    'web developer',
+    'javascript',
+    'python',
+    'react',
+    'next.js',
+    'postgres',
+    'node'
+  ],
+  openGraph: {
+    type: 'website',
+    siteName: 'James Fitzgerald',
+    title: 'James Fitzgerald - Full Stack Software Developer',
+    description:
+      'James is a full stack developer specializing in JavaScript and TypeScript, Python, React, and more. Check out his portfolio for projects and contact information.',
+    emails: ['james@jawfish.dev'],
+    url: 'https://jawfish.dev'
+  }
+};
 
 export default function RootLayout({
   children
