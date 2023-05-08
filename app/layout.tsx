@@ -19,27 +19,27 @@ const font = localFont({
 });
 
 export const metadata: Metadata = {
-  title:
-    'James Fitzgerald - Full Stack Software Developer | Portfolio & Resume',
+  title: 'James Fitzgerald - Full Stack Web Developer',
   description:
-    'James is a full stack developer specializing in JavaScript and TypeScript, Python, React, and more. Check out his portfolio for projects and contact information.',
+    'James is a versatile full stack web developer specializing in JavaScript, TypeScript, Python, React, Next.js, and more.',
   keywords: [
     'James Fitzgerald',
     'full stack',
     'web developer',
     'javascript',
+    'typescript',
     'python',
     'react',
     'next.js',
-    'postgres',
-    'node'
+    'backend',
+    'frontend'
   ],
   openGraph: {
     type: 'website',
     siteName: 'James Fitzgerald',
-    title: 'James Fitzgerald - Full Stack Software Developer',
+    title: 'James Fitzgerald - Full Stack Web Developer',
     description:
-      'James is a full stack developer specializing in JavaScript and TypeScript, Python, React, and more. Check out his portfolio for projects and contact information.',
+      'James is a versatile full stack web developer specializing in JavaScript, TypeScript, Python, React, Next.js, and more.',
     emails: ['james@jawfish.dev'],
     url: 'https://jawfish.dev'
   }
