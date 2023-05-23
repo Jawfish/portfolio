@@ -8,7 +8,7 @@ const bold = localFont({
 export default function Heading({ children }: { children: React.ReactNode }) {
   return (
     <h1
-      className={`font-atkinson-bold text-5xl tracking-tight text-zinc-800 dark:text-zinc-50 ${bold.variable}`}>
+      className={`font-atkinson-bold text-3xl tracking-tight text-zinc-800 dark:text-zinc-50 sm:text-5xl ${bold.variable}`}>
       {children}
     </h1>
   );

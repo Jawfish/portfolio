@@ -38,31 +38,6 @@
 		"priority": 1
 	},
 	{
-		"name": "Solidarity",
-		"description": "Solidarity is an e-commerce platform demo with user accounts, an ordering system, and a CMS for managing products.",
-		"link": "https://shop.jawfish.dev",
-		"stack": [
-			{
-				"name": "React"
-			},
-			{
-				"name": "Node"
-			},
-			{
-				"name": "MongoDB"
-			},
-			{
-				"name": "GraphQL"
-			}
-		],
-		"image": "/images/1000x500.png",
-		"category": "website",
-		"cta": "Visit Site",
-		"featured": true,
-		"blurb": "An e-commerce platform built with SolidJS, Express, and PostgreSQL",
-		"priority": 3
-	},
-	{
 		"name": "Portfolio",
 		"category": "website",
 		"description": "This site! Responsive with accessibility features like dark mode, semantic HTML, and proper aria attributes. Built with Next.js.",
@@ -148,6 +123,7 @@
 		],
 		"image": "/images/pywinmodal.png",
 		"cta": "View Project",
+		"featured": true,
 		"blurb": "Customizable Windows productivity tool.",
 		"priority": 8
 	},

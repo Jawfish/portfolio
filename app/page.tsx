@@ -7,7 +7,6 @@ import {
   FaLinkedinIn as LinkedInIcon
 } from 'react-icons/fa';
 import { FiBarChart as ChartIcon, FiMail as MailIcon } from 'react-icons/fi';
-import { HiChevronDown as ChevronDownIcon } from 'react-icons/hi';
 import Balancer from 'react-wrap-balancer';
 
 import Button from '@/shared/components/button';
@@ -19,6 +18,7 @@ import SocialLink from '@/shared/components/social-link';
 import { border } from '@/shared/lib/styles';
 import { titleCase } from '@/shared/lib/utils';
 import { Project } from '@/globals';
+import DropdownButton from '@/shared/components/dropdown';
 
 type Profiles = {
   github: { link: string; username: string };
@@ -137,14 +137,7 @@ function Resume({
           </li>
         ))}
       </ol>
-      <Button
-        href="/"
-        // download={filename}
-        type="button"
-        className="group mt-6 w-full">
-        Download CV
-        <ChevronDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
-      </Button>
+      <DropdownButton />
     </div>
   );
 }

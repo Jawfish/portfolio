@@ -26,8 +26,8 @@ export default async function About() {
   );
 
   return (
-    <Container className="mt-24">
-      <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
+    <Container className="mt-12 lg:mt-24">
+      <div className="grid grid-cols-1 gap-y-8 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
         <div className="lg:pl-20">
           <div className="max-w-xs px-2.5 lg:max-w-none">
             <Image
@@ -35,7 +35,7 @@ export default async function About() {
               alt="Person wearing headphones typing on a desktop computer with git commit activity in the background."
               width={512}
               height={512}
-              className="rounded object-cover"
+              className="h-32 w-32 rounded object-cover sm:h-full sm:w-full"
               priority={true}
             />
           </div>
