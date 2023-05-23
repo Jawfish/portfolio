@@ -35,7 +35,7 @@ export default function Modal({
         <CloseIcon className="absolute z-10 m-4 h-10  w-10 cursor-pointer fill-zinc-500 transition-all hover:fill-red-500" />
         {!videoReady && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="h-32 w-32 animate-spin rounded-full border-y-2 border-emerald-500" />
+            <div className="h-32 w-32 animate-spin rounded-full border-y-2 border-sky-500" />
           </div>
         )}
         <video

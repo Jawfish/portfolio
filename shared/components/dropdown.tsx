@@ -11,12 +11,14 @@ import { useState, useRef, useEffect } from 'react';
 export default function DropdownButton() {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
-
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
   useEffect(() => {
     const closeDropdown = (event: MouseEvent) => {
       if (
         dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
+        !dropdownRef.current.contains(event.target as Node) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target as Node)
       ) {
         setOpen(false);
       }
@@ -55,6 +57,7 @@ export default function DropdownButton() {
   return (
     <div className="relative block w-full">
       <button
+        ref={buttonRef}
         className="group mt-6 flex w-full items-center justify-center gap-2 rounded bg-zinc-800 px-3 py-2 text-sm font-semibold tracking-wide text-zinc-50 outline-offset-2 transition-colors duration-75 hover:bg-zinc-700 dark:text-zinc-50"
         onClick={() => setOpen(!open)}>
         Download CV
@@ -74,7 +77,7 @@ export default function DropdownButton() {
               setOpen(false);
               window.open(option.href);
             }}
-            className=" flex w-full items-center gap-2 rounded px-4 py-2 text-left align-middle text-black hover:bg-zinc-200 dark:text-white dark:hover:bg-zinc-700">
+            className=" flex w-full items-center gap-2 rounded px-4 py-2 text-left align-middle text-black hover:bg-sky-600 hover:text-white dark:text-white ">
             <span className="flex-none">{option.icon}</span>
             {option.label}
           </a>

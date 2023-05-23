@@ -31,7 +31,7 @@ export default async function About() {
         <div className="lg:pl-20">
           <div className="max-w-xs px-2.5 lg:max-w-none">
             <Image
-              src="/images/splash_about.png"
+              src="/images/splash_about.svg"
               alt="Person wearing headphones typing on a desktop computer with git commit activity in the background."
               width={512}
               height={512}
@@ -51,19 +51,19 @@ export default async function About() {
         <aside className="lg:pl-20">
           <ul>
             <SocialLink href={profiles.github.link} aria="GitHub profile">
-              <GitHubIcon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-emerald-500" />
+              <GitHubIcon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-sky-500" />
               <span>Explore my GitHub</span>
             </SocialLink>
             <SocialLink href={profiles.linkedin.link} aria="LinkedIn profile">
-              <LinkedInIcon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-emerald-500" />
+              <LinkedInIcon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-sky-500" />
               <span>Follow on LinkedIn</span>
             </SocialLink>
             <SocialLink href={profiles.itch.link} aria="Itch.io profile">
-              <ItchIcon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-emerald-500" />
+              <ItchIcon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-sky-500" />
               <span>Check out my Itch.io</span>
             </SocialLink>
             <SocialLink href="mailto:james@jawfish.dev" aria="Email me">
-              <MailIcon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-emerald-500" />
+              <MailIcon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-sky-500" />
               <span>Email me</span>
             </SocialLink>
           </ul>
@@ -88,7 +88,7 @@ function SocialLink({
         href={href}
         aria-label={aria}
         target="_blank"
-        className="group flex gap-4 text-sm font-medium text-zinc-800 transition hover:text-emerald-500 dark:text-zinc-200 dark:hover:text-emerald-400">
+        className="group flex gap-4 text-sm font-medium text-zinc-800 transition hover:text-sky-500 dark:text-zinc-200 dark:hover:text-sky-400">
         {children}
       </Link>
     </li>

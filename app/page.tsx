@@ -32,7 +32,7 @@ export default async function Home() {
     fs.readFileSync('shared/data/profiles.json', 'utf8')
   );
   const iconClasses =
-    'h-6 w-6 fill-zinc-500 transition group-hover:fill-emerald-500 dark:fill-zinc-400';
+    'h-6 w-6 fill-zinc-500 transition group-hover:fill-sky-500 dark:fill-zinc-400';
 
   return (
     <div>
@@ -162,7 +162,7 @@ function Contact() {
           aria-label="Message"
           cols={30}
           rows={4}
-          className="col-span-4 appearance-none rounded border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)]  shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-emerald-400 dark:focus:ring-emerald-400/10 sm:text-sm"></textarea>
+          className="col-span-4 appearance-none rounded border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)]  shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-sky-500 focus:outline-none focus:ring-4 focus:ring-sky-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-sky-400 dark:focus:ring-sky-400/10 sm:text-sm"></textarea>
         <div className="col-span-4 flex gap-6">
           <input
             type="name"
@@ -170,7 +170,7 @@ function Contact() {
             placeholder="Name"
             aria-label="Name"
             required
-            className="min-w-0 flex-auto appearance-none rounded border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)]  shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-emerald-400 dark:focus:ring-emerald-400/10 sm:text-sm"
+            className="min-w-0 flex-auto appearance-none rounded border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)]  shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-sky-500 focus:outline-none focus:ring-4 focus:ring-sky-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-sky-400 dark:focus:ring-sky-400/10 sm:text-sm"
           />
           <input
             type="email"
@@ -178,7 +178,7 @@ function Contact() {
             required
             placeholder="Email address"
             aria-label="Email address"
-            className="min-w-0 flex-auto appearance-none rounded border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)]  shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-emerald-400 dark:focus:ring-emerald-400/10 sm:text-sm"
+            className="min-w-0 flex-auto appearance-none rounded border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)]  shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-sky-500 focus:outline-none focus:ring-4 focus:ring-sky-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-sky-400 dark:focus:ring-sky-400/10 sm:text-sm"
           />
         </div>
         <Button type="submit" className="col-span-1">

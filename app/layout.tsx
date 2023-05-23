@@ -87,17 +87,17 @@ export default function RootLayout({
                 <div className="flex gap-6 text-sm font-medium text-zinc-800 dark:text-zinc-200">
                   <Link
                     href="/"
-                    className="transition hover:text-emerald-500 dark:hover:text-emerald-400">
+                    className="transition hover:text-sky-500 dark:hover:text-sky-400">
                     Home
                   </Link>
                   <Link
                     href="/about"
-                    className="transition hover:text-emerald-500 dark:hover:text-emerald-400">
+                    className="transition hover:text-sky-500 dark:hover:text-sky-400">
                     About
                   </Link>
                   <Link
                     href="/projects"
-                    className="transition hover:text-emerald-500 dark:hover:text-emerald-400">
+                    className="transition hover:text-sky-500 dark:hover:text-sky-400">
                     Projects
                   </Link>
                 </div>

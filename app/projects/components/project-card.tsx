@@ -41,14 +41,14 @@ export default function ProjectCard({
         {/* <TechTags tags={project.stack} /> */}
         <Card.Title>{project.name}</Card.Title>
         <Card.Description>{project.description}</Card.Description>
-        <div className="relative z-10 mt-auto flex w-full gap-4 pt-3  text-sm font-medium text-zinc-400 transition-all group-hover:text-emerald-100 dark:text-zinc-200">
+        <div className="relative z-10 mt-auto flex w-full gap-4 pt-3  text-sm font-medium text-zinc-400 transition-all group-hover:text-sky-100 dark:text-zinc-200">
           {project.link && (
             <Link
               href={project.link}
               passHref={true}
               target="_blank"
               className="group flex items-end">
-              <span className="inline-flex items-center gap-1 text-sm font-normal text-emerald-700 transition-colors hover:text-emerald-500 dark:text-emerald-500 dark:hover:text-emerald-400">
+              <span className="inline-flex items-center gap-1 text-sm font-normal text-sky-700 transition-colors hover:text-sky-500 dark:text-sky-500 dark:hover:text-sky-400">
                 {project.cta}
                 <BiLinkExternal className="mt-0.5" />
               </span>
@@ -60,7 +60,7 @@ export default function ProjectCard({
               passHref={true}
               target="_blank"
               className="flex items-end">
-              <span className="inline-flex items-center gap-1 text-sm font-normal text-emerald-700 transition-colors hover:text-emerald-500 dark:text-emerald-500 dark:hover:text-emerald-400">
+              <span className="inline-flex items-center gap-1 text-sm font-normal text-sky-700 transition-colors hover:text-sky-500 dark:text-sky-500 dark:hover:text-sky-400">
                 Source
               </span>
             </Link>

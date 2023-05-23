@@ -47,8 +47,8 @@ export default function Dropdown({
           <div className="relative mt-1  text-zinc-900 dark:text-zinc-200">
             <Listbox.Button
               className="relative w-full cursor-default rounded-md border border-zinc-100 
-						bg-white py-2 pl-3 pr-10 text-left focus:border-emerald-500 focus:outline-none focus:ring-1 
-						focus:ring-emerald-500 dark:border-zinc-700 dark:bg-zinc-800 sm:text-sm">
+						bg-white py-2 pl-3 pr-10 text-left focus:border-sky-500 focus:outline-none focus:ring-1 
+						focus:ring-sky-500 dark:border-zinc-700 dark:bg-zinc-800 sm:text-sm">
               <span className="block truncate">{value}</span>
               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                 <ChevronUpDownIcon
@@ -70,7 +70,7 @@ export default function Dropdown({
                       className={({ active }: { active: boolean }) =>
                         classNames(
                           active
-                            ? 'bg-emerald-500 text-white'
+                            ? 'bg-sky-600 text-white'
                             : 'text-zinc-900 dark:text-zinc-200',
                           'relative cursor-default select-none py-2 pl-3 pr-9'
                         )
@@ -95,7 +95,7 @@ export default function Dropdown({
                           {selected ? (
                             <span
                               className={classNames(
-                                active ? 'text-white' : 'text-emerald-500',
+                                active ? 'text-white' : 'text-sky-500',
                                 'absolute inset-y-0 right-0 flex items-center pr-4'
                               )}>
                               <CheckIcon
