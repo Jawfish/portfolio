@@ -31,7 +31,7 @@ export default async function About() {
         <div className="lg:pl-20">
           <div className="max-w-xs px-2.5 lg:max-w-none">
             <Image
-              src="/images/splash_about.svg"
+              src="/images/splash_about.png"
               alt="Person wearing headphones typing on a desktop computer with git commit activity in the background."
               width={512}
               height={512}
