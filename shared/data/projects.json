@@ -62,6 +62,21 @@
 		"priority": 2
 	},
 	{
+		"name": "KMK Firmware Modules",
+		"category": "utility",
+		"description": "RapidFire & String Substitution modules for KMK Firmware, an open-source firmware project for custom-built keyboards.",
+		"link": "https://github.com/KMKfw/kmk_firmware/commits?author=Jawfish",
+		"stack": [
+			{
+				"name": "Python"
+			}
+		],
+		"image": "/images/kmk.png",
+		"cta": "View Project",
+		"blurb": "RapidFire and String Substitution modules for KMK Firmware.",
+		"priority": 2
+	},
+	{
 		"name": "Connexit",
 		"category": "game",
 		"description": "Puzzle game where shapes with various behaviors must be navigated to their respective goals for the player to progress.",
