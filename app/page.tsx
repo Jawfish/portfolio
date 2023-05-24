@@ -1,12 +1,24 @@
 import fs from 'fs';
 
+import {
+  BsFileEarmarkPdf,
+  BsFileEarmarkWord,
+  BsFileEarmark
+} from 'react-icons/bs';
 import Image from 'next/image';
 import {
   FaGithub as GitHubIcon,
   FaItchIo as ItchIcon,
   FaLinkedinIn as LinkedInIcon
 } from 'react-icons/fa';
-import { FiBarChart as ChartIcon, FiMail as MailIcon } from 'react-icons/fi';
+import {
+  FiBarChart as ChartIcon,
+  FiMail as MailIcon,
+  FiFileText as ResumeIcon,
+  FiExternalLink,
+  FiFile,
+  FiDownload
+} from 'react-icons/fi';
 import Balancer from 'react-wrap-balancer';
 
 import Button from '@/shared/components/button';
@@ -18,7 +30,6 @@ import SocialLink from '@/shared/components/social-link';
 import { border } from '@/shared/lib/styles';
 import { titleCase } from '@/shared/lib/utils';
 import { Project } from '@/globals';
-import DropdownButton from '@/shared/components/dropdown';
 
 type Profiles = {
   github: { link: string; username: string };
@@ -78,7 +89,8 @@ export default async function Home() {
           {/* @ts-expect-error Async Server Component */}
           <ProjectsSection />
           <aside className="space-y-10 lg:pl-16 xl:pl-24">
-            <Resume content={content} />
+            <Skills content={content} />
+            <Resume />
             <Contact />
           </aside>
         </div>
@@ -114,9 +126,9 @@ async function ProjectsSection() {
 }
 
 /**
- * Section that displays the skills and a download link for the resume.
+ * Section that displays the skills
  */
-function Resume({
+function Skills({
   content
 }: {
   // not the best way to do this, but it works for now
@@ -125,7 +137,7 @@ function Resume({
   return (
     <div className={border}>
       <SectionTitle icon={<ChartIcon className="h-4 w-4" />} title="Skills" />
-      <ol className="mt-4 space-y-4">
+      <ol className="my-4 space-y-4">
         {content.skills.map(skill => (
           <li key={skill.name}>
             <div className="-mb-1 text-xs text-zinc-500 dark:text-zinc-400">
@@ -135,7 +147,49 @@ function Resume({
           </li>
         ))}
       </ol>
-      <DropdownButton />
+    </div>
+  );
+}
+
+function Resume() {
+  return (
+    <div className={border}>
+      <SectionTitle
+        icon={<ResumeIcon className="h-4 w-4" />}
+        title="Download Résumé"
+      />
+      <div className="mt-4 flex w-full justify-between gap-4">
+        <Button
+          type="button"
+          className="h-fit w-1/3"
+          href="/resume/James%20Fitzgerald%20Resume.pdf"
+          target="_blank">
+          <div className="flex w-full items-center justify-between">
+            PDF
+            <FiDownload />
+          </div>
+        </Button>
+        <Button
+          type="button"
+          className="h-fit w-1/3"
+          href="/resume/James%20Fitzgerald%20Resume.docx"
+          target="_blank">
+          <div className="flex w-full items-center justify-between">
+            Word
+            <FiDownload />
+          </div>
+        </Button>
+        <Button
+          type="button"
+          className="h-fit w-1/3"
+          href="https://docs.google.com/document/d/1SglyF5ui7LDpmZqRjf40YmT9XpNevY6b/"
+          target="_blank">
+          <div className="flex w-full items-center justify-between">
+            GDocs
+            <FiExternalLink />
+          </div>
+        </Button>
+      </div>
     </div>
   );
 }
