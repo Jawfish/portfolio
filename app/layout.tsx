@@ -1,6 +1,6 @@
 import './globals.css';
 
-import localFont from 'next/font/local';
+import { Atkinson_Hyperlegible } from 'next/font/google';
 import Link from 'next/link';
 import { Metadata } from 'next';
 
@@ -11,8 +11,10 @@ import {
 } from '@/shared/components/container';
 import NavItem from '@/shared/components/nav-item';
 
-const font = localFont({
-  src: '../public/fonts/atkinson.ttf',
+const font = Atkinson_Hyperlegible({
+  weight: '400',
+  subsets: ['latin'],
+  fallback: ['system-ui', 'arial', 'sans-serif'],
   variable: '--font-atkinson'
 });
 

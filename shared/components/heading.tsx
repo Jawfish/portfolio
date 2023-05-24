@@ -1,7 +1,9 @@
-import localFont from 'next/font/local';
+import { Atkinson_Hyperlegible } from 'next/font/google';
 
-const bold = localFont({
-  src: '../../public/fonts/atkinson-bold.ttf',
+const bold = Atkinson_Hyperlegible({
+  weight: '700',
+  subsets: ['latin'],
+  fallback: ['system-ui', 'arial', 'sans-serif'],
   variable: '--font-atkinson-bold'
 });
 
