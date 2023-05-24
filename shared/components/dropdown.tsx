@@ -77,7 +77,7 @@ export default function DropdownButton() {
               setOpen(false);
               window.open(option.href);
             }}
-            className=" flex w-full items-center gap-2 rounded px-4 py-2 text-left align-middle text-black hover:bg-sky-600 hover:text-white dark:text-white ">
+            className=" flex w-full items-center gap-2 rounded px-4 py-2 text-left align-middle text-black hover:bg-zinc-600 hover:text-white dark:text-white ">
             <span className="flex-none">{option.icon}</span>
             {option.label}
           </a>

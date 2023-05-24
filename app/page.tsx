@@ -73,7 +73,7 @@ export default async function Home() {
           </div>
         </main>
       </Container>
-      <Container className="mt-6 p-6 ">
+      <Container className="mt-6 p-2 sm:p-6 ">
         <div className="mx-auto grid  grid-cols-1 gap-y-20  lg:grid-cols-2">
           {/* @ts-expect-error Async Server Component */}
           <ProjectsSection />
