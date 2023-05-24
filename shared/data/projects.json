@@ -42,6 +42,7 @@
 		"category": "website",
 		"description": "This site! Responsive with accessibility features like dark mode, semantic HTML, and proper aria attributes. Built with Next.js.",
 		"link": "https://jawfish.dev",
+		"github": "https://github.com/Jawfish/portfolio",
 		"stack": [
 			{
 				"name": "React"

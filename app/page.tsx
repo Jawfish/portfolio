@@ -103,9 +103,7 @@ async function ProjectsSection() {
       <div className="flex flex-col gap-12">
         {sortedProjects.map(project => (
           <Card key={project.name}>
-            <Card.Title href={`/projects#${project.name}`}>
-              {project.name}
-            </Card.Title>
+            <Card.Title href={`/projects`}>{project.name}</Card.Title>
             <Card.Description>{project.blurb}</Card.Description>
             <Card.Cta>See More</Card.Cta>
           </Card>
