@@ -77,6 +77,31 @@
 		"blurb": "RapidFire and String Substitution modules for KMK Firmware.",
 		"priority": 2
 	},
+		{
+		"name": "Zipper",
+		"category": "website",
+		"description": "A FastAPI + React web app for uploading small files to a server, which are then compressed and returned to the user.",
+		"link": "https://zipper.jawfish.dev/",
+		"github": "https://github.com/Jawfish/zipper",
+		"stack": [
+			{
+				"name": "Python"
+			},
+			{
+				"name": "FastAPI"
+			},
+			{
+				"name": "React"
+			},
+			{
+				"name": "pytest"
+			}
+		],
+		"image": "/images/zipper.png",
+		"cta": "Visit Site",
+		"blurb": "A web app for compressing small files on the go.",
+		"priority": 2
+	},
 	{
 		"name": "Connexit",
 		"category": "game",
