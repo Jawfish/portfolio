@@ -78,6 +78,33 @@
 		"priority": 2
 	},
 		{
+		"name": "Klink",
+		"category": "website",
+		"description": "Link-sharing backend utilizing a microservice architecture built with Go, FastAPI, RabbitMQ, and PostgreSQL.",
+		"github": "https://github.com/Jawfish/klink",
+		"stack": [
+			{
+				"name": "Go"
+			},
+			{
+				"name": "Python"
+			},
+			{
+				"name": "FastAPI"
+			},
+			{
+				"name": "RabbitMQ"
+			},
+			{
+				"name": "PostgreSQL"
+			}
+		],
+		"image": "/images/klink.png",
+		"cta": "View Project",
+		"blurb": "Arcade game entry for a game jam competition.",
+		"priority": 5
+	},
+	{
 		"name": "Zipper",
 		"category": "website",
 		"description": "A FastAPI + React web app for uploading small files to a server, which are then compressed and returned to the user.",
@@ -132,22 +159,6 @@
 		"image": "/images/overbooked.png",
 		"github": "https://github.com/Jawfish/Overbooked",
 		"link": "https://jawfish.itch.io/overbooked",
-		"cta": "Play Game",
-		"blurb": "Arcade game entry for a game jam competition.",
-		"priority": 5
-	},
-	{
-		"name": "Archaeo",
-		"category": "game",
-		"description": "Score-attack game where workers to dig to find diamonds, with more diggers needed as the terrain becomes tougher.",
-		"link": "https://jawfish.itch.io/archaeo",
-		"github": "https://github.com/Jawfish/Archaeo",
-		"stack": [
-			{
-				"name": "Godot"
-			}
-		],
-		"image": "/images/archaeo.png",
 		"cta": "Play Game",
 		"blurb": "Arcade game entry for a game jam competition.",
 		"priority": 6
