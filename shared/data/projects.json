@@ -80,6 +80,7 @@
 		{
 		"name": "Klink",
 		"category": "website",
+		"featured": true,
 		"description": "Link-sharing backend utilizing a microservice architecture built with Go, FastAPI, RabbitMQ, and PostgreSQL.",
 		"github": "https://github.com/Jawfish/klink",
 		"stack": [
@@ -101,8 +102,8 @@
 		],
 		"image": "/images/klink.png",
 		"cta": "View Project",
-		"blurb": "Arcade game entry for a game jam competition.",
-		"priority": 5
+		"blurb": "A link-sharing microservice EDA & REST backend.",
+		"priority": 0
 	},
 	{
 		"name": "Zipper",
@@ -143,7 +144,7 @@
 		"image": "/images/connexit.png",
 		"cta": "Play Game",
 		"featured": true,
-		"blurb": "A puzzle game built in Godot as a submission for a game jam competition",
+		"blurb": "A puzzle game built as a submission for a game jam competition",
 		"recording": "/videos/connexit.mp4",
 		"priority": 4
 	},

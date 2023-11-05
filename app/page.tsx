@@ -91,7 +91,7 @@ export default async function Home() {
           <aside className="space-y-10 lg:pl-16 xl:pl-24">
             <Skills content={content} />
             <Resume />
-            <Contact />
+            {/* <Contact /> */}
           </aside>
         </div>
       </Container>

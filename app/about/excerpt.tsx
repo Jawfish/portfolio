@@ -26,15 +26,11 @@ export default function Excerpt() {
         those around me.
       </p>
       <p className="pb-8">
-        Seeking to create more complex apps, I began building projects in Vue,
-        later moving to React for the improved developer experience provided by
-        its better TypeScript support. I quickly adopted a full-stack approach,
-        familiarizing myself with technologies like Flask, FastAPI, Node, and
-        both SQL and NoSQL databases.
+        Seeking to create more complex apps, I began building websites and applications, incorporating Next.js for its great developer and user experience. Upon dipping my toes into the freelancing world, I quickly adopted a full-stack approach to better satisfy my clients, familiarizing myself with technologies like Flask, FastAPI, Node, and both SQL and NoSQL databases.
       </p>
       <p className="pb-8">
-        With all of that coding, I inevitably ended up with an interest in
-        keyboards. After building a few custom keyboards, I started contributing
+        With all of that coding, I ended up with an interest in
+        keyboards and productivity. After building a few custom keyboards, I started contributing
         to{' '}
         <a
           className="font-medium text-sky-700 transition-colors hover:text-sky-500 dark:text-sky-500 dark:hover:text-sky-400"
@@ -55,24 +51,16 @@ export default function Excerpt() {
         </a>{' '}
         modules and contributed a few fixes here and there. This was a great
         learning experience and gave me the chance to participate in a
-        collaborative software development process after working mostly solo.
+        collaborative software development process.
       </p>
       <p className="">
-        My interest in tech doesn&#39;t stop at software development. I manage a
-        home server that provides various containerized services, including a
-        PostgreSQL database, a{' '}
+        My interest in this space doesn&#39;t stop at software development. As both a hobby and for my clients, I manage servers (both dedicated and VPS) that provide various containerized services. I use my personal server to host services like a PostgreSQL database and a{' '}
         <a
           className="font-medium text-sky-700 transition-colors hover:text-sky-500 dark:text-sky-500 dark:hover:text-sky-400"
           href="https://gitea.io/en-us/">
           Gitea
         </a>{' '}
-        instance, and{' '}
-        <a
-          className="font-medium text-sky-700 transition-colors hover:text-sky-500 dark:text-sky-500 dark:hover:text-sky-400"
-          href="https://www.portainer.io/">
-          Portainer
-        </a>
-        , a Docker management frontend. It also acts as a VPN, NGINX server, and
+        instance. It also acts as a VPN, NGINX server, and
         remote development environment using{' '}
         <a
           className="font-medium text-sky-700 transition-colors hover:text-sky-500 dark:text-sky-500 dark:hover:text-sky-400"
